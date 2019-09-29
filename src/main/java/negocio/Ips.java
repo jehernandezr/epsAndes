@@ -25,11 +25,17 @@ public class Ips {
 	private List<Medico> medicosAdscritos;
 
 	/**
+	 * 
+	 */
+	private long idMedicosAdscritos;
+	
+	/**
 	 * Constructor por defecto
 	 */
 	public Ips() {
 		this.localizacion = "";
 		this.nombre = "";
+		this.idMedicosAdscritos=0;
 		this.serviciosOfrecidos =(List<ServicioDeSalud>) new java.awt.List();
 		this.medicosAdscritos = (List<Medico>) new java.awt.List();
 	}
@@ -42,9 +48,10 @@ public class Ips {
 	 * @param serviciosOfrecidos
 	 * @param medicosAdscritos
 	 */
-	public Ips(String localizacion, String nombre) {
+	public Ips(String localizacion, String nombre, long medicosAdscritos) {
 		this.localizacion = localizacion;
 		this.nombre = nombre;
+		this.idMedicosAdscritos=medicosAdscritos;
 		this.serviciosOfrecidos =(List<ServicioDeSalud>) new java.awt.List();
 		this.medicosAdscritos = (List<Medico>) new java.awt.List();
 	}
@@ -118,6 +125,20 @@ public class Ips {
 	public void addMedicoAdscrito(Medico medico)
 	{
 		medicosAdscritos.add(medico);
+	}
+
+	/**
+	 * @return the idMedicosAdscritos
+	 */
+	public long getIdMedicosAdscritos() {
+		return idMedicosAdscritos;
+	}
+
+	/**
+	 * @param idMedicosAdscritos the idMedicosAdscritos to set
+	 */
+	public void setIdMedicosAdscritos(long idMedicosAdscritos) {
+		this.idMedicosAdscritos = idMedicosAdscritos;
 	}
 	
 }
