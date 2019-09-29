@@ -4,11 +4,17 @@ import java.sql.Date;
 
 public class ServicioDeSalud {
 	
+	private int id;
+	
 	private HorarioAtencion horarioAtencion;
 	
 	private String direccion;
 	
 	private Date fechaDeRealizacion;
+	
+	private Medico medicoAsignado;
+	
+	private Ips ipsAsociada;
 
 	/**
 	 * @return the horarioAtencion
@@ -50,6 +56,48 @@ public class ServicioDeSalud {
 	 */
 	public void setFechaDeRealizacion(Date fechaDeRealizacion) {
 		this.fechaDeRealizacion = fechaDeRealizacion;
+	}
+
+	/**
+	 * @return the medicoAsignado
+	 */
+	public Medico getMedicoAsignado() {
+		return medicoAsignado;
+	}
+
+	/**
+	 * @param medicoAsignado the medicoAsignado to set
+	 */
+	public void setMedicoAsignado(Medico medicoAsignado) {
+		this.medicoAsignado = medicoAsignado;
+	}
+
+	/**
+	 * @return the ipsAsociada
+	 */
+	public Ips getIpsAsociada() {
+		return ipsAsociada;
+	}
+
+	/**
+	 * @param ipsAsociada the ipsAsociada to set
+	 */
+	public void setIpsAsociada(Ips ipsAsociada) {
+		this.ipsAsociada = ipsAsociada;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 
