@@ -17,15 +17,37 @@ public class Orden {
 	/**
 	 * la id de la orden
 	 */
-	private int id;
+	private long id;
 	
 	/**
 	 * el afiliado asociado a la orden
 	 */
-	private Afiliado afiliadoOrden;
+	private long afiliadoOrden;
 	
-	private ServicioDeSalud servicioSolicitado;
+	private long servicioSolicitado;
 	
+	public Orden() {
+		this.citaReservada = false;
+		this.fecha = new Date(2123245233);
+		this.id = 0;
+		this.afiliadoOrden = 0;
+		this.servicioSolicitado = 0;
+	}
+	
+	/**
+	 * @param citaReservada
+	 * @param fecha
+	 * @param id
+	 * @param afiliadoOrden
+	 * @param servicioSolicitado
+	 */
+	public Orden(boolean citaReservada, Date fecha, long id, long afiliadoOrden, long servicioSolicitado) {
+		this.citaReservada = citaReservada;
+		this.fecha = fecha;
+		this.id = id;
+		this.afiliadoOrden = afiliadoOrden;
+		this.servicioSolicitado = servicioSolicitado;
+	}
 
 	/**
 	 * @return the citaReservada
@@ -58,42 +80,42 @@ public class Orden {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the afiliadoOrden
 	 */
-	public Afiliado getAfiliadoOrden() {
+	public long getAfiliadoOrden() {
 		return afiliadoOrden;
 	}
 
 	/**
 	 * @param afiliadoOrden the afiliadoOrden to set
 	 */
-	public void setAfiliadoOrden(Afiliado afiliadoOrden) {
+	public void setAfiliadoOrden(long afiliadoOrden) {
 		this.afiliadoOrden = afiliadoOrden;
 	}
 
 	/**
 	 * @return the servicioSolicitado
 	 */
-	public ServicioDeSalud getServicioSolicitado() {
+	public long getServicioSolicitado() {
 		return servicioSolicitado;
 	}
 
 	/**
 	 * @param servicioSolicitado the servicioSolicitado to set
 	 */
-	public void setServicioSolicitado(ServicioDeSalud servicioSolicitado) {
+	public void setServicioSolicitado(long servicioSolicitado) {
 		this.servicioSolicitado = servicioSolicitado;
 	}
 	

@@ -4,6 +4,8 @@ import java.time.LocalTime;
 
 public class HorarioAtencion {
 
+	private long id;
+	
 	/**
 	 * Representa los dias de atencion de un servicio de salud</br>
 	 * se representan con las letras de la inicial de cada dia excepto el miercoles, el cual </br>
@@ -35,6 +37,7 @@ public class HorarioAtencion {
 	 * Constructor por defecto
 	 */
 	public HorarioAtencion() {
+		this.id=0;
 		this.diasSemanaAtencion = "";
 		this.horaDeInicio = LocalTime.MIN;
 		this.horaFin = LocalTime.MIN;
@@ -51,8 +54,9 @@ public class HorarioAtencion {
 	 * @param numeroAfiliados
 	 * @param numeroSesiones
 	 */
-	public HorarioAtencion(String diasSemanaAtencion, LocalTime horaDeInicio, LocalTime horaFin, int numeroAfiliados,
+	public HorarioAtencion(long id, String diasSemanaAtencion, LocalTime horaDeInicio, LocalTime horaFin, int numeroAfiliados,
 			int numeroSesiones) {
+		this.id=id;
 		this.diasSemanaAtencion = diasSemanaAtencion;
 		this.horaDeInicio = horaDeInicio;
 		this.horaFin = horaFin;
@@ -128,6 +132,20 @@ public class HorarioAtencion {
 	 */
 	public void setNumeroSesiones(int numeroSesiones) {
 		this.numeroSesiones = numeroSesiones;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }

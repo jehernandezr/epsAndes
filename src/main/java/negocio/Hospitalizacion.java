@@ -12,14 +12,15 @@ public class Hospitalizacion extends ServicioDeSalud {
 	/**
 	 * representa los servicios adicionales que puede requerir una hospitalizacion
 	 */
-	private List<ServicioDeSalud>serviciosRequeridos;
+	private List<Long>serviciosRequeridos;
 
 	/**
 	 * constructor por defecto
 	 */
 	public Hospitalizacion() {
+		super();
 		this.fueDadoAlta = false;
-		this.serviciosRequeridos = (List<ServicioDeSalud>) new java.awt.List();
+		this.serviciosRequeridos = (List<Long>) new java.awt.List();
 	}
 	
 	/**
@@ -28,8 +29,9 @@ public class Hospitalizacion extends ServicioDeSalud {
 	 * @param serviciosRequeridos
 	 */
 	public Hospitalizacion(boolean fueDadoAlta) {
+		super();
 		this.fueDadoAlta = fueDadoAlta;
-		this.serviciosRequeridos = (List<ServicioDeSalud>) new java.awt.List();
+		this.serviciosRequeridos = (List<Long>) new java.awt.List();
 	}
 
 	/**
@@ -49,21 +51,21 @@ public class Hospitalizacion extends ServicioDeSalud {
 	/**
 	 * @return the serviciosRequeridos
 	 */
-	public List<ServicioDeSalud> getServiciosRequeridos() {
+	public List<Long> getServiciosRequeridos() {
 		return serviciosRequeridos;
 	}
 
 	/**
 	 * @param serviciosRequeridos the serviciosRequeridos to set
 	 */
-	public void setServiciosRequeridos(List<ServicioDeSalud> serviciosRequeridos) {
+	public void setServiciosRequeridos(List<Long> serviciosRequeridos) {
 		this.serviciosRequeridos = serviciosRequeridos;
 	}
 	
 	/**
 	 * Agrega un servicio de salud a la lista
 	 */
-	public void addServicioRequerido(ServicioDeSalud servicio){
+	public void addServicioRequerido(Long servicio){
 		serviciosRequeridos.add(servicio);
 	}
 	

@@ -7,7 +7,7 @@ public class Medico {
 	/**
 	 * Representa la asociacion con una ips a la cual el medico esta adscrito
 	 */
-	private List<Ips> ips;
+	private List<Long> ips;
 	
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class Medico {
 
 	public Medico() {
 		this.idMedicosAdscritos=0;
-		this.setIps((List<Ips>) new java.awt.List());
+		this.ips = (List<Long>) new java.awt.List();
 		this.especialidad = null;
 		this.nombre = "";
 		this.numeroRegistro = 0;
@@ -46,7 +46,7 @@ public class Medico {
 	 */
 	public Medico(Especializacion especialidad, String nombre, int numeroRegistro, long medicosAdscritos) {
 		this.idMedicosAdscritos= medicosAdscritos;
-		this.setIps((List<Ips>) new java.awt.List());
+		this.ips = (List<Long>) new java.awt.List();
 		this.especialidad = especialidad;
 		this.nombre = nombre;
 		this.numeroRegistro = numeroRegistro;
@@ -98,14 +98,14 @@ public class Medico {
 	/**
 	 * @return the ips
 	 */
-	public List<Ips> getIps() {
+	public List<Long> getIps() {
 		return ips;
 	}
 
 	/**
 	 * @param ips the ips to set
 	 */
-	public void setIps(List<Ips> ips) {
+	public void setIps(List<Long> ips) {
 		this.ips = ips;
 	}
 	
@@ -113,7 +113,7 @@ public class Medico {
 	 * agrega una ips a la lista de ips en la cual el medico está adscrito
 	 * @param i
 	 */
-	public void addIps(Ips i)
+	public void addIps(Long i)
 	{
 		ips.add(i);
 		

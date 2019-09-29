@@ -2,6 +2,7 @@ package negocio;
 
 public class Receta {
 
+	private long id;
 	/**
 	 * dosis de los medicamentos
 	 */
@@ -16,6 +17,7 @@ public class Receta {
 	 * Constructor por defecto
 	 */
 	public Receta() {
+		this.id=0;
 		this.dosis ="";
 		this.medicamentos = "";
 	}
@@ -26,7 +28,8 @@ public class Receta {
 	 * @param dosis
 	 * @param medicamentos
 	 */
-	public Receta(String dosis, String medicamentos) {
+	public Receta(long id, String dosis, String medicamentos) {
+		this.id=id;
 		this.dosis = dosis;
 		this.medicamentos = medicamentos;
 	}
@@ -57,5 +60,19 @@ public class Receta {
 	 */
 	public void setMedicamentos(String medicamentos) {
 		this.medicamentos = medicamentos;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 }

@@ -5,6 +5,22 @@ public class Terapia  extends ServicioDeSalud {
 	private String tipoTerapia;
 
 	/**
+	 * constrcutor por defecto
+	 */
+	public Terapia() {
+		super();
+		this.tipoTerapia = null;
+	}
+
+	/**
+	 * @param tipoTerapia
+	 */
+	public Terapia(String tipoTerapia) {
+		super();
+		this.tipoTerapia = tipoTerapia;
+	}
+
+	/**
 	 * @return the tipoTerapia
 	 */
 	public String getTipoTerapia() {
@@ -17,6 +33,6 @@ public class Terapia  extends ServicioDeSalud {
 	public void setTipoTerapia(String tipoTerapia) {
 		this.tipoTerapia = tipoTerapia;
 	}
-	
-	
+
+
 }

@@ -4,42 +4,45 @@ import java.util.List;
 
 public class Ips {
 
+	private long id;
+
 	/**
 	 * representa la localizacion de la ips
 	 */
 	private String localizacion;
-	
+
 	/**
 	 * Representa el nombre de la Ips
 	 */
 	private String nombre;
-	
+
 	/**
 	 * Representa la lista de servicios ofrecidos por una Ips
 	 */
-	private List<ServicioDeSalud> serviciosOfrecidos;
-	
+	private List<Long> serviciosOfrecidos;
+
 	/**
 	 * representa la lista de medicos adscritos a una ips
 	 */
-	private List<Medico> medicosAdscritos;
+	private List<Long> medicosAdscritos;
 
 	/**
 	 * 
 	 */
 	private long idMedicosAdscritos;
-	
+
 	/**
 	 * Constructor por defecto
 	 */
 	public Ips() {
+		this.id=0;
 		this.localizacion = "";
 		this.nombre = "";
 		this.idMedicosAdscritos=0;
-		this.serviciosOfrecidos =(List<ServicioDeSalud>) new java.awt.List();
-		this.medicosAdscritos = (List<Medico>) new java.awt.List();
+		this.serviciosOfrecidos =(List<Long>) new java.awt.List();
+		this.medicosAdscritos = (List<Long>) new java.awt.List();
 	}
-	
+
 	/**
 	 * constructor de una Ips
 	 * 
@@ -48,12 +51,13 @@ public class Ips {
 	 * @param serviciosOfrecidos
 	 * @param medicosAdscritos
 	 */
-	public Ips(String localizacion, String nombre, long medicosAdscritos) {
+	public Ips(long id,String localizacion, String nombre, long medicosAdscritos) {
+		this.id=id;
 		this.localizacion = localizacion;
 		this.nombre = nombre;
 		this.idMedicosAdscritos=medicosAdscritos;
-		this.serviciosOfrecidos =(List<ServicioDeSalud>) new java.awt.List();
-		this.medicosAdscritos = (List<Medico>) new java.awt.List();
+		this.serviciosOfrecidos =(List<Long>) new java.awt.List();
+		this.medicosAdscritos = (List<Long>) new java.awt.List();
 	}
 
 	/**
@@ -87,42 +91,42 @@ public class Ips {
 	/**
 	 * @return the serviciosOfrecidos
 	 */
-	public List<ServicioDeSalud> getServiciosOfrecidos() {
+	public List<Long> getServiciosOfrecidos() {
 		return serviciosOfrecidos;
 	}
 
 	/**
 	 * @param serviciosOfrecidos the serviciosOfrecidos to set
 	 */
-	public void setServiciosOfrecidos(List<ServicioDeSalud> serviciosOfrecidos) {
+	public void setServiciosOfrecidos(List<Long> serviciosOfrecidos) {
 		this.serviciosOfrecidos = serviciosOfrecidos;
 	}
 
 	/**
 	 * agrega a la lista de servicios ofrecidos uno que empieza a prestar
 	 */
-	public void addServiciOfrecido(ServicioDeSalud servicio)
+	public void addServiciOfrecido(Long servicio)
 	{
 		serviciosOfrecidos.add(servicio);
 	}
 	/**
 	 * @return the medicosAdscritos
 	 */
-	public List<Medico> getMedicosAdscritos() {
+	public List<Long> getMedicosAdscritos() {
 		return medicosAdscritos;
 	}
 
 	/**
 	 * @param medicosAdscritos the medicosAdscritos to set
 	 */
-	public void setMedicosAdscritos(List<Medico> medicosAdscritos) {
+	public void setMedicosAdscritos(List<Long> medicosAdscritos) {
 		this.medicosAdscritos = medicosAdscritos;
 	}
-	
+
 	/**
 	 * agrega un medico a la lista de medicos de la Ips
 	 */
-	public void addMedicoAdscrito(Medico medico)
+	public void addMedicoAdscrito(Long medico)
 	{
 		medicosAdscritos.add(medico);
 	}
@@ -140,5 +144,19 @@ public class Ips {
 	public void setIdMedicosAdscritos(long idMedicosAdscritos) {
 		this.idMedicosAdscritos = idMedicosAdscritos;
 	}
-	
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }

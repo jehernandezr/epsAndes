@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class CitaReservada {
 
+	private long id;
 	/**
 	 * Atributo que representa el estado de la cita
 	 */
@@ -25,6 +26,7 @@ public class CitaReservada {
 	 * constructor por defecto
 	 */
 	public CitaReservada() {
+		this.id =0;
 		this.estado = null;
 		this.fechaConsulta = new Date(1232123);
 		this.afiliado =0;
@@ -39,7 +41,8 @@ public class CitaReservada {
 	 * @param afiliado
 	 * @param servicioAsociado
 	 */
-	public CitaReservada(EstadoCita estado, Date fechaConsulta, long afiliado, long servicioAsociado) {
+	public CitaReservada(EstadoCita estado, Date fechaConsulta, long afiliado, long servicioAsociado, long id) {
+		this.id=id;
 		this.estado = estado;
 		this.fechaConsulta = fechaConsulta;
 		this.afiliado = afiliado;
@@ -100,6 +103,20 @@ public class CitaReservada {
 	 */
 	public void setServicioAsociado(long servicioAsociado) {
 		this.servicioAsociado = servicioAsociado;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	

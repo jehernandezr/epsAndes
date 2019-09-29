@@ -15,7 +15,7 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	/**
 	 * representa la receta si se genera
 	 */
-	private Receta receta;
+	private long receta;
 
 	/**
 	 * Constructor por defecto
@@ -24,7 +24,7 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 		super();
 		this.fueDadoAlta = false;
 		this.triage = 0;
-		this.receta = new Receta();
+		this.receta = 0;
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	 * @param triage
 	 * @param receta
 	 */
-	public ConsultaUrgencia(boolean fueDadoAlta, int triage, Receta receta) {
+	public ConsultaUrgencia(boolean fueDadoAlta, int triage, long receta) {
 		super();
 		this.fueDadoAlta = fueDadoAlta;
 		this.triage = triage;
@@ -72,14 +72,14 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	/**
 	 * @return the receta
 	 */
-	public Receta getReceta() {
+	public long getReceta() {
 		return receta;
 	}
 
 	/**
 	 * @param receta the receta to set
 	 */
-	public void setReceta(Receta receta) {
+	public void setReceta(long receta) {
 		this.receta = receta;
 	}
 	

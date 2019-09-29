@@ -2,6 +2,8 @@ package negocio;
 
 public class RolesEnSistema {
 
+	private long id;
+	
 	/***
 	 * representa cada booleano si hay un rol activo
 	 */
@@ -15,6 +17,7 @@ public class RolesEnSistema {
 	 * Constructor por defecto
 	 */
 	public RolesEnSistema() {
+		this.id=0;
 		this.hayAdmins = false;
 		this.hayAfiliados = false;
 		this.hayGerente =false;
@@ -31,8 +34,9 @@ public class RolesEnSistema {
 	 * @param hayMedicos
 	 * @param hayRecepcionistas
 	 */
-	public RolesEnSistema(boolean hayAdmins, boolean hayAfiliados, boolean hayGerente, boolean hayMedicos,
+	public RolesEnSistema(long id, boolean hayAdmins, boolean hayAfiliados, boolean hayGerente, boolean hayMedicos,
 			boolean hayRecepcionistas) {
+		this.id=id;
 		this.hayAdmins = hayAdmins;
 		this.hayAfiliados = hayAfiliados;
 		this.hayGerente = hayGerente;
@@ -98,6 +102,20 @@ public class RolesEnSistema {
 	 */
 	public void setHayRecepcionistas(boolean hayRecepcionistas) {
 		this.hayRecepcionistas = hayRecepcionistas;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }
