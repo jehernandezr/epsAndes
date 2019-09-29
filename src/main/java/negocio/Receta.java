@@ -2,9 +2,34 @@ package negocio;
 
 public class Receta {
 
+	/**
+	 * dosis de los medicamentos
+	 */
 	private String dosis;
 	
+	/**
+	 * medicamentos prescritos
+	 */
 	private String medicamentos;
+
+	/**
+	 * Constructor por defecto
+	 */
+	public Receta() {
+		this.dosis ="";
+		this.medicamentos = "";
+	}
+	
+	/**
+	 * constructor de una receta
+	 * 
+	 * @param dosis
+	 * @param medicamentos
+	 */
+	public Receta(String dosis, String medicamentos) {
+		this.dosis = dosis;
+		this.medicamentos = medicamentos;
+	}
 
 	/**
 	 * @return the dosis

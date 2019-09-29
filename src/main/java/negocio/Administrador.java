@@ -2,8 +2,6 @@ package negocio;
 
 public class Administrador {
 
-
-
 	/**
 	 * Atributo Representa Identificacion laboral del usuario
 	 */

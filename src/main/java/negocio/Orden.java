@@ -4,12 +4,24 @@ import java.sql.Date;
 
 public class Orden {
 
+	/**
+	 * representa si la orden tiene una cita reservada
+	 */
 	private boolean citaReservada;
 	
+	/**
+	 * la fecha de la orden
+	 */
 	private Date fecha;
 	
+	/**
+	 * la id de la orden
+	 */
 	private int id;
 	
+	/**
+	 * el afiliado asociado a la orden
+	 */
 	private Afiliado afiliadoOrden;
 	
 	private ServicioDeSalud servicioSolicitado;

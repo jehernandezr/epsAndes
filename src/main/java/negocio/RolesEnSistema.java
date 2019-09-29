@@ -2,11 +2,43 @@ package negocio;
 
 public class RolesEnSistema {
 
+	/***
+	 * representa cada booleano si hay un rol activo
+	 */
 	private boolean hayAdmins;
 	private boolean hayAfiliados;
 	private boolean hayGerente;
 	private boolean hayMedicos;
 	private boolean hayRecepcionistas;
+	
+	/**
+	 * Constructor por defecto
+	 */
+	public RolesEnSistema() {
+		this.hayAdmins = false;
+		this.hayAfiliados = false;
+		this.hayGerente =false;
+		this.hayMedicos = false;
+		this.hayRecepcionistas = false;
+	}
+	
+	/**
+	 * Constructor de los roles en le sistema
+	 * 
+	 * @param hayAdmins
+	 * @param hayAfiliados
+	 * @param hayGerente
+	 * @param hayMedicos
+	 * @param hayRecepcionistas
+	 */
+	public RolesEnSistema(boolean hayAdmins, boolean hayAfiliados, boolean hayGerente, boolean hayMedicos,
+			boolean hayRecepcionistas) {
+		this.hayAdmins = hayAdmins;
+		this.hayAfiliados = hayAfiliados;
+		this.hayGerente = hayGerente;
+		this.hayMedicos = hayMedicos;
+		this.hayRecepcionistas = hayRecepcionistas;
+	}
 	/**
 	 * @return the hayAdmins
 	 */

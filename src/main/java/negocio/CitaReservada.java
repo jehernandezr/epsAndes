@@ -15,11 +15,11 @@ public class CitaReservada {
 	/**
 	 * Atributo que representa el afiliado asociado a la cita
 	 */
-	private Afiliado afiliado;
+	private long afiliado;
 	/**
 	 * Atributo que representa el servicio de salud asociado a la cita
 	 */
-	private ServicioDeSalud servicioAsociado;
+	private long servicioAsociado;
 
 	/**
 	 * constructor por defecto
@@ -27,8 +27,8 @@ public class CitaReservada {
 	public CitaReservada() {
 		this.estado = null;
 		this.fechaConsulta = new Date(1232123);
-		this.afiliado = new Afiliado();
-		this.servicioAsociado = new ServicioDeSalud();
+		this.afiliado =0;
+		this.servicioAsociado = 0;
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class CitaReservada {
 	 * @param afiliado
 	 * @param servicioAsociado
 	 */
-	public CitaReservada(EstadoCita estado, Date fechaConsulta, Afiliado afiliado, ServicioDeSalud servicioAsociado) {
+	public CitaReservada(EstadoCita estado, Date fechaConsulta, long afiliado, long servicioAsociado) {
 		this.estado = estado;
 		this.fechaConsulta = fechaConsulta;
 		this.afiliado = afiliado;
@@ -77,28 +77,28 @@ public class CitaReservada {
 	/**
 	 * @return the afiliado
 	 */
-	public Afiliado getAfiliado() {
+	public long getAfiliado() {
 		return afiliado;
 	}
 
 	/**
 	 * @param afiliado the afiliado to set
 	 */
-	public void setAfiliado(Afiliado afiliado) {
+	public void setAfiliado(long afiliado) {
 		this.afiliado = afiliado;
 	}
 
 	/**
 	 * @return the servicioAsociado
 	 */
-	public ServicioDeSalud getServicioAsociado() {
+	public long getServicioAsociado() {
 		return servicioAsociado;
 	}
 
 	/**
 	 * @param servicioAsociado the servicioAsociado to set
 	 */
-	public void setServicioAsociado(ServicioDeSalud servicioAsociado) {
+	public void setServicioAsociado(long servicioAsociado) {
 		this.servicioAsociado = servicioAsociado;
 	}
 	

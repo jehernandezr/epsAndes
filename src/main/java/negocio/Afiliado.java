@@ -27,12 +27,12 @@ public class Afiliado {
 	/**
 	 * Atributo que representa la lista de citas reservadas de un afiliado
 	 */
-	private List<CitaReservada> citasRecervadas;
+	private List<Long> citasRecervadas;
 
 	/**
 	 * Atributo que representa la lista de ordenes de servicios de un afiliado
 	 */
-	private List<Orden> ordenes;
+	private List<Long> ordenes;
 
 	
 	/**
@@ -44,8 +44,8 @@ public class Afiliado {
 		this.nombre = "";
 		this.numeroDeDocumento ="";
 		this.tipoDocumento = null;
-		this.citasRecervadas = (List<CitaReservada>) new java.awt.List();
-		this.ordenes = (List<Orden>) new java.awt.List();
+		this.citasRecervadas = (List<Long>) new java.awt.List();
+		this.ordenes = (List<Long>) new java.awt.List();
 	}
 
 	/**
@@ -63,8 +63,8 @@ public class Afiliado {
 		this.nombre = nombre;
 		this.numeroDeDocumento = numeroDeDocumento;
 		this.tipoDocumento = tipoDocumento;
-		this.citasRecervadas = (List<CitaReservada>) new java.awt.List();
-		this.ordenes = (List<Orden>) new java.awt.List();
+		this.citasRecervadas = (List<Long>) new java.awt.List();
+		this.ordenes = (List<Long>) new java.awt.List();
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class Afiliado {
 	/**
 	 * agrega a la lista
 	 */
-	private void addCitaRecervada(CitaReservada cita)
+	private void addCitaRecervada(Long cita)
 	{
 		citasRecervadas.add(cita);
 	}
@@ -134,35 +134,35 @@ public class Afiliado {
 	/**
 	 * agrega a la lista
 	 */
-	private void addOrden(Orden orden)
+	private void addOrden(Long orden)
 	{ordenes.add(orden);
 	}
 
 	/**
 	 * @return the citasRecervadas
 	 */
-	public List<CitaReservada> getCitasRecervadas() {
+	public List<Long> getCitasRecervadas() {
 		return citasRecervadas;
 	}
 
 	/**
 	 * @param citasRecervadas the citasRecervadas to set
 	 */
-	public void setCitasRecervadas(List<CitaReservada> citasRecervadas) {
+	public void setCitasRecervadas(List<Long> citasRecervadas) {
 		this.citasRecervadas = citasRecervadas;
 	}
 
 	/**
 	 * @return the ordenes
 	 */
-	public List<Orden> getOrdenes() {
+	public List<Long> getOrdenes() {
 		return ordenes;
 	}
 
 	/**
 	 * @param ordenes the ordenes to set
 	 */
-	public void setOrdenes(List<Orden> ordenes) {
+	public void setOrdenes(List<Long> ordenes) {
 		this.ordenes = ordenes;
 	} 
 }
