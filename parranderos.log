@@ -82,3 +82,16 @@ ORA-02289: no existe la secuencia
 16:44:23,441 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Generando los VO de Bares: 1 bares existentes
 16:44:23,442 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Eliminando bar por nombre: Los Amigos
 16:44:23,663 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Eliminando bar: 1 tuplas eliminadas
+21:58:35,914 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazParranderosDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:58:35,915 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazParranderosDemo] - Se aplica configuración indicada en el archivo de configuración
+21:58:35,931 (main) INFO  [uniandes.isis2304.parranderos.interfazDemo.InterfazParranderosDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:58:48,875 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Adicionando Tipo de bebida: Vino tinto
+21:58:58,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Adicionando Tipo de bebida: TipoBebida [id=41, nombre=Vino tinto]
+21:58:58,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Generando los VO de Tipos de bebida
+21:59:00,224 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Generando los VO de Tipos de bebida: 2 existentes
+21:59:00,224 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Eliminando Tipo de bebida por id: 41
+21:59:01,336 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Eliminando Tipo de bebida por id: 1 tuplas eliminadas
+22:01:53,189 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Interfaz
+22:01:53,189 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se aplica configuración indicada en el archivo de configuración
+22:01:53,203 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Tablas BD
+22:04:21,306 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.negocio.Parranderos] - Buscando Tipo de bebida por nombre: ff
