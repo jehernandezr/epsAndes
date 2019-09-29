@@ -2,10 +2,34 @@ package negocio;
 
 
 public class Consulta extends ServicioDeSalud{
-
+/**
+ * Representa el tipo de consulta que se realiza
+ */
 private TipoDeConsulta tipoConsulta;
 
-private Receta recetas;
+private Receta receta;
+
+/**
+ * Constructor por defecto
+ */
+public Consulta() {
+	super();
+	this.tipoConsulta = null;
+	this.receta = new Receta();
+}
+
+/**
+ * Constructor de cita
+ * 
+ * @param tipoConsulta
+ * @param recetas
+ */
+public Consulta(TipoDeConsulta tipoConsulta, Receta recetas) {
+	super();
+	this.tipoConsulta = tipoConsulta;
+	this.receta = recetas;
+}
+
 /**
  * @return the tipoConsulta
  */
@@ -23,15 +47,15 @@ public void setTipoConsulta(TipoDeConsulta tipoConsulta) {
 /**
  * @return the recetas
  */
-public Receta getRecetas() {
-	return recetas;
+public Receta getReceta() {
+	return receta;
 }
 
 /**
  * @param recetas the recetas to set
  */
-public void setRecetas(Receta recetas) {
-	this.recetas = recetas;
+public void setReceta(Receta receta) {
+	this.receta = receta;
 }
 
 

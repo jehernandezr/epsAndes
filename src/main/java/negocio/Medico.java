@@ -1,28 +1,51 @@
 package negocio;
 
+import java.util.List;
+
 public class Medico {
 
-	private Ips ips;
+	/**
+	 * Representa la asociacion con una ips a la cual el medico esta adscrito
+	 */
+	private List<Ips> ips;
 	
+	/**
+	 * Representa la especialidad del medico
+	 */
 	private Especializacion especialidad;
 	
+	/**
+	 * representa el nombre del medico
+	 */
 	private String nombre;
 	
+	/**
+	 * Representa el numero de registro del medico  
+	 */
 	private int numeroRegistro;
 
+	public Medico() {
+		this.setIps((List<Ips>) new java.awt.List());
+		this.especialidad = null;
+		this.nombre = "";
+		this.numeroRegistro = 0;
+	}
+	
 	/**
-	 * @return the ips
+	 * Cosntructor de un medico
+	 * 
+	 * @param ips
+	 * @param especialidad
+	 * @param nombre
+	 * @param numeroRegistro
 	 */
-	public Ips getIps() {
-		return ips;
+	public Medico(Especializacion especialidad, String nombre, int numeroRegistro) {
+		this.setIps((List<Ips>) new java.awt.List());
+		this.especialidad = especialidad;
+		this.nombre = nombre;
+		this.numeroRegistro = numeroRegistro;
 	}
 
-	/**
-	 * @param ips the ips to set
-	 */
-	public void setIps(Ips ips) {
-		this.ips = ips;
-	}
 
 	/**
 	 * @return the especialidad
@@ -65,7 +88,29 @@ public class Medico {
 	public void setNumeroRegistro(int numeroRegistro) {
 		this.numeroRegistro = numeroRegistro;
 	}
+
+	/**
+	 * @return the ips
+	 */
+	public List<Ips> getIps() {
+		return ips;
+	}
+
+	/**
+	 * @param ips the ips to set
+	 */
+	public void setIps(List<Ips> ips) {
+		this.ips = ips;
+	}
 	
-	
+	/**
+	 * agrega una ips a la lista de ips en la cual el medico está adscrito
+	 * @param i
+	 */
+	public void addIps(Ips i)
+	{
+		ips.add(i);
+		
+	}
 	
 }

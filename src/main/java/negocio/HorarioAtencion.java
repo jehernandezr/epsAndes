@@ -4,15 +4,61 @@ import java.time.LocalTime;
 
 public class HorarioAtencion {
 
+	/**
+	 * Representa los dias de atencion de un servicio de salud</br>
+	 * se representan con las letras de la inicial de cada dia excepto el miercoles, el cual </br>
+	 * su notacion es X
+	 */
 	private String diasSemanaAtencion;
 	
+	/**
+	 * Representa la hora de inicio de un servicio
+	 */
 	private LocalTime horaDeInicio;
 	
+	/**
+	 * Representa la hora de fin de un servicio
+	 */
 	private LocalTime horaFin;
 	
+	/**
+	 * Representa el numero de afiliados que se atienden
+	 */
 	private int numeroAfiliados;
 	
+	/**
+	 * Representa el numero de recervas  que se hacen para servicio
+	 */
 	private int numeroSesiones;
+
+	/**
+	 * Constructor por defecto
+	 */
+	public HorarioAtencion() {
+		this.diasSemanaAtencion = "";
+		this.horaDeInicio = LocalTime.MIN;
+		this.horaFin = LocalTime.MIN;
+		this.numeroAfiliados = 0;
+		this.numeroSesiones = 1;
+	}
+	
+	/**
+	 * Constructor de un Horario
+	 * 
+	 * @param diasSemanaAtencion
+	 * @param horaDeInicio
+	 * @param horaFin
+	 * @param numeroAfiliados
+	 * @param numeroSesiones
+	 */
+	public HorarioAtencion(String diasSemanaAtencion, LocalTime horaDeInicio, LocalTime horaFin, int numeroAfiliados,
+			int numeroSesiones) {
+		this.diasSemanaAtencion = diasSemanaAtencion;
+		this.horaDeInicio = horaDeInicio;
+		this.horaFin = horaFin;
+		this.numeroAfiliados = numeroAfiliados;
+		this.numeroSesiones = numeroSesiones;
+	}
 
 	/**
 	 * @return the diasSemanaAtencion

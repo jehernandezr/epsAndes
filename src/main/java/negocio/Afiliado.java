@@ -5,17 +5,67 @@ import java.util.List;
 
 public class Afiliado {
 
+
+	/**
+	 * Atributo que representa la fecha de nacimiento de un afiliado
+	 */
 	private Date fechaDeNacimiento;
-	
+	/**
+	 * Atrubuto que representa el nombre de un afiliado
+	 */
 	private String nombre;
-	
+	/**
+	 * Atributo que representa el numero de cedula de un afiliado
+	 */
 	private String numeroDeDocumento;
-	
+
+	/**
+	 * Atributo que representa el tipo de documento de un afiliado
+	 */
 	private TipoDeDocumento tipoDocumento;
-	
+
+	/**
+	 * Atributo que representa la lista de citas reservadas de un afiliado
+	 */
 	private List<CitaReservada> citasRecervadas;
-	
+
+	/**
+	 * Atributo que representa la lista de ordenes de servicios de un afiliado
+	 */
 	private List<Orden> ordenes;
+
+	
+	/**
+	 * constructor por defecto
+	 */
+	@SuppressWarnings("deprecation")
+	public Afiliado() {
+		this.fechaDeNacimiento = new Date(0, 0, 0);
+		this.nombre = "";
+		this.numeroDeDocumento ="";
+		this.tipoDocumento = null;
+		this.citasRecervadas = (List<CitaReservada>) new java.awt.List();
+		this.ordenes = (List<Orden>) new java.awt.List();
+	}
+
+	/**
+	 * Constructor de un afiliado
+	 * 
+	 * @param fechaDeNacimiento
+	 * @param nombre
+	 * @param numeroDeDocumento
+	 * @param tipoDocumento
+	 * @param citasRecervadas
+	 * @param ordenes
+	 */
+	public Afiliado(Date fechaDeNacimiento, String nombre, String numeroDeDocumento, TipoDeDocumento tipoDocumento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.nombre = nombre;
+		this.numeroDeDocumento = numeroDeDocumento;
+		this.tipoDocumento = tipoDocumento;
+		this.citasRecervadas = (List<CitaReservada>) new java.awt.List();
+		this.ordenes = (List<Orden>) new java.awt.List();
+	}
 
 	/**
 	 * @return the fechaDeNacimiento
@@ -71,6 +121,21 @@ public class Afiliado {
 	 */
 	public void setTipoDocumento(TipoDeDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
+	}
+
+	/**
+	 * agrega a la lista
+	 */
+	private void addCitaRecervada(CitaReservada cita)
+	{
+		citasRecervadas.add(cita);
+	}
+
+	/**
+	 * agrega a la lista
+	 */
+	private void addOrden(Orden orden)
+	{ordenes.add(orden);
 	}
 
 	/**
