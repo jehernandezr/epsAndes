@@ -21,7 +21,6 @@ public class EpsAndesPersistencia
 	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
 	 */
 	private static EpsAndesPersistencia instance;
-
 	/**
 	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las transacciones
 	 */
@@ -40,10 +39,15 @@ public class EpsAndesPersistencia
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
 		tablas.add ("EPSAndes_sequence");
-		tablas.add ("AFILIADO");
-		tablas.add("GERENTE");
-		tablas.add("ADMINISTRADOR");
-		tablas.add("RECEPCIONISTA");
+		tablas.add ("AFILIADOS");
+		tablas.add("GERENTES");
+		tablas.add("ADMINISTRADORES");
+		tablas.add("RECEPCIONISTAS");
+		tablas.add("MEDICOS");
+		tablas.add("IPS");
+		tablas.add("PROCEDIMIENTOS_ESPECIALIZADOS");
+		tablas.add("TERAPIAS");
+		tablas.add("EXAMENES");
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de AFILIADO
@@ -72,5 +76,40 @@ public class EpsAndesPersistencia
 	public String darTablaRecepcionista()
 	{
 		return tablas.get(4);
+	}
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de MEDICOS
+	 */
+	public String darTablaMedico()
+	{
+		return tablas.get(5);
+	}
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de MEDICOS
+	 */
+	public String darTablaIPS()
+	{
+		return tablas.get(6);
+	}
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de PROCEDIMIENTOS_ESPECIALIZADOS
+	 */
+	public String darTablaProcedimientoEspecializado()
+	{
+		return tablas.get(7);
+	}
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de TERAPIAS
+	 */
+	public String darTablaTerapia()
+	{
+		return tablas.get(8);
+	}
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de EXAMENES
+	 */
+	public String darTablaExamen()
+	{
+		return tablas.get(9);
 	}
 }
