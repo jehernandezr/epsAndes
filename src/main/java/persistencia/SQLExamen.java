@@ -33,7 +33,7 @@ public class SQLExamen
 	 * Crea y ejecuta la sentencia SQL para adicionar un EXAMEN a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarExamen(PersistenceManager pm, int Id, String pExamen) 
+	public long adicionarExamen(PersistenceManager pm, long Id, String pExamen) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaExamen() + "(Id, Tipo_Examen) values (?, ?)");
 		q.setParameters(Id, pExamen);
