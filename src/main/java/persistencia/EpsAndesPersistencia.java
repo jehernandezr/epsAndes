@@ -50,6 +50,7 @@ public class EpsAndesPersistencia
 		tablas.add("EXAMENES");
 		tablas.add("CONSULTAS");
 		tablas.add("CONSUSLTAS_URGENCIA");
+		tablas.add("RECETAS");
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de AFILIADO
@@ -114,7 +115,13 @@ public class EpsAndesPersistencia
 	{
 		return tablas.get(9);
 	}
-	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de RECETAS
+	 */
+	public String darTablaReceta()
+	{
+		return tablas.get(12);
+	}	
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de CONSULTAS
 	 */
