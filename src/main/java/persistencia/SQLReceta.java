@@ -6,9 +6,10 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.Examen;
+import negocio.Receta;
 
 /**
- * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto EXAMENES de EPSAndes
+ * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto RECETA de EPSAndes
  * @author diani
  */
 public class SQLReceta 
@@ -30,56 +31,66 @@ public class SQLReceta
 		this.pp = pp;
 	}
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un EXAMEN a la base de datos
+	 * Crea y ejecuta la sentencia SQL para adicionar una RECETA a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarExamen(PersistenceManager pm, int Id, String pExamen) 
+	public long adicionarReceta(PersistenceManager pm, int Id, String pMedicamento, String pDosis) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaExamen() + "(Id, Tipo_Examen) values (?, ?)");
-		q.setParameters(Id, pExamen);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReceta() + "(Id, Medicamento, Dosis) values (?, ?, ?)");
+		q.setParameters(Id, pMedicamento, pDosis);
 		return (long) q.executeUnique();
 	}
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar UN EXAMEN, por su identificador
+	 * Crea y ejecuta la sentencia SQL para eliminar UNA RECETA, por su identificador
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarTerapiaPorId (PersistenceManager pm, long id)
+	public long eliminarRecetaPorId (PersistenceManager pm, long id)
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaExamen() + " WHERE id = ?");
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReceta() + " WHERE id = ?");
 		q.setParameters(id);
 		return (long) q.executeUnique();            
 	}
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN EXAMEN, por su identificador
-	 * @return El objeto TERAPIA que tiene el identificador dado
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de UNA RECETA, por su identificador
+	 * @return El objeto RECETA que tiene el identificador dado
 	 */
-	public Examen darExamenPorId (PersistenceManager pm, long id) 
+	public Receta darRecetaPorId (PersistenceManager pm, long id) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaExamen() + " WHERE id = ?");
-		q.setResultClass(Examen.class);
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReceta() + " WHERE id = ?");
+		q.setResultClass(Receta.class);
 		q.setParameters(id);
-		return (Examen) q.executeUnique();
+		return (Receta) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS EXAMENES
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de LAS RECETAS
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos EXAMEN
+	 * @return Una lista de objetos RECETA
 	 */
-	public List<Examen> darExamenes (PersistenceManager pm)
+	public List<Receta> darRecetas (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaExamen());
-		q.setResultClass(Examen.class);
-		return (List<Examen>) q.executeList();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaReceta());
+		q.setResultClass(Receta.class);
+		return (List<Receta>) q.executeList();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para cambiar el tipo de examen
+	 * Crea y ejecuta la sentencia SQL para cambiar el medicamento
 	 * @return El número de tuplas modificadas
 	 */
-	public long cambiarTipoExamen (PersistenceManager pm, long id, String pTipo) 
+	public long cambiarMedicamento (PersistenceManager pm, long id, String pTipo) 
 	{
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaExamen() + " SET Tipo_Examen = ? WHERE id = ?");
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaReceta() + " SET Medicamento = ? WHERE id = ?");
+		q.setParameters(pTipo, id);
+		return (long) q.executeUnique();            
+	}
+	/**
+	 * Crea y ejecuta la sentencia SQL para cambiar la dosis
+	 * @return El número de tuplas modificadas
+	 */
+	public long cambiarDosis (PersistenceManager pm, long id, String pTipo) 
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaReceta() + " SET Dosis = ? WHERE id = ?");
 		q.setParameters(pTipo, id);
 		return (long) q.executeUnique();            
 	}
