@@ -3,13 +3,8 @@
  */
 package negocio;
 
-import java.sql.Timestamp;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
-import com.google.gson.JsonObject;
 
 import persistencia.EpsAndesPersistencia;
 
@@ -55,11 +50,6 @@ public class EpsAndes {
 	{
 		Ep.cerrarUnidadPersistencia ();
 	}
-	
-	/* ****************************************************************
-	 * 			Métodos para manejar los TIPOS DE BEBIDA
-	 *****************************************************************/
-	
 
 	/* ****************************************************************
 	 * 			Métodos para administración
@@ -76,4 +66,5 @@ public class EpsAndes {
         log.info ("Limpiando la BD de EpsAndes: Listo!");
         return borrrados;
 	}
+	
 }
