@@ -50,7 +50,7 @@ public class SQLHospitalizacion {
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN AFILIADO, por su identificador
-	 * @return El objeto AFILIADO que tiene el identificador dado
+	 * @return El objeto HOSPITALIZACION que tiene el identificador dado
 	 */
 	public Hospitalizacion darHospitalizacionPorId (PersistenceManager pm, long id) 
 	{
@@ -60,8 +60,8 @@ public class SQLHospitalizacion {
 		return (Hospitalizacion) q.executeUnique();
 	}
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS AFILIADOS, por su nombre
-	 * @return Una lista de objetos AFILIADOS que tienen el nombre dado
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS AFILIADOS, poR SI FUE DADO DE ALTA
+	 * @return Una lista de objetos HOSPITALIZACION que tienen el nombre dado
 	 */
 	public List<Hospitalizacion> darHospitaliacionesPorDadosDeAlta (PersistenceManager pm, String verd) 
 	{
