@@ -28,7 +28,7 @@ public class SQLHospitalizacion {
 	}
 	
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un AFILIADO a la base de datos
+	 * Crea y ejecuta la sentencia SQL para adicionar un HOSPITALIZACION  a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
 	public long adicionarHospitalizacion (PersistenceManager pm, long Id, boolean Fue_Dado_De_Alta, long Id_Servicio_Requerido) 
@@ -49,7 +49,7 @@ public class SQLHospitalizacion {
 		return (long) q.executeUnique();            
 	}
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN AFILIADO, por su identificador
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN HOSPITALIZACION , por su identificador
 	 * @return El objeto HOSPITALIZACION que tiene el identificador dado
 	 */
 	public Hospitalizacion darHospitalizacionPorId (PersistenceManager pm, long id) 
@@ -65,32 +65,23 @@ public class SQLHospitalizacion {
 	 */
 	public List<Hospitalizacion> darHospitaliacionesPorDadosDeAlta (PersistenceManager pm, String verd) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAfiliado() + " WHERE Fue_Dado_Alta = ?");
-		q.setResultClass(Afiliado.class);
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospitalizacion() + " WHERE Fue_Dado_Alta = ?");
+		q.setResultClass(Hospitalizacion.class);
 		q.setParameters(verd);
 		return (List<Hospitalizacion>) q.executeList();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS AFILIADOS
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de LAS HOSPITALIZACIONES
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos AFILIADOS
+	 * @return Una lista de objetos HOSPITALIZACION 
 	 */
-	public List<Afiliado> darAfiliado (PersistenceManager pm)
+	public List<Hospitalizacion> darHospitalizacion (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAfiliado());
-		q.setResultClass(Afiliado.class);
-		return (List<Afiliado>) q.executeList();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospitalizacion());
+		q.setResultClass(Hospitalizacion.class);
+		return (List<Hospitalizacion>) q.executeList();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para cambiar el correo
-	 * @return El número de tuplas modificadas
-	 */
-	public long cambiarCorreoAfiliado (PersistenceManager pm, long id, String correo) 
-	{
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaAfiliado() + " SET Correo_Electronico = ? WHERE Num_Documento = ?");
-		q.setParameters(correo, id);
-		return (long) q.executeUnique();            
-	}
+	
 }
