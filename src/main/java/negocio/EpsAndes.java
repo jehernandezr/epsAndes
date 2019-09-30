@@ -25,7 +25,7 @@ public class EpsAndes {
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(Parranderos.class.getName());
+	private static Logger log = Logger.getLogger(EpsAndes.class.getName());
 	
 	/* ****************************************************************
 	 * 			Atributos
@@ -69,7 +69,7 @@ public class EpsAndes {
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
 	 * @return Un arreglo 
 	 */
-	public long [] limpiarParranderos ()
+	public long [] limpiarEpsAndes ()
 	{
         log.info ("Limpiando la BD de EpsAndes");
         long [] borrrados = Ep.limpiarEpsAndes();	

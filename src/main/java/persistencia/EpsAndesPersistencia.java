@@ -4,19 +4,36 @@ package persistencia;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.jdo.JDODataStoreException;
 import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
+
+import org.apache.log4j.Logger;
+
+import uniandes.isis2304.parranderos.persistencia.PersistenciaParranderos;
 
 /**
- * @author dianis
+ * @author dianis y jonatan
  *
  */
 public class EpsAndesPersistencia 
 {
 	/**
+	 * Logger para escribir la traza de la ejecución
+	 */
+	private static Logger log = Logger.getLogger(PersistenciaParranderos.class.getName());
+	
+	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
 	 */
 	public final static String SQL = "javax.jdo.query.SQL";
+	/**
+	 * Atributo para el acceso a las sentencias SQL propias a PersistenciaParranderos
+	 */
+	private SQLUtil sqlUtil;
+	
 	/**
 	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
 	 */
@@ -52,6 +69,15 @@ public class EpsAndesPersistencia
 		tablas.add("CONSUSLTAS_URGENCIA");
 		tablas.add("RECETAS");
 	}
+
+	/**
+	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
+	 */
+	public String darSeqEpsAndes ()
+	{
+		return tablas.get (0);
+	}
+
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de AFILIADO
 	 */
@@ -136,5 +162,64 @@ public class EpsAndesPersistencia
 	public String darTablaConsultaUrgencia()
 	{
 		return tablas.get(11);
+	}
+	
+	public static  EpsAndesPersistencia getInstance() {
+		if (instance == null)
+		{
+			instance = new EpsAndesPersistencia ();
+		}
+		return instance;
+	}
+	
+	/**
+	 * Cierra la conexión con la base de datos
+	 */
+	public void cerrarUnidadPersistencia ()
+	{
+		pmf.close ();
+		instance = null;
+	}
+	public long[] limpiarEpsAndes() {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long [] resp = sqlUtil.limpiarEpsAndes (pm);
+            tx.commit ();
+            log.info ("Borrada la base de datos");
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return new long[] {-1, -1, -1, -1, -1, -1, -1};
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/**
+	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
+	 * @param e - La excepción que ocurrio
+	 * @return El mensaje de la excepción JDO
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
 	}
 }
