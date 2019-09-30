@@ -99,7 +99,7 @@ public class SQLGerente
 	 * Crea y ejecuta la sentencia SQL para cambiar el correo
 	 * @return El número de tuplas modificadas
 	 */
-	public long cambiarCorreoAfiliado (PersistenceManager pm, long id, String correo) 
+	public long cambiarCorreoMedico (PersistenceManager pm, long id, String correo) 
 	{
 		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaGerente() + " SET Correo_Electronico = ? WHERE Id_Laboral = ?");
 		q.setParameters(correo, id);
