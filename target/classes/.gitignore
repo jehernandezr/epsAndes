@@ -1,6 +1,10 @@
 /META-INF/
 /config/
 /hbase-site.xml
+<<<<<<< HEAD
+=======
+/interfaz/
+>>>>>>> 2c2c8f205b46b75dd318826b4ae499bdf1d604f4
 /log4j.properties
 /negocio/
 /package-cassandra.orm
