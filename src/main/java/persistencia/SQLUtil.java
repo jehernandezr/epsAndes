@@ -74,7 +74,7 @@ class SQLUtil
         Query qConsulta = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsulta());
         Query qConsultaUrgencia = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsultaUrgencia());
         Query qReceta = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReceta());
-
+        Query qHospitalizacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospitalizacion());
         long afiliadosEliminados = (long) qAfiliado.executeUnique ();
         long gerenteEliminados = (long) qGerente.executeUnique ();
         long administradorEliminadas = (long) qAdministrador.executeUnique ();
@@ -87,9 +87,10 @@ class SQLUtil
         long consultaEliminados =(long) qConsulta.executeUnique();
         long consultaUrgenciaEliminados =(long) qConsultaUrgencia.executeUnique();
         long recetaEliminados =(long) qReceta.executeUnique();
+        long hospitalizacionEliminados =(long) qHospitalizacion.executeUnique();
         return new long[] {afiliadosEliminados, gerenteEliminados, administradorEliminadas, recepcionistaEliminadas, 
         		medicoEliminados, ipsEliminados, procedimientoEspecializadoEliminados,terapiaEliminadas,examenEliminados,
-        		consultaEliminados,consultaUrgenciaEliminados,recetaEliminados};
+        		consultaEliminados,consultaUrgenciaEliminados,recetaEliminados, hospitalizacionEliminados};
 	}
 
 }
