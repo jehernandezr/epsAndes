@@ -48,6 +48,8 @@ public class EpsAndesPersistencia
 		tablas.add("PROCEDIMIENTOS_ESPECIALIZADOS");
 		tablas.add("TERAPIAS");
 		tablas.add("EXAMENES");
+		tablas.add("CONSULTAS");
+		tablas.add("CONSUSLTAS_URGENCIA");
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de AFILIADO
@@ -111,5 +113,21 @@ public class EpsAndesPersistencia
 	public String darTablaExamen()
 	{
 		return tablas.get(9);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de CONSULTAS
+	 */
+	public String darTablaConsulta()
+	{
+		return tablas.get(10);
+	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de CONSULTAS_URGENCIAS
+	 */
+	public String darTablaConsultaUrgencia()
+	{
+		return tablas.get(11);
 	}
 }
