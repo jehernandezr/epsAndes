@@ -68,6 +68,7 @@ public class EpsAndesPersistencia
 		tablas.add("CONSULTAS");
 		tablas.add("CONSUSLTAS_URGENCIA");
 		tablas.add("RECETAS");
+		tablas.add("HOSPITALIZACIONES");
 	}
 
 	/**
@@ -141,13 +142,7 @@ public class EpsAndesPersistencia
 	{
 		return tablas.get(9);
 	}
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de RECETAS
-	 */
-	public String darTablaReceta()
-	{
-		return tablas.get(12);
-	}	
+	
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de CONSULTAS
 	 */
@@ -163,6 +158,22 @@ public class EpsAndesPersistencia
 	{
 		return tablas.get(11);
 	}
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de RECETAS
+	 */
+	public String darTablaReceta()
+	{
+		return tablas.get(12);
+	}	
+	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de HOSPITALIZACIONES
+	 */
+	public String darTablaHospitalizacion()
+	{
+		return tablas.get(13);
+	}	
 	
 	public static  EpsAndesPersistencia getInstance() {
 		if (instance == null)
