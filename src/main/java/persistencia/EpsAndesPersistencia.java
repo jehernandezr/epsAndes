@@ -112,4 +112,11 @@ public class EpsAndesPersistencia
 	{
 		return tablas.get(9);
 	}
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de RECETAS
+	 */
+	public String darTablaReceta()
+	{
+		return tablas.get(12);
+	}
 }
