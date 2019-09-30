@@ -12,8 +12,6 @@ import javax.jdo.Transaction;
 
 import org.apache.log4j.Logger;
 
-import uniandes.isis2304.parranderos.persistencia.PersistenciaParranderos;
-
 /**
  * @author dianis y jonatan
  *
@@ -23,7 +21,7 @@ public class EpsAndesPersistencia
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(PersistenciaParranderos.class.getName());
+	private static Logger log = Logger.getLogger(EpsAndesPersistencia.class.getName());
 	
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
