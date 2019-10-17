@@ -67,6 +67,9 @@ public class EpsAndesPersistencia
 		tablas.add("CONSUSLTAS_URGENCIA");
 		tablas.add("RECETAS");
 		tablas.add("HOSPITALIZACIONES");
+		tablas.add("CITAS_RESERVADAS");
+		tablas.add("HORARIOS_DE_ATENCION");
+		
 	}
 
 	/**
@@ -172,6 +175,11 @@ public class EpsAndesPersistencia
 	{
 		return tablas.get(13);
 	}	
+	
+	public String darTablaCitaReservada()
+	{
+		return tablas.get(14);
+	}
 	
 	public static  EpsAndesPersistencia getInstance() {
 		if (instance == null)

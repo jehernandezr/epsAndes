@@ -22,6 +22,9 @@ public class CitaReservada {
 	 */
 	private long servicioAsociado;
 
+	private long recepcionista;
+	
+	
 	/**
 	 * constructor por defecto
 	 */
@@ -31,6 +34,7 @@ public class CitaReservada {
 		this.fechaConsulta = new Date(1232123);
 		this.afiliado =0;
 		this.servicioAsociado = 0;
+		this.recepcionista=0;
 	}
 	
 	/**
@@ -41,7 +45,7 @@ public class CitaReservada {
 	 * @param afiliado
 	 * @param servicioAsociado
 	 */
-	public CitaReservada(EstadoCita estado, Date fechaConsulta, long afiliado, long servicioAsociado, long id) {
+	public CitaReservada(EstadoCita estado, long recepcionista, Date fechaConsulta, long afiliado, long servicioAsociado, long id) {
 		this.id=id;
 		this.estado = estado;
 		this.fechaConsulta = fechaConsulta;
@@ -117,6 +121,20 @@ public class CitaReservada {
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the recepcionista
+	 */
+	public long getRecepcionista() {
+		return recepcionista;
+	}
+
+	/**
+	 * @param recepcionista the recepcionista to set
+	 */
+	public void setRecepcionista(long recepcionista) {
+		this.recepcionista = recepcionista;
 	}
 	
 	
