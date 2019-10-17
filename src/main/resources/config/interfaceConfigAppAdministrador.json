@@ -1,0 +1,35 @@
+{
+	"title": "EPSAndes - Administrador",
+	"frameH": 600,
+	"frameW": 1000,
+	"bannerPath": "./src/main/resources/config/admin.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Registrar",
+		  "options":
+			[
+				{
+					"label": "Médico",
+					"event": "iniciarAdmin"
+				},
+				{
+					"label": "IPS",
+					"event": "iniciarAfiliado"
+				},
+				{
+					"label": "Afiliado",
+					"event": "iniciarMedico"
+				},
+				{
+					"label": "Recepcionista",
+					"event": "iniciarRecepcionista"
+				},
+				{
+					"label": "Servicio de salud",
+					"event": "iniciarRecepcionista"
+				}
+			]
+		}
+	]
+}
+	

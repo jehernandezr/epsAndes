@@ -24,7 +24,6 @@ import javax.swing.border.TitledBorder;
 /**
  * Clase de interfaz para mostrar los resultados de la ejecución de las 
  * operaciones realizadas por el usuario
- * @author Germán Bravo
  */
 @SuppressWarnings("serial")
 public class PanelDatos extends JPanel
@@ -48,7 +47,6 @@ public class PanelDatos extends JPanel
 
     /**
      * Construye el panel
-     * 
      */
     public PanelDatos ()
     {
@@ -68,7 +66,7 @@ public class PanelDatos extends JPanel
      * Actualiza el panel con la información recibida por parámetro.
      * @param texto El texto con el que actualiza el área
      */
-    public void actualizarInterfaz (String texto)
+    public void actualizarInterfaz(String texto)
     {
     	textArea.setText(texto);
     }
