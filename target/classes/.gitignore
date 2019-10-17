@@ -1,5 +1,6 @@
-/META-INF/
+/uniandes/
 /config/
+<<<<<<< HEAD
 /hbase-site.xml
 /log4j.properties
 /negocio/
@@ -13,3 +14,6 @@
 /package-neo4j.orm
 /package-odf.orm
 /persistencia/
+=======
+/resources/
+>>>>>>> d23cd7e53e378772a87c1e4077418d36f87b9cf9
