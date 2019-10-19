@@ -69,7 +69,9 @@ public class EpsAndesPersistencia
 		tablas.add("HOSPITALIZACIONES");
 		tablas.add("CITAS_RESERVADAS");
 		tablas.add("HORARIOS_DE_ATENCION");
-		
+		tablas.add("Medicos_Adscritos");
+		tablas.add("Roles_En_Sistema");
+		tablas.add("Servicio_De_Salud");
 	}
 
 	/**
@@ -181,6 +183,29 @@ public class EpsAndesPersistencia
 		return tablas.get(14);
 	}
 	
+	public String darTablaHorariosDeAtencion()
+	{
+		return tablas.get(15);
+	}
+	
+	public String darTablaMedicosAdscritos()
+	{
+		return tablas.get(16);
+	}
+	
+	public String darTablaRolesEnSistema()
+	{
+		return tablas.get(17);
+	}
+	
+	public String darTablaServicioDeSalud()
+	{
+		return tablas.get(18);
+	}
+	public String darTablaServiciosRequeridos()
+	{
+		return tablas.get(19);
+	}
 	public static  EpsAndesPersistencia getInstance() {
 		if (instance == null)
 		{

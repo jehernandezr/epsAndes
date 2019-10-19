@@ -9,7 +9,7 @@ import negocio.TipoDeDocumento;
 
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto AFILIADO de EPSAndes
- * @author diani
+ * @author dianis
  */
 public class SQLAfiliado 
 {
