@@ -49,7 +49,7 @@ public class EpsAndesPersistencia
 	 */
 	private EpsAndesPersistencia()
 	{
-		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
+		pmf = JDOHelper.getPersistenceManagerFactory("EpsAndes");		
 
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
