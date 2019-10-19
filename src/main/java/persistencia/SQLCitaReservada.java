@@ -10,9 +10,8 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import negocio.CitaReservada;
-import negocio.Consulta;
 import negocio.EstadoCita;
-import negocio.TipoDeConsulta;
+
 
 /**
  * @author jonat

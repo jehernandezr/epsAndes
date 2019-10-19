@@ -72,6 +72,7 @@ public class EpsAndesPersistencia
 		tablas.add("Medicos_Adscritos");
 		tablas.add("Roles_En_Sistema");
 		tablas.add("Servicio_De_Salud");
+		tablas.add("Servicios_Requeridos");
 	}
 
 	/**
