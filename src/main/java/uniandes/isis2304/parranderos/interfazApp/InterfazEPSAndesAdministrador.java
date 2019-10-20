@@ -72,11 +72,16 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
      */
     private JMenuBar menuBar;
     /**
+     * Número de cédula
+     */
+    private Long numCc;
+    /**
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
      */
-    public InterfazEPSAndesAdministrador( )
+    public InterfazEPSAndesAdministrador()
     {
+    	
         guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
         
         configurarFrame ( );
@@ -94,6 +99,14 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
         setLayout (new BorderLayout());
         add (new JLabel (new ImageIcon (path)), BorderLayout.NORTH );          
         add( panelDatos, BorderLayout.CENTER );        
+    }
+    /**
+     * Registrar el número de cédula del administrador
+     * @param numCc
+     */
+    public void registrarNumCcIngresado(long numCc)
+    {
+    	this.numCc = numCc;
     }
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.

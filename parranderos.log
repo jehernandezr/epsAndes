@@ -203,3 +203,42 @@ ORA-02289: no existe la secuencia
 17:27:57,170 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
 17:27:57,171 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
 17:27:57,183 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:00:55,108 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:00:55,108 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:00:55,125 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:14:43,713 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:14:43,713 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:14:43,732 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:15:17,096 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:15:17,096 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:15:17,116 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:15:25,449 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se encontró un archivo de configuración válido: Interfaz
+10:15:25,449 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se aplica configuración indicada en el archivo de configuración
+10:15:25,452 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se encontró un archivo de configuración válido: Tablas BD
+10:15:56,724 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:15:56,726 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:15:56,746 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:16:06,057 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se encontró un archivo de configuración válido: Interfaz
+10:16:06,057 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se aplica configuración indicada en el archivo de configuración
+10:16:06,059 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se encontró un archivo de configuración válido: Tablas BD
+10:16:24,991 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:16:24,991 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:16:25,016 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:16:32,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se encontró un archivo de configuración válido: Interfaz
+10:16:32,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se aplica configuración indicada en el archivo de configuración
+10:16:32,772 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesAdministrador] - Se encontró un archivo de configuración válido: Tablas BD
+10:34:00,460 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:34:00,461 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:34:00,479 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:34:19,377 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:34:19,378 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:34:19,397 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:34:42,964 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesRecepcionista] - Se encontró un archivo de configuración válido: Interfaz
+10:34:42,964 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesRecepcionista] - Se aplica configuración indicada en el archivo de configuración
+10:34:42,966 (AWT-EventQueue-0) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndesRecepcionista] - Se encontró un archivo de configuración válido: Tablas BD
+10:35:24,492 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:35:24,493 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:35:24,517 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD
+10:36:11,770 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Interfaz
+10:36:11,770 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se aplica configuración indicada en el archivo de configuración
+10:36:11,795 (main) INFO  [uniandes.isis2304.parranderos.interfazApp.InterfazEPSAndes] - Se encontró un archivo de configuración válido: Tablas BD

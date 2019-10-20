@@ -67,4 +67,16 @@ public class EpsAndes {
         return borrrados;
 	}
 	
+	public boolean existeAdmin(long idNumCc) {
+		return true;
+	}
+	public boolean existeRecepcionista(long idNumCc) {
+		return true;
+	}
+	public boolean existeAfiliado(long idNumCc) {
+		return true;
+	}
+	public boolean existeMedico(long idNumCc) {
+		return true;
+	}
 }

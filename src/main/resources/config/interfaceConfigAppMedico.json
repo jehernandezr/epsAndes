@@ -1,6 +1,6 @@
 {
 	"title": "EPSAndes - Médico",
-	"frameH": 600,
+	"frameH": 500,
 	"frameW": 1000,
 	"bannerPath": "./src/main/resources/config/medico.png",
 	"menuBar":

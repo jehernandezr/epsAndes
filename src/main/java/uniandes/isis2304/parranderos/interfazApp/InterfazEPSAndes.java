@@ -189,6 +189,164 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
         }        
         setJMenuBar ( menuBar );	
     }
+    /**
+     * Inicializa como administrador del sistema
+     */
+    public void iniciarAdmin()
+    {
+    	try 
+    	{
+    		String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como administrador", JOptionPane.QUESTION_MESSAGE);
+    		if (numCc != null)
+    		{
+    			long idNumCc = Long.valueOf (numCc);
+    			boolean existe = epsAndes.existeAdmin(idNumCc);
+    			if(existe)
+    			{
+    				InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador();
+    				interfaz.registrarNumCcIngresado(idNumCc);
+    	            interfaz.setVisible( true );
+    			}
+    			else
+    			{
+        			panelDatos.actualizarInterfaz("El administrador no existe");
+    			}
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    /**
+     * Inicializa como recepcionista del sistema
+     */
+    public void iniciarRecepcionista()
+    {
+    	try 
+    	{
+    		String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
+    		if (numCc != null)
+    		{
+    			long idNumCc = Long.valueOf (numCc);
+    			boolean existe = epsAndes.existeRecepcionista(idNumCc);
+    			if(existe)
+    			{
+    				InterfazEPSAndesRecepcionista interfaz = new InterfazEPSAndesRecepcionista();
+    				interfaz.registrarNumCcIngresado(idNumCc);
+    	            interfaz.setVisible( true );
+    			}
+    			else
+    			{
+        			panelDatos.actualizarInterfaz("El recepcionista no existe");
+    			}
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    /**
+     * Inicializa como afiliado del sistema
+     */
+    public void iniciarAfiliado()
+    {
+    	try 
+    	{
+    		String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como afiliado", JOptionPane.QUESTION_MESSAGE);
+    		if (numCc != null)
+    		{
+    			long idNumCc = Long.valueOf (numCc);
+    			boolean existe = epsAndes.existeAfiliado(idNumCc);
+    			if(existe)
+    			{
+    				InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado();
+    				interfaz.registrarNumCcIngresado(idNumCc);
+    	            interfaz.setVisible( true );
+    			}
+    			else
+    			{
+        			panelDatos.actualizarInterfaz("El afiliado no existe");
+    			}
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    /**
+     * Inicializa como médico del sistema
+     */
+    public void iniciarMedico()
+    {
+    	try 
+    	{
+    		String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como médico", JOptionPane.QUESTION_MESSAGE);
+    		if (numCc != null)
+    		{
+    			long idNumCc = Long.valueOf (numCc);
+    			boolean existe = epsAndes.existeMedico(idNumCc);
+    			if(existe)
+    			{
+    				InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico();
+    				interfaz.registrarNumCcIngresado(idNumCc);
+    	            interfaz.setVisible( true );
+    			}
+    			else
+    			{
+        			panelDatos.actualizarInterfaz("El médico no existe");
+    			}
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    /**
+     * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
+     * @param e - La excepción recibida
+     * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
+     */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
+    private String generarMensajeError(Exception e) 
+	{
+		String resultado = "************ Error en la ejecución\n";
+		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
+		resultado += "\n\nRevise datanucleus.log y parranderos.log para más detalles";
+		return resultado;
+	}
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -222,9 +380,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
     {
         try
         {
-        	
-            // Unifica la interfaz para Mac y para Windows.
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
+        	UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndes interfaz = new InterfazEPSAndes( );
             interfaz.setVisible( true );
         }
