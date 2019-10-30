@@ -107,7 +107,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
      */
     public void registrarNumCcIngresado(long numCc)
     {
-    	
     	this.numCc = numCc;
     }
     /**

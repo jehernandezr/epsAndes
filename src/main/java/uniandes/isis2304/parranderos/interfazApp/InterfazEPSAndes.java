@@ -2,16 +2,10 @@
 package uniandes.isis2304.parranderos.interfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
@@ -208,14 +202,10 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
     	            interfaz.setVisible( true );
     			}
     			else
-    			{
         			panelDatos.actualizarInterfaz("El administrador no existe");
-    			}
     		}
     		else
-    		{
     			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
 		} 
     	catch (Exception e) 
     	{
@@ -321,6 +311,43 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		} 
     	catch (Exception e) 
     	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    /**
+     * Registrar un nuevo admisnitador al sistema
+     */
+    public void registrarAdmin()
+    {
+		new PanelRegistrarAdmin(this);
+    }
+    /**
+     * Registro de un administradror
+     */
+    public void registroDeDatosAdmin(String nombre, String correo, String numCc)
+    {
+    	try {
+    		if (numCc != null && nombre != null && correo != null)
+    		{
+    			long idNumCc = Long.valueOf (numCc);
+    			boolean existe = epsAndes.existeAdmin(idNumCc);
+    			if(!existe)
+    			{
+    				InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador();
+    				interfaz.registrarNumCcIngresado(idNumCc);
+    	            interfaz.setVisible( true );
+    			}
+    			else
+    			{
+        			panelDatos.actualizarInterfaz("El administrador no existe");
+    			}
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} catch (Exception e) {
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
