@@ -5,7 +5,7 @@ public class Administrador {
 	/**
 	 * Atributo Representa Identificacion laboral del usuario
 	 */
-	private int identificacionLaboral;
+	private long identificacionLaboral;
 
 	/**
 	 * Atributo que representa la cedula de ciudadania del usuario
@@ -15,6 +15,8 @@ public class Administrador {
 	 * atributo que representa el nombre del usuario
 	 */
 	private String nombre;
+
+	private String correo;
 
 	/**
 	 * Constructor  por defecto  del admisntrador
@@ -32,10 +34,11 @@ public class Administrador {
 	 * @param numCc
 	 * @param nombre
 	 */
-	public Administrador(int identificacionLaboral, String numCc, String nombre) {
+	public Administrador(long identificacionLaboral, String numCc, String nombre, String correo) {
 		this.identificacionLaboral = identificacionLaboral;
 		this.numCc = numCc;
 		this.nombre = nombre;
+		this.setCorreo(correo);
 	}
 
 	public String getNombre() {
@@ -46,11 +49,11 @@ public class Administrador {
 		this.nombre = nombre;
 	}
 
-	public int getIdentificacionLaboral() {
+	public long getIdentificacionLaboral() {
 		return identificacionLaboral;
 	}
 
-	public void setIdentificacionLaboral(int identificacionLaboral) {
+	public void setIdentificacionLaboral(long identificacionLaboral) {
 		this.identificacionLaboral = identificacionLaboral;
 	}
 
@@ -66,6 +69,20 @@ public class Administrador {
 	 */
 	public void setNumCc(String numCc) {
 		this.numCc = numCc;
+	}
+
+	/**
+	 * @return the correo
+	 */
+	public String getCorreo() {
+		return correo;
+	}
+
+	/**
+	 * @param correo the correo to set
+	 */
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 }

@@ -427,17 +427,65 @@ public class EpsAndesPersistencia
 			pm.close();
 		}
 	}
+
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los Administradores
+	 *****************************************************************/
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla Administrador
+	 * Adiciona entradas al log de la aplicación
+	 * @param nombre - El nombre del Administrador
+	 * @param pCorreo - el correo elecetrónico del administrador
+	 * @param numCc - Ela cedula del adminsitrador
+	 * @return El objeto Administrador adicionado. null si ocurre alguna Excepción
+	 */
+	public Administrador adicionarAdministrador(String nombre, String pCorreo, String numCc) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long idAdministrador = nextval ();
+            long tuplasInsertadas = sqlAdministrador.adicionarAdministrador(pmf.getPersistenceManager() , nombre, idAdministrador,pCorreo, numCc);
+            tx.commit();
+
+            log.trace ("Inserción de Administrador: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+            
+            return new Administrador(idAdministrador, numCc, nombre, pCorreo);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
 	/**
 	 *Método que consulta todas las tuplas en la tabla Adminsitrador que tienen el identificador dado
 	 * @param numCc - El identificador del Administrador
 	 * @return El objeto Administrador, construido con base en la tuplas de la tabla Administrador, que tiene el identificador dado
 	 */
-	public Administrador darAdministradorPorId(long numCc)
+	public Administrador darAdministradorPorId(String numCc)
 	{
 		return (Administrador) sqlAdministrador.darAdministradorPorId(pmf.getPersistenceManager(), numCc);
 
-	
 	}
+	
+	
+	
 	/**
 	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
 	 * @param e - La excepción que ocurrio
