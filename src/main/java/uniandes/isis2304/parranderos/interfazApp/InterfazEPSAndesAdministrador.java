@@ -58,6 +58,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     /**
      * Asociación a la clase principal del negocio.
      */
+  
     private EpsAndes epsAndes;
     /**
      * Objeto JSON con la configuración de interfaz de la app.
@@ -106,6 +107,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
      */
     public void registrarNumCcIngresado(long numCc)
     {
+    	
     	this.numCc = numCc;
     }
     /**

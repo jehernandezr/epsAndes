@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 
 import persistencia.EpsAndesPersistencia;
+import uniandes.isis2304.parranderos.negocio.Bebedor;
 
 
 /**
@@ -42,6 +43,20 @@ public class EpsAndes {
 	}
 	
 	
+	 
+	 /**
+		 * Encuentra un adminsitrador y su información básica, según su identificador
+		 * @param idAdministrador - El identificador del administrador buscado
+		 * @return Un objeto Administrador que corresponde con el identificador buscado y lleno con su información básica
+		 * 			null, si un Administrador con dicho identificador no existe
+		 */
+		public Administrador darAdminsitradorId (long idAdministrador)
+		{
+	        log.info ("Dar información de un administrador por id: " + idAdministrador);
+	       Administrador administrador = Ep.darAdministradorPorId(idAdministrador) ;
+	        log.info ("Buscando Administrador por Id: " + administrador != null ? administrador : "NO EXISTE");
+	        return administrador;
+		}
 	
 	/**
 	 * Cierra la conexión con la base de datos (Unidad de persistencia)
@@ -68,7 +83,8 @@ public class EpsAndes {
 	}
 	
 	public boolean existeAdmin(long idNumCc) {
-		return true;
+		return Ep.darAdministradorPorId(idNumCc) !=null? true:false;
+	
 	}
 	public boolean existeRecepcionista(long idNumCc) {
 		return true;

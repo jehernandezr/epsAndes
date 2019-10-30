@@ -75,6 +75,12 @@ class SQLUtil
         Query qConsultaUrgencia = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsultaUrgencia());
         Query qReceta = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReceta());
         Query qHospitalizacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospitalizacion());
+        Query qCitaReservada = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCitaReservada() );
+        Query qMedicosAdscritos = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMedicosAdscritos() );
+        Query qRolesEnSistema = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRolesEnSistema() );
+        Query qServicios = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicioDeSalud() );
+        Query qServiciosRequeridos = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServiciosRequeridos());
+        Query qHorarioDeAtencion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCitaReservada() );
         long afiliadosEliminados = (long) qAfiliado.executeUnique ();
         long gerenteEliminados = (long) qGerente.executeUnique ();
         long administradorEliminadas = (long) qAdministrador.executeUnique ();
@@ -88,9 +94,16 @@ class SQLUtil
         long consultaUrgenciaEliminados =(long) qConsultaUrgencia.executeUnique();
         long recetaEliminados =(long) qReceta.executeUnique();
         long hospitalizacionEliminados =(long) qHospitalizacion.executeUnique();
+        long citasEliminadas = (long) qCitaReservada.executeUnique();
+        long medicosAdscritosEliminados =(long) qMedicosAdscritos.executeUnique();
+        long rolesEliminados =(long) qRolesEnSistema.executeUnique();
+        long servicioseliminados =(long) qServicios.executeUnique();
+        long serviciosrequeridosEliminados =(long) qServiciosRequeridos.executeUnique();
+        long horariosDeAtencionEliminados = (long)qHorarioDeAtencion.executeUnique();
         return new long[] {afiliadosEliminados, gerenteEliminados, administradorEliminadas, recepcionistaEliminadas, 
         		medicoEliminados, ipsEliminados, procedimientoEspecializadoEliminados,terapiaEliminadas,examenEliminados,
-        		consultaEliminados,consultaUrgenciaEliminados,recetaEliminados, hospitalizacionEliminados};
+        		consultaEliminados,consultaUrgenciaEliminados,recetaEliminados, hospitalizacionEliminados, citasEliminadas,
+        		medicosAdscritosEliminados, rolesEliminados, servicioseliminados, serviciosrequeridosEliminados, horariosDeAtencionEliminados};
 	}
 
 }

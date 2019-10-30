@@ -67,8 +67,8 @@ public class SQLAdministrador
 	public Administrador darAdministradorPorId (PersistenceManager pm, long id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador() + " WHERE Id_Laboral = ?");
-		q.setResultClass(Administrador.class);
 		q.setParameters(id);
+		q.setResultClass(Administrador.class);
 		return (Administrador) q.executeUnique();
 	}
 	/**
