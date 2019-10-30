@@ -1,22 +1,28 @@
 package uniandes.isis2304.parranderos.interfazApp;
 
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * Diálogo para agregar un nuevo socio al club.
+ * Dialogo para agregar un nuevo socio al club.
  */
+
 public class PanelRegistrarAdmin 
 {
 	   public PanelRegistrarAdmin(InterfazEPSAndes interfaz)
 	   {
-		      JTextField nombre = new JTextField(5);
-		      JTextField correo = new JTextField(5);
-		      JTextField numCc = new JTextField(5);
+		      JTextField nombre = new JTextField(15);
+		      JTextField correo = new JTextField(15);
+		      JTextField numCc = new JTextField(15);
+		      
+		      GridLayout layout = new GridLayout(3,2);
 
 		      JPanel myPanel = new JPanel();
+		      myPanel.setLayout(layout);
 		      myPanel.add(new JLabel("Nombre:"));
 		      myPanel.add(nombre);
 		      myPanel.add(new JLabel("Correo:"));
