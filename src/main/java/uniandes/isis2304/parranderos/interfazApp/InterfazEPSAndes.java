@@ -366,7 +366,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
     	}
     }
     /**
-     * Registro de un administradror
+     * Registro de un administrador
      */
     public void registroDeDatosAdmin(String nombre, String correo, String numCc)
     {
