@@ -1,15 +1,27 @@
 {
-	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación B",
-	"unidadPersistencia": "Parranderos",
+	"title": "Nombres de las tablas de EpsAndes Uniandes para la aplicacion",
+	"unidadPersistencia": "EpsAndes",
 	"tablas":
 	[
-		"Parranderos_sequence",
-		"B_TIPOBEBIDA",
-		"B_BEBIDA",
-		"B_BAR",
-		"B_BEBEDOR",
-		"B_GUSTAN",
-		"B_SIRVEN",
-		"B_VISITAN"
+		"EPSAndes_sequence",	
+		"AFILIADOS",
+		"GERENTES",
+		"ADMINISTRADORES",
+		"RECEPCIONISTAS",
+		"MEDICOS",
+		"IPS",
+		"PROCEDIMIENTOS_ESPECIALIZADOS",
+		"TERAPIAS",
+		"EXAMENES",
+		"CONSULTAS",
+		"CONSUSLTAS_URGENCIA",
+		"RECETAS",
+		"HOSPITALIZACIONES",
+		"CITAS_RESERVADAS",
+		"HORARIOS_DE_ATENCION",
+		"Medicos_Adscritos",
+		"Roles_En_Sistema",
+		"Servicio_De_Salud",
+		"Servicios_Requeridos"
 	]
 }
