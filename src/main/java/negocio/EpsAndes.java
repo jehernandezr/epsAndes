@@ -46,14 +46,14 @@ public class EpsAndes {
 	 
 	 /**
 		 * Encuentra un adminsitrador y su información básica, según su identificador
-		 * @param idAdministrador - El identificador del administrador buscado
+		 * @param numCc - El identificador del administrador buscado
 		 * @return Un objeto Administrador que corresponde con el identificador buscado y lleno con su información básica
 		 * 			null, si un Administrador con dicho identificador no existe
 		 */
-		public Administrador darAdminsitradorId (long idAdministrador)
+		public Administrador darAdminsitradorId (String numCc)
 		{
-	        log.info ("Dar información de un administrador por id: " + idAdministrador);
-	       Administrador administrador = Ep.darAdministradorPorId(idAdministrador) ;
+	        log.info ("Dar información de un administrador por id: " + numCc);
+	       Administrador administrador = Ep.darAdministradorPorId(numCc) ;
 	        log.info ("Buscando Administrador por Id: " + administrador != null ? administrador : "NO EXISTE");
 	        return administrador;
 		}
@@ -82,6 +82,7 @@ public class EpsAndes {
         return borrrados;
 	}
 	
+<<<<<<< HEAD
 	public boolean existeAdmin(long idNumCc) {
 		return Ep.darAdministradorPorId(idNumCc) !=null? true:false;
 	}
@@ -92,6 +93,11 @@ public class EpsAndes {
 	public void eliminarAdministrador(String         numcc)
 	{
 		
+=======
+	public boolean existeAdmin( String NumCc) {
+		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
+	
+>>>>>>> 93d32b461edbb3d709bd568c00ddeb23451fd6ca
 	}
 	public boolean existeRecepcionista(long idNumCc) {
 		return true;
@@ -101,5 +107,10 @@ public class EpsAndes {
 	}
 	public boolean existeMedico(long idNumCc) {
 		return true;
+	}
+	
+	public String crearAdministrador(String numCc, String nombre, String pCorreo)
+	{
+		return Ep.adicionarAdministrador(nombre, pCorreo, numCc).toString();
 	}
 }

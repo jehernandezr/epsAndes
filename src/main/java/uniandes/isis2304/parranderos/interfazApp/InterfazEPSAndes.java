@@ -196,12 +196,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
     		String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como administrador", JOptionPane.QUESTION_MESSAGE);
     		if (numCc != null)
     		{
-    			long idNumCc = Long.valueOf (numCc);
-    			boolean existe = epsAndes.existeAdmin(idNumCc);
+    			
+    			boolean existe = epsAndes.existeAdmin(numCc);
     			if(existe)
     			{
     				InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador();
-    				interfaz.registrarNumCcIngresado(idNumCc);
+    				interfaz.registrarNumCcIngresado(numCc);
     	            interfaz.setVisible( true );
     			}
     			else
@@ -372,12 +372,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
     	try {
     		if (numCc != null && nombre != null && correo != null)
     		{
-    			long idNumCc = Long.valueOf (numCc);
-    			boolean existe = epsAndes.existeAdmin(idNumCc);
+    		
+    			boolean existe = epsAndes.existeAdmin(numCc);
     			if(!existe)
     			{
     				InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador();
-    				interfaz.registrarNumCcIngresado(idNumCc);
+    				interfaz.registrarNumCcIngresado(numCc);
     	            interfaz.setVisible( true );
     			}
     			else
