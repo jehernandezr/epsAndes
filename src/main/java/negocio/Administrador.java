@@ -2,10 +2,6 @@ package negocio;
 
 public class Administrador {
 
-	/**
-	 * Atributo Representa Identificacion laboral del usuario
-	 */
-	private long identificacionLaboral;
 
 	/**
 	 * Atributo que representa la cedula de ciudadania del usuario
@@ -22,7 +18,6 @@ public class Administrador {
 	 * Constructor  por defecto  del admisntrador
 	 */
 	public Administrador() {
-		this.identificacionLaboral = 0;
 		this.numCc = "";
 		this.nombre = "";
 	}
@@ -34,8 +29,7 @@ public class Administrador {
 	 * @param numCc
 	 * @param nombre
 	 */
-	public Administrador(long identificacionLaboral, String numCc, String nombre, String correo) {
-		this.identificacionLaboral = identificacionLaboral;
+	public Administrador(String nombre,  String correo,String numCc) {
 		this.numCc = numCc;
 		this.nombre = nombre;
 		this.setCorreo(correo);
@@ -49,13 +43,6 @@ public class Administrador {
 		this.nombre = nombre;
 	}
 
-	public long getIdentificacionLaboral() {
-		return identificacionLaboral;
-	}
-
-	public void setIdentificacionLaboral(long identificacionLaboral) {
-		this.identificacionLaboral = identificacionLaboral;
-	}
 
 	/**
 	 * @return the numCc

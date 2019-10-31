@@ -448,13 +448,13 @@ public class EpsAndesPersistencia
         try
         {
             tx.begin();
-            long idAdministrador = nextval ();
-            long tuplasInsertadas = sqlAdministrador.adicionarAdministrador(pmf.getPersistenceManager() , nombre, idAdministrador,pCorreo, numCc);
+  
+            long tuplasInsertadas = sqlAdministrador.adicionarAdministrador(pmf.getPersistenceManager() , nombre, pCorreo, numCc);
             tx.commit();
 
             log.trace ("Inserción de Administrador: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Administrador(idAdministrador, numCc, nombre, pCorreo);
+            return new Administrador( nombre, pCorreo, numCc);
         }
         catch (Exception e)
         {

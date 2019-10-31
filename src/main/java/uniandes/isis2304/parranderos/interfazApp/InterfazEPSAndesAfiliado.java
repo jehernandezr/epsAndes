@@ -23,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -239,6 +240,7 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado( );
             interfaz.setVisible( true );
+            BasicConfigurator.configure();
         }
         catch( Exception e )
         {

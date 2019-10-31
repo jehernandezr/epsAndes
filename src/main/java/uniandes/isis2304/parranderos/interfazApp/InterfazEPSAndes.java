@@ -17,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -334,6 +335,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
     			boolean existe = epsAndes.existeAdmin(numCc);
     			if(!existe)
     			{
+    				epsAndes.crearAdministrador(nombre, correo, numCc);
     				InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador();
     				interfaz.registrarNumCcIngresado(numCc);
     	            interfaz.setVisible( true );
@@ -410,6 +412,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
         	UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndes interfaz = new InterfazEPSAndes( );
             interfaz.setVisible( true );
+            BasicConfigurator.configure();
         }
         catch( Exception e )
         {

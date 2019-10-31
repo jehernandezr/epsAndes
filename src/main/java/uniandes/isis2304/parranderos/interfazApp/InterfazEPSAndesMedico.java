@@ -23,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -228,6 +229,7 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico( );
             interfaz.setVisible( true );
+            BasicConfigurator.configure();
         }
         catch( Exception e )
         {

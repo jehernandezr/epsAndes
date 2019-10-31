@@ -33,10 +33,10 @@ public class SQLRecepcionista
 	 * Crea y ejecuta la sentencia SQL para adicionar un RECEPCIONISTA a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarRecepcionista(PersistenceManager pm, String pNombre, int pIdLaboral, String pCorreo, String pNumCc) 
+	public long adicionarRecepcionista(PersistenceManager pm, String pNombre, String pCorreo, String pNumCc) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "(Id_Laboral, Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?, ?)");
-		q.setParameters(pIdLaboral, pNombre, pCorreo, pNumCc);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "( Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?)");
+		q.setParameters( pNombre, pCorreo, pNumCc);
 		return (long) q.executeUnique();
 	}
 
@@ -55,21 +55,21 @@ public class SQLRecepcionista
 	 * Crea y ejecuta la sentencia SQL para eliminar UN RECEPCIONISTA, por su identificador
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarRecepcionistaPorId (PersistenceManager pm, long id)
+	public long eliminarRecepcionistaPorId (PersistenceManager pm, String numCc)
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRecepcionista() + " WHERE Id_Laboral = ?");
-		q.setParameters(id);
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRecepcionista() + " WHERE Num_Cc=?");
+		q.setParameters(numCc);
 		return (long) q.executeUnique();            
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN RECEPCIONISTA, por su identificador
 	 * @return El objeto RECEPCIONISTA que tiene el identificador dado
 	 */
-	public Recepcionista darRecepcionistaPorId (PersistenceManager pm, long id) 
+	public Recepcionista darRecepcionistaPorId (PersistenceManager pm, String numCc) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRecepcionista() + " WHERE Id_Laboral = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRecepcionista() + " WHERE Num_Cc = ?");
 		q.setResultClass(Recepcionista.class);
-		q.setParameters(id);
+		q.setParameters(numCc);
 		return (Recepcionista) q.executeUnique();
 	}
 	/**
@@ -100,10 +100,10 @@ public class SQLRecepcionista
 	 * Crea y ejecuta la sentencia SQL para cambiar el correo
 	 * @return El número de tuplas modificadas
 	 */
-	public long cambiarCorreoRecepcionista (PersistenceManager pm, long id, String correo) 
+	public long cambiarCorreoRecepcionista (PersistenceManager pm, String numCc, String correo) 
 	{
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaRecepcionista() + " SET Correo_Electronico = ? WHERE Id_Laboral = ?");
-		q.setParameters(correo, id);
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaRecepcionista() + " SET Correo_Electronico = ? WHERE Num_Cc= ?");
+		q.setParameters(correo, numCc);
 		return (long) q.executeUnique();            
 	}
 

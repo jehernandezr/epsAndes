@@ -32,10 +32,10 @@ public class SQLGerente
 	 * Crea y ejecuta la sentencia SQL para adicionar un GERENTE a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarGerente (PersistenceManager pm, String pNombre, int pIdLaboral, String pCorreo, String pNumCc) 
+	public long adicionarGerente (PersistenceManager pm, String pNombre, String pCorreo, String pNumCc) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaGerente() + "(Id_Laboral, Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?, ?)");
-		q.setParameters(pIdLaboral, pNombre, pCorreo, pNumCc);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaGerente() + "(Id_Laboral, Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?)");
+		q.setParameters( pNombre, pCorreo, pNumCc);
 		return (long) q.executeUnique();
 	}
 
@@ -54,21 +54,21 @@ public class SQLGerente
 	 * Crea y ejecuta la sentencia SQL para eliminar UN GERENTE, por su identificador
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarGerentePorId (PersistenceManager pm, long id)
+	public long eliminarGerentePorId (PersistenceManager pm, String numCc)
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGerente() + " WHERE Id_Laboral = ?");
-		q.setParameters(id);
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGerente() + " WHERE Num_Cc = ?");
+		q.setParameters(numCc);
 		return (long) q.executeUnique();            
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN GERENTE, por su identificador
 	 * @return El objeto GERENTE que tiene el identificador dado
 	 */
-	public Gerente darGerentePorId (PersistenceManager pm, long id) 
+	public Gerente darGerentePorId (PersistenceManager pm, String numCc) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaGerente() + " WHERE Id_Laboral = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaGerente() + " WHERE Num_Cc = ?");
 		q.setResultClass(Gerente.class);
-		q.setParameters(id);
+		q.setParameters(numCc);
 		return (Gerente) q.executeUnique();
 	}
 	/**
@@ -99,10 +99,10 @@ public class SQLGerente
 	 * Crea y ejecuta la sentencia SQL para cambiar el correo
 	 * @return El número de tuplas modificadas
 	 */
-	public long cambiarCorreoMedico (PersistenceManager pm, long id, String correo) 
+	public long cambiarCorreoMedico (PersistenceManager pm,String numCc, String correo) 
 	{
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaGerente() + " SET Correo_Electronico = ? WHERE Id_Laboral = ?");
-		q.setParameters(correo, id);
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaGerente() + " SET Correo_Electronico = ? WHERE Num_Cc = ?");
+		q.setParameters(correo, numCc);
 		return (long) q.executeUnique();            
 	}
 

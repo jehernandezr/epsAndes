@@ -96,7 +96,7 @@ public class EpsAndes {
 		return true;
 	}
 	
-	public String crearAdministrador(String numCc, String nombre, String pCorreo)
+	public String crearAdministrador(String nombre,  String pCorreo,String numCc)
 	{
 		return Ep.adicionarAdministrador(nombre, pCorreo, numCc).toString();
 	}

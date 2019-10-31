@@ -23,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -108,6 +109,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     public void registrarNumCcIngresado(String numCc)
     {
     	this.numCc = numCc;
+    	
     }
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
@@ -241,6 +243,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador( );
             interfaz.setVisible( true );
+            BasicConfigurator.configure();
         }
         catch( Exception e )
         {

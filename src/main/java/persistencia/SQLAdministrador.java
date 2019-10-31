@@ -32,10 +32,10 @@ public class SQLAdministrador
 	 * Crea y ejecuta la sentencia SQL para adicionar un ADMINISTRADOR a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarAdministrador(PersistenceManager pm, String pNombre, long pIdLaboral, String pCorreo, String pNumCc) 
+	public long adicionarAdministrador(PersistenceManager pm, String pNombre, String pCorreo, String pNumCc) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAdministrador() + "(Id_Laboral, Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?, ?)");
-		q.setParameters(pIdLaboral, pNombre, pCorreo, pNumCc);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAdministrador() + "( Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?)");
+		q.setParameters( pNombre, pCorreo, pNumCc);
 		return (long) q.executeUnique();
 	}
 
@@ -56,7 +56,7 @@ public class SQLAdministrador
 	 */
 	public long eliminarAdministradorPorId (PersistenceManager pm, String numCc)
 	{
-		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador() + " WHERE num_Cc= ?");
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador() + " WHERE Num_Cc ?");
 		q.setParameters(numCc);
 		return (long) q.executeUnique();            
 	}
@@ -66,7 +66,7 @@ public class SQLAdministrador
 	 */
 	public Administrador darAdministradorPorId (PersistenceManager pm,String numCc) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador() + " WHERE num_Cc = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador() + " WHERE Num_Cc ?");
 		q.setParameters(numCc);
 		q.setResultClass(Administrador.class);
 		return (Administrador) q.executeUnique();
