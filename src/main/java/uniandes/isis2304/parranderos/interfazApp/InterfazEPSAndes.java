@@ -2,9 +2,12 @@
 package uniandes.isis2304.parranderos.interfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
 
 import javax.jdo.JDODataStoreException;
@@ -324,6 +327,45 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		new PanelRegistrarAdmin(this);
     }
     /**
+     * Eliminar un administrador por número de cédula
+     */
+    public void eliminarAdmin()
+    {
+    	try 
+    	{
+    		String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Eliminar administrador", JOptionPane.QUESTION_MESSAGE);
+    		if (numCc != null)
+    		{
+    			long idNumCc = Long.valueOf (numCc);
+    			epsAndes.eliminarAdministrador(numCc);
+    		}
+    		else
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		} 
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    /**
+     * Limpiar base de datos - Realizar por el administrador
+     */
+    public void limpiarBD()
+    {
+    	try
+    	{
+    		int response = JOptionPane.showConfirmDialog(null,  "¿Quieres eliminar la base de datos de EPSAndes?", "Selecciona una opción",JOptionPane.YES_NO_OPTION);
+    		if(response == 0)
+    			epsAndes.limpiarEpsAndes();
+    	}
+    	catch(Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+    	}
+    }
+    /**
      * Registro de un administradror
      */
     public void registroDeDatosAdmin(String nombre, String correo, String numCc)
@@ -375,6 +417,50 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
 		resultado += "\n\nRevise datanucleus.log y parranderos.log para más detalles";
 		return resultado;
+	}
+	/**
+	 * Muestra la presentación general del proyecto
+	 */
+	public void mostrarPresentacionGeneral()
+	{
+		mostrarArchivo ("data/00-ST-ParranderosJDO.pdf");
+	}
+	/**
+	 * Muestra el modelo conceptual de Parranderos
+	 */
+	public void mostrarModeloConceptual ()
+	{
+		mostrarArchivo ("data/Modelo Conceptual Parranderos.pdf");
+	}
+	/**
+	 * Muestra el esquema de la base de datos de Parranderos
+	 */
+	public void mostrarEsquemaBD ()
+	{
+		mostrarArchivo ("data/Esquema BD Parranderos.pdf");
+	}
+	/**
+	 * Muestra el script de creación de la base de datos
+	 */
+	public void mostrarScriptBD ()
+	{
+		mostrarArchivo ("data/EsquemaParranderos.sql");
+	}
+	/**
+	 * Abre el archivo dado como parámetro con la aplicación por defecto del sistema
+	 * @param nombreArchivo - El nombre del archivo que se quiere mostrar
+	 */
+	private void mostrarArchivo (String nombreArchivo)
+	{
+		try
+		{
+			Desktop.getDesktop().open(new File(nombreArchivo));
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
