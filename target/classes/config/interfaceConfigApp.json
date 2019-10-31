@@ -1,11 +1,11 @@
 {
-	"title": "Aplicación transaccional de ESPAndes",
+	"title": "Aplicacion transaccional de ESPAndes",
 	"frameH": 600,
 	"frameW": 1000,
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Iniciar sección como...",
+		{ "menuTitle": "Iniciar sesion como...",
 		  "options":
 			[
 				{
@@ -17,7 +17,7 @@
 					"event": "iniciarAfiliado"
 				},
 				{
-					"label": "Médico",
+					"label": "Medico",
 					"event": "iniciarMedico"
 				},
 				{
@@ -60,11 +60,11 @@
 				}
 			]
 		},
-		{ "menuTitle": "Documentación",
+		{ "menuTitle": "Documentacion",
 		  "options":
 			[
 				{
-					"label": "Presentación general",
+					"label": "Presentacionn general",
 					"event": "mostrarPresentacionGeneral"
 				},
 				{
@@ -76,7 +76,7 @@
 					"event": "mostrarEsquemaBD"
 				},
 				{
-					"label": "Script creación de la BD",
+					"label": "Script creacionn de la BD",
 					"event": "mostrarScriptBD"
 				},
 				{
