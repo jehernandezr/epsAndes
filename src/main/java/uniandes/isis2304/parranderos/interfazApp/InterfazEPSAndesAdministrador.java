@@ -109,6 +109,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     {
     	this.numCc = numCc;
     }
+
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
      * @param tipo - El tipo de configuración deseada
@@ -131,7 +132,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		{
 //			e.printStackTrace ();
 			log.info ("NO se encontró un archivo de configuración válido");			
-			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "Parranderos App", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "EPSAndes App", JOptionPane.ERROR_MESSAGE);
 		}	
         return config;
     }  

@@ -84,7 +84,14 @@ public class EpsAndes {
 	
 	public boolean existeAdmin(long idNumCc) {
 		return Ep.darAdministradorPorId(idNumCc) !=null? true:false;
-	
+	}
+	/**
+	 * Elimnar un administrador
+	 * @param numcc número de cédula del administrador
+	 */
+	public void eliminarAdministrador(String         numcc)
+	{
+		
 	}
 	public boolean existeRecepcionista(long idNumCc) {
 		return true;

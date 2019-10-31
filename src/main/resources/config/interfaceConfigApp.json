@@ -84,7 +84,16 @@
 					"event": "mostrarJavadoc"
 				}
 			]
-		}		
+		},
+		{ "menuTitle": "Acciones sobre la BD",
+		  "options":
+			[
+				{
+					"label": "Limpiar la BD",
+					"event": "limpiarBD"
+				}
+			]
+		}				
 	]
 }
 	
