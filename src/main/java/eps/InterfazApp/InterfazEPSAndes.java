@@ -273,14 +273,10 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 					interfaz.setVisible( true );
 				}
 				else
-				{
 					panelDatos.actualizarInterfaz("El afiliado no existe");
-				}
 			}
 			else
-			{
 				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
 		} 
 		catch (Exception e) 
 		{
@@ -303,18 +299,14 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 				if(existe)
 				{
 					InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico();
-					interfaz.registrarNumCcIngresado(idNumCc);
+					interfaz.registrarNumCcIngresado(Long.toString(idNumCc));
 					interfaz.setVisible( true );
 				}
 				else
-				{
 					panelDatos.actualizarInterfaz("El médico no existe");
-				}
 			}
 			else
-			{
 				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
 		} 
 		catch (Exception e) 
 		{
@@ -386,14 +378,10 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 					interfaz.setVisible( true );
 				}
 				else
-				{
 					panelDatos.actualizarInterfaz("El administrador no existe");
-				}
 			}
 			else
-			{
 				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
 		} catch (Exception e) {
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
