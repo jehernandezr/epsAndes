@@ -1,0 +1,39 @@
+{
+	"title": "EPSAndes - Afiliado",
+	"frameH": 500,
+	"frameW": 1000,
+	"bannerPath": "./src/main/resources/config/afiliado.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Reservar un servicio de salud",
+		  "options":
+			[
+				{
+					"label": "Hospitalización",
+					"event": "reservarhospitalizacion"
+				},
+				{
+					"label": "Consulta general",
+					"event": "reservarConsultaG"
+				},
+				{
+					"label": "Consulta especializada",
+					"event": "reservarConsultaE"
+				},
+				{
+					"label": "Examen",
+					"event": "reservarExamen"
+				},
+				{
+					"label": "Terapia",
+					"event": "reservaTerapia"
+				},
+				{
+					"label": "Procedimiento especializado",
+					"event": "reservaProcedimiento"
+				}
+			]
+		}
+	]
+}
+	
