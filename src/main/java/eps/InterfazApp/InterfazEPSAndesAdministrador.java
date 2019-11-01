@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.UUID;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
@@ -213,6 +214,13 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     {
     	new PanelRegistrarMedico(this);
     }
+    /**
+     * Registra una IPS al sistema
+     */
+    public void registrarIPS()
+    {
+    	new PanelRegistrarIPS(this);
+    }
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -305,5 +313,9 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
 		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
 		return resultado;
+	}
+	public void registrarIPSDatos(String nombre, String localizacion) 
+	{
+		
 	}
 }
