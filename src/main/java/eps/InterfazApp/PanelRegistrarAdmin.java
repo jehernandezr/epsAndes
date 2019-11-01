@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * Dialogo para agregar un nuevo socio al club.
+ * Dialogo para agregar un nuevo administrador al sistema.
  */
 
 public class PanelRegistrarAdmin 

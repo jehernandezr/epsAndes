@@ -223,6 +223,13 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     {
     	new PanelRegistrarRecepcionista(this);
     }
+    public void registrarServicioSalud()
+    {
+    	String [] servicios ={"Consulta médica","Consulta de urgencia","Hospitalización","Exámenes","Terapias","Procedimiento especializado"}; 
+    	Object opcion = JOptionPane.showInputDialog(null,"Seleccionar un servicio de salud", "¿Qué servicio de salud desea agregar?",JOptionPane.QUESTION_MESSAGE,null,servicios, servicios[0]);    	
+	    String esp = opcion.toString();
+    	new PanelRegistrarServicioSalud(this, esp);
+    }
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -328,4 +335,5 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 	{
 		
 	}
+	
 }

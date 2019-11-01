@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="tests"/>
+	<classpathentry kind="lib" path="C:/Users/diani/OneDrive/Escritorio/Cuarto semestre/SisTrans/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

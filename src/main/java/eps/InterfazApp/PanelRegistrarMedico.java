@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import eps.negocio.Especializacion;
 
 /**
- * Dialogo para agregar un nuevo socio al club.
+ * Dialogo para agregar un nuevo médico al sistema.
  */
 
 public class PanelRegistrarMedico 
