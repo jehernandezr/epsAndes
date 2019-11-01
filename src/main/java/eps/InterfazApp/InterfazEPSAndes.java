@@ -331,7 +331,6 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Eliminar administrador", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
 				epsAndes.eliminarAdministrador(numCc);
 			}
 			else

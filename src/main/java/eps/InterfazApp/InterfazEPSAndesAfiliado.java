@@ -2,18 +2,10 @@
 package eps.InterfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
-
-import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +25,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
-import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
 /**
  * Clase principal de la interfaz
  */

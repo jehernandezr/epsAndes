@@ -2,18 +2,10 @@
 package eps.InterfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.UUID;
-
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -22,7 +14,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import org.apache.log4j.BasicConfigurator;
@@ -36,7 +27,7 @@ import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
 import eps.negocio.Especializacion;
-import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
+import eps.negocio.TipoDeDocumento;
 /**
  * Clase principal de la interfaz
  */
@@ -221,6 +212,17 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     {
     	new PanelRegistrarIPS(this);
     }
+    /**
+     * Registrar un afiliado al sistema
+     */
+    public void registrarAfiliado()
+    {
+    	new PanelRegistrarAfiliado(this);
+    }
+    public void registrarRecepcionista()
+    {
+    	new PanelRegistrarRecepcionista(this);
+    }
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -315,6 +317,14 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		return resultado;
 	}
 	public void registrarIPSDatos(String nombre, String localizacion) 
+	{
+		
+	}
+	public void registrarAfiliadoDatos(String nombre, String correo, String numDoc, String fechaNac, TipoDeDocumento esp)
+	{		
+		
+	}
+	public void registrarRecepcionistaDatos(String nombre, String numcc, String correo)
 	{
 		
 	}
