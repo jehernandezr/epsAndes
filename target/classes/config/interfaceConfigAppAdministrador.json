@@ -10,23 +10,23 @@
 			[
 				{
 					"label": "Médico",
-					"event": "iniciarAdmin"
+					"event": "registrarMedico"
 				},
 				{
 					"label": "IPS",
-					"event": "iniciarAfiliado"
+					"event": "registrarIPS"
 				},
 				{
 					"label": "Afiliado",
-					"event": "iniciarMedico"
+					"event": "registrarAfiliado"
 				},
 				{
 					"label": "Recepcionista",
-					"event": "iniciarRecepcionista"
+					"event": "registrarRecepcionista"
 				},
 				{
 					"label": "Servicio de salud",
-					"event": "iniciarRecepcionista"
+					"event": "registrarServicioSalud"
 				}
 			]
 		}

@@ -52,8 +52,6 @@ public class EpsAndesPersistencia
 	 * Arreglo de cadenas con los nombres de las tablas de la base de datos, en su orden.
 	 */
 	private List <String> tablas;
-
-
 	/**
 	 * 
 	 */
@@ -72,7 +70,7 @@ public class EpsAndesPersistencia
 	/**
 	 * 
 	 */
-	private SQLConsultaUrgencia sqlConsultaUrgencia;
+	private SQLConsultasUrgencias sqlConsultaUrgencia;
 
 	/**
 	 * 
@@ -190,7 +188,7 @@ public class EpsAndesPersistencia
 		tablas.add("TERAPIAS");
 		tablas.add("EXAMENES");
 		tablas.add("CONSULTAS");
-		tablas.add("CONSUSLTAS_URGENCIA");
+		tablas.add("CONSULTAS_URGENCIAS");
 		tablas.add("RECETAS");
 		tablas.add("HOSPITALIZACIONES");
 		tablas.add("CITAS_RESERVADAS");
@@ -227,7 +225,7 @@ public class EpsAndesPersistencia
 		sqlAdministrador= new SQLAdministrador(this);
 		sqlAfiliado = new SQLAfiliado(this);
 		sqlConsulta = new SQLConsulta(this);
-		sqlConsultaUrgencia= new SQLConsultaUrgencia(this);
+		sqlConsultaUrgencia= new SQLConsultasUrgencias(this);
 		sqlExamen= new SQLExamen(this);
 		sqlGerente = new SQLGerente(this);
 		sqlHorarioDeAtencion= new SQLHorarioDeAtencion(this);

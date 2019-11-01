@@ -21,6 +21,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import org.apache.log4j.BasicConfigurator;
@@ -33,6 +34,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
+import eps.negocio.Especializacion;
 import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
 /**
  * Clase principal de la interfaz
@@ -83,7 +85,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
      */
     public InterfazEPSAndesAdministrador()
     {
-    	
         guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
         
         configurarFrame ( );
@@ -111,7 +112,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     	this.numCc = numCc;
     	
     }
-
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
      * @param tipo - El tipo de configuración deseada
@@ -206,6 +206,13 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
         }        
         setJMenuBar ( menuBar );	
     }
+    /**
+     * Registra un médico al sistema
+     */
+    public void registrarMedico()
+    {
+    	new PanelRegistrarMedico(this);
+    }
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -251,4 +258,51 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
             e.printStackTrace( );
         }
     }
+  
+	public void registrarMedicoDatos(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
+	{
+		try {
+			if (numCc != null && nombre != null && correo != null && numRegistro != null && esp != null)
+			{
+				boolean existe = epsAndes.existeAdmin(numCc);
+				if(!existe)
+				{
+					epsAndes.crearMedico(nombre, correo, numCc, numRegistro, esp);
+					InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico();
+					interfaz.registrarNumCcIngresado(numCc);
+					interfaz.setVisible( true );
+				}
+				else
+					panelDatos.actualizarInterfaz("El médico no existe");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e) {
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	/* Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
+	 * @param e - La excepción recibida
+	 * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
+	private String generarMensajeError(Exception e) 
+	{
+		String resultado = "************ Error en la ejecución\n";
+		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
+		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
+		return resultado;
+	}
 }

@@ -97,7 +97,6 @@ public class EpsAndes {
 
 	}
 	public boolean existeAdmin( String NumCc) {
-		System.out.println(Ep.darAdministradorPorId(NumCc)+"         aaaaaaaaaaaaaaaaa");
 		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
 	}
 
@@ -114,5 +113,10 @@ public class EpsAndes {
 	public String crearAdministrador(String nombre,  String pCorreo,String numCc)
 	{
 		return Ep.adicionarAdministrador(nombre, pCorreo, numCc).toString();
+	}
+
+	public void crearMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
+	{
+		
 	}
 }

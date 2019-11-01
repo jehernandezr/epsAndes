@@ -75,7 +75,7 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
     /**
      * Número de cédula
      */
-    private Long numCc;
+    private String numCc;
     /**
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
@@ -104,7 +104,7 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
      * Registrar el número de cédula del administrador
      * @param numCc
      */
-    public void registrarNumCcIngresado(long numCc)
+    public void registrarNumCcIngresado(String numCc)
     {
     	this.numCc = numCc;
     }

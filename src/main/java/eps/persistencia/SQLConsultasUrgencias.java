@@ -9,7 +9,7 @@ import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
 import eps.negocio.TipoDeConsulta;
 
-public class SQLConsultaUrgencia {
+public class SQLConsultasUrgencias {
 
 	/**
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
@@ -23,7 +23,7 @@ public class SQLConsultaUrgencia {
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLConsultaUrgencia(EpsAndesPersistencia pp)
+	public SQLConsultasUrgencias(EpsAndesPersistencia pp)
 	{
 		this.pp = pp;
 	}
