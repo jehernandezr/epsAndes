@@ -26,7 +26,7 @@ public class PanelRegistrarMedico
 		      String[] especialidad = {"INTERNA", "ODONTOLOGIA", "CIRUGIA", "CARDIOLOGIA","ORTOPEDIA", "DERMATOLOGIA", "PEDIATRIA", "TRAUMATOLOGIA", "NEUMOLOGIA"};
 		      JComboBox especializacion = new JComboBox<String>(especialidad);
 		      
-		      GridLayout layout = new GridLayout(4,2);
+		      GridLayout layout = new GridLayout(5,2);
 
 		      JPanel myPanel = new JPanel();
 		      myPanel.setLayout(layout);
@@ -38,6 +38,8 @@ public class PanelRegistrarMedico
 		      myPanel.add(numCc);
 		      myPanel.add(new JLabel("Número de registro:"));
 		      myPanel.add(numRegistro);
+		      myPanel.add(new JLabel("Especialización:"));
+		      myPanel.add(especializacion);
 
 		      int result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un médico"
 		      		+ "", JOptionPane.OK_CANCEL_OPTION);
