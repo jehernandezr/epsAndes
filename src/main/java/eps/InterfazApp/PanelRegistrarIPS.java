@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 
 /**
- * Dialogo para agregar un nuevo socio al club.
+ * Dialogo para agregar una nueva IPS al sistema.
  */
 
 public class PanelRegistrarIPS 

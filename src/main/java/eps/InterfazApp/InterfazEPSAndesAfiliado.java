@@ -226,9 +226,7 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
     {
         try
         {
-        	
-            // Unifica la interfaz para Mac y para Windows.
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
+        	UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado( );
             interfaz.setVisible( true );
             BasicConfigurator.configure();

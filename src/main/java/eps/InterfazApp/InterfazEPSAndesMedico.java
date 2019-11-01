@@ -181,6 +181,20 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
         }        
         setJMenuBar ( menuBar );	
     }
+    /**
+     * Registrar una orden médica
+     */
+     public void registrarOrden()
+     {
+    	 new PanelRegistrarOrden(this);
+     }
+     /**
+      * Registrar una receta médica
+      */
+     public void registrarReceta()
+     {
+    	 new PanelRegistrarReceta(this);
+     }
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -214,7 +228,6 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
     {
         try
         {
-        	
             // Unifica la interfaz para Mac y para Windows.
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico( );
@@ -226,4 +239,8 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
             e.printStackTrace( );
         }
     }
+	public void registrarOrdenDatos(String fecha1, String numCcAfiliado, String tipoDeServicio) {
+		// TODO Auto-generated method stub
+		
+	}
 }
