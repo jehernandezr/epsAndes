@@ -100,13 +100,14 @@ public class EpsAndes {
 		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
 	}
 
-	public boolean existeRecepcionista(long idNumCc) {
+	public boolean existeRecepcionista(String NumCc) {
 		return true;
 	}
-	public boolean existeAfiliado(long idNumCc) {
-		return true;
+	public boolean existeAfiliado(String NumCc) {
+		return Ep.darAfiliadoPorId(NumCc) !=null? true:false;
+		
 	}
-	public boolean existeMedico(long idNumCc) {
+	public boolean existeMedico(String NumCc) {
 		return true;
 	}
 

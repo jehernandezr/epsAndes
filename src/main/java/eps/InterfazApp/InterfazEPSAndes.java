@@ -230,12 +230,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
-				boolean existe = epsAndes.existeRecepcionista(idNumCc);
+				
+				boolean existe = epsAndes.existeRecepcionista(numCc);
 				if(existe)
 				{
 					InterfazEPSAndesRecepcionista interfaz = new InterfazEPSAndesRecepcionista();
-					interfaz.registrarNumCcIngresado(idNumCc);
+					interfaz.registrarNumCcIngresado(numCc);
 					interfaz.setVisible( true );
 				}
 				else
@@ -264,12 +264,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como afiliado", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
-				boolean existe = epsAndes.existeAfiliado(idNumCc);
+				
+				boolean existe = epsAndes.existeAfiliado(numCc);
 				if(existe)
 				{
 					InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado();
-					interfaz.registrarNumCcIngresado(idNumCc);
+					interfaz.registrarNumCcIngresado(numCc);
 					interfaz.setVisible( true );
 				}
 				else
@@ -294,12 +294,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como médico", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
-				boolean existe = epsAndes.existeMedico(idNumCc);
+				
+				boolean existe = epsAndes.existeMedico(numCc);
 				if(existe)
 				{
 					InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico();
-					interfaz.registrarNumCcIngresado(Long.toString(idNumCc));
+					interfaz.registrarNumCcIngresado(numCc);
 					interfaz.setVisible( true );
 				}
 				else

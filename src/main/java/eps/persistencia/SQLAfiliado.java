@@ -55,21 +55,21 @@ public class SQLAfiliado
 	 * Crea y ejecuta la sentencia SQL para eliminar UN AFILIADO, por su identificador
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarAfiliadoPorId (PersistenceManager pm, long id)
+	public long eliminarAfiliadoPorId (PersistenceManager pm, String numcc)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAfiliado() + " WHERE Num_Documento = ?");
-		q.setParameters(id);
+		q.setParameters(numcc);
 		return (long) q.executeUnique();            
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN AFILIADO, por su identificador
 	 * @return El objeto AFILIADO que tiene el identificador dado
 	 */
-	public Afiliado darAfiliadoPorId (PersistenceManager pm, long id) 
+	public Afiliado darAfiliadoPorId (PersistenceManager pm, String numcc) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAfiliado() + " WHERE Num_Documento = ?");
 		q.setResultClass(Afiliado.class);
-		q.setParameters(id);
+		q.setParameters(numcc);
 		return (Afiliado) q.executeUnique();
 	}
 	/**
@@ -100,10 +100,10 @@ public class SQLAfiliado
 	 * Crea y ejecuta la sentencia SQL para cambiar el correo
 	 * @return El número de tuplas modificadas
 	 */
-	public long cambiarCorreoAfiliado (PersistenceManager pm, long id, String correo) 
+	public long cambiarCorreoAfiliado (PersistenceManager pm,String numcc, String correo) 
 	{
 		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaAfiliado() + " SET Correo_Electronico = ? WHERE Num_Documento = ?");
-		q.setParameters(correo, id);
+		q.setParameters(correo, numcc);
 		return (long) q.executeUnique();            
 	}
 }

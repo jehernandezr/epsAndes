@@ -17,6 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import eps.negocio.Administrador;
+import eps.negocio.Afiliado;
 
 
 
@@ -477,7 +478,7 @@ public class EpsAndesPersistencia
 	 */
 	public Administrador darAdministradorPorId(String numCc)
 	{
-		System.out.println("OE MAL?");
+		
 		return (Administrador) sqlAdministrador.darAdministradorPorId(pmf.getPersistenceManager(), numCc);
 
 	}
@@ -498,5 +499,10 @@ public class EpsAndesPersistencia
 			return je.getNestedExceptions() [0].getMessage();
 		}
 		return resp;
+	}
+
+	public Afiliado darAfiliadoPorId(String numCc) {
+	
+		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
 	}
 }
