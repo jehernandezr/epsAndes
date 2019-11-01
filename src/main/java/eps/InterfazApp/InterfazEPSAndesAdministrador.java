@@ -279,7 +279,8 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			{
 				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
 			}
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
