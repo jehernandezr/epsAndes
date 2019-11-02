@@ -234,11 +234,12 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		try
 		{
 
+			BasicConfigurator.configure();
 			// Unifica la interfaz para Mac y para Windows.
 			UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
 			InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador( );
 			interfaz.setVisible( true );
-			BasicConfigurator.configure();
+			
 		}
 		catch( Exception e )
 		{
@@ -335,7 +336,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		try {
 			if ( nombre != null && localizacion != null)
 			{
-				boolean existe = epsAndes.existeAfiliado(nombre);
+				boolean existe = epsAndes.existeIps(nombre);
 				if(!existe)
 				{
 					epsAndes.crearIps(nombre, localizacion);
@@ -394,6 +395,34 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				if(!existe)
 				{
 					epsAndes.crearRecepcionista(nombre, numcc, correo, idIps);
+					panelDatos.actualizarInterfaz("El usuario  : "+nombre+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Esta cedula : "+numcc+" ya está registrada como recepcionista ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	
+	public void registrarMedicoAIps(String nombre, String numcc)
+	{
+		try {
+			if (nombre != null &&  numcc != null)
+			{
+				
+				boolean existe = epsAndes.existeMedico(numcc);
+				boolean existe2 = epsAndes.existeIps(nombre);
+				if(existe&existe2)
+				{
+					epsAndes.AgregarMedicoIps(nombre, numcc);
 					panelDatos.actualizarInterfaz("El usuario  : "+nombre+" fue registrado con exito ");
 				}
 				else

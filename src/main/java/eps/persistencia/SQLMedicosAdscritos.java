@@ -3,6 +3,7 @@
  */
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -37,7 +38,7 @@ public class SQLMedicosAdscritos {
 	 * @param pm - El manejador de persistencia
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarMedicoAdscrito(PersistenceManager pm, long Id_Ips, long Medico_Num_Cc) 
+	public long adicionarMedicoAdscrito(PersistenceManager pm, BigDecimal Id_Ips, BigDecimal Medico_Num_Cc) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedicosAdscritos() + "(Id_Ips, Medico_Num_Cc) values (?, ?)");
         q.setParameters(Id_Ips, Medico_Num_Cc);

@@ -248,10 +248,11 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
     {
         try
         {
+        	BasicConfigurator.configure();
         	UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado( );
             interfaz.setVisible( true );
-            BasicConfigurator.configure();
+            
         }
         catch( Exception e )
         {

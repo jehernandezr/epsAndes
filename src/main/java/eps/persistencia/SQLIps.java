@@ -67,12 +67,12 @@ public class SQLIps
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de LAS IPS, por su nombre
 	 * @return Una lista de objetos IPS que tienen el nombre dado
 	 */
-	public List<Ips> darIpsPorNombre (PersistenceManager pm, String nombre) 
+	public Ips darIpsPorNombre (PersistenceManager pm, String nombre) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaIPS() + " WHERE nombre = ?");
 		q.setResultClass(Ips.class);
 		q.setParameters(nombre);
-		return (List<Ips>) q.executeList();
+		return  (Ips) q.executeUnique();
 	}
 
 	/**

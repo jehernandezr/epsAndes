@@ -228,11 +228,12 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
     {
         try
         {
+        	BasicConfigurator.configure();
             // Unifica la interfaz para Mac y para Windows.
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico( );
             interfaz.setVisible( true );
-            BasicConfigurator.configure();
+            
         }
         catch( Exception e )
         {

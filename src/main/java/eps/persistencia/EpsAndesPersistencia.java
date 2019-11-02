@@ -175,7 +175,7 @@ public class EpsAndesPersistencia
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
 		tablas.add ("EPSAndes_sequence");
-		tablas.add ("AFILIADOS");
+		tablas.add("AFILIADOS");
 		tablas.add("GERENTES");
 		tablas.add("ADMINISTRADORES");
 		tablas.add("RECEPCIONISTAS"); 
@@ -535,9 +535,37 @@ public class EpsAndesPersistencia
 		return (Medico) sqlMedico.darMedicoPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarMedico( String numCc,String nombre,  String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado,String correo, BigDecimal Id_Adscritos) 
+	public Medico adicionarMedico( String numCc,String nombre,  String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado,String correo, BigDecimal Id_Adscritos) 
 	{
-		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);		
+		
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long numreg = Long.parseLong(numRegistro);
+			tx.begin();
+			long tuplasInsertadas = sqlMedico.adicionaMedico(pmf.getPersistenceManager(), numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);		
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Medico(numCc, nombre, BigDecimal.valueOf(numreg), esp, Id_Servicio_Asociado, correo, Id_Adscritos);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		
 	}
 
 	public Recepcionista darRecepcionistaPorId(String numCc) 
@@ -545,9 +573,36 @@ public class EpsAndesPersistencia
 		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
+	public Recepcionista adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{
-		return sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
+		
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Recepcionista(correo, nombre, numcc, BigDecimal.valueOf(ips));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	 
 	}
 
 	public Ips adicionarIps(String nombre, String localizacion) {
@@ -580,4 +635,15 @@ public class EpsAndesPersistencia
 		}
 	 
 	}
+	
+	public long AdicionarMedicoAdscrito( BigDecimal Id_Ips, BigDecimal Medico_Num_Cc)
+	{
+		return sqlMedicosAdscritos.adicionarMedicoAdscrito(pmf.getPersistenceManager(), Id_Ips, Medico_Num_Cc);
+	}
+	
+	public Ips darIpsPorNombre(String nombre)
+	{
+		return sqlIps.darIpsPorNombre(pmf.getPersistenceManager(), nombre);
+	}
+	
 }
