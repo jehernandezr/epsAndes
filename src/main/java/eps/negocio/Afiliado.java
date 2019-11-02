@@ -23,16 +23,21 @@ public class Afiliado {
 	/**
 	 * Atributo que representa el tipo de documento de un afiliado
 	 */
+
+
+
 	private String tipo_De_Documento;
+
 	/**
 	 * constructor por defecto
 	 */
-	@SuppressWarnings("deprecation")
 	public Afiliado() {
 		this.fecha_Nacimiento = "";
 		this.nombre = "";
 		this.num_Documento ="";
 		this.tipo_De_Documento = null;
+
+
 	}
 
 	/**
@@ -42,7 +47,7 @@ public class Afiliado {
 	 * @param nombre
 	 * @param numeroDeDocumento
 	 * @param tipoDocumento
-	 * @param citasRecervadas
+	 * @param citasReservadas
 	 * @param ordenes
 	 */
 	public Afiliado(String fechaDeNacimiento, String nombre, String numeroDeDocumento, String tipoDocumento) {
@@ -50,6 +55,7 @@ public class Afiliado {
 		this.nombre = nombre;
 		this.num_Documento = numeroDeDocumento;
 		this.tipo_De_Documento = tipoDocumento;
+
 	}
 
 	/**
@@ -83,13 +89,16 @@ public class Afiliado {
 	/**
 	 * @return the numeroDeDocumento
 	 */
+
 	public String getNum_Documento() {
 		return num_Documento;
+
 	}
 
 	/**
 	 * @param numeroDeDocumento the numeroDeDocumento to set
 	 */
+
 	public void setNum_Documento(String numeroDeDocumento) {
 		this.num_Documento = numeroDeDocumento;
 	}
@@ -100,18 +109,28 @@ public class Afiliado {
 	public String getCorreo_electronico()
 	{
 		return correo_electronico;
+
 	}
 	/**
 	 * @return the tipoDocumento
 	 */
+
 	public String getTipo_De_Documento() {
+
 		return tipo_De_Documento;
 	}
 
 	/**
 	 * @param tipoDocumento the tipoDocumento to set
 	 */
+
+	public void setTipo_De_Documento(TipoDeDocumento tipoDocumento) {
+		this.tipo_De_Documento = tipoDocumento.toString().toLowerCase();
+	}
+
+	
 	public void setTipo_De_Documento(String tipoDocumento) {
 		this.tipo_De_Documento = tipoDocumento;
 	}
+
 }
