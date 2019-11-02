@@ -1,78 +1,70 @@
 package eps.negocio;
 
-public class Recepcionista {
+public class Recepcionista 
+{
+	private String id_ips;
 
-	
-	/**
-	 * Atributo Representa Identificacion laboral del usuario
-	 */
-	private int identificacionLaboral;
+	private String num_Cc;
 
-	/**
-	 * Atributo que representa la cedula de ciudadania del usuario
-	 */
-	private String numCc;
-	/**
-	 * atributo que representa el nombre del usuario
-	 */
 	private String nombre;
-	
+
+	private String correo_electronico;	
 	/**
 	 * Constructor por defecto
 	 */
-	
-	public Recepcionista() {
-		this.identificacionLaboral = 0;
-		this.numCc = "";
+	public Recepcionista() 
+	{
+		this.id_ips = "";
+		this.num_Cc = "";
 		this.nombre = "";
+		this.correo_electronico = "";
 	}
-	/**
-	 * Constructor de Recepcionista
-	 * 
-	 * @param identificacionLaboral
-	 * @param numCc
-	 * @param nombre
-	 */
-	public Recepcionista(int identificacionLaboral, String numCc, String nombre) {
-		this.identificacionLaboral = identificacionLaboral;
-		this.numCc = numCc;
+
+	public Recepcionista(String id_ips, String num_Cc, String nombre, String correo_e) 
+	{
+		this.id_ips = id_ips;
+		this.num_Cc = num_Cc;
 		this.nombre = nombre;
+		this.correo_electronico = correo_e;
 	}
-	
-	/**
-	 * @return the identificacionLaboral
-	 */
-	public int getIdentificacionLaboral() {
-		return identificacionLaboral;
+
+	public String getId_ips() 
+	{
+		return id_ips;
 	}
-	/**
-	 * @param identificacionLaboral the identificacionLaboral to set
-	 */
-	public void setIdentificacionLaboral(int identificacionLaboral) {
-		this.identificacionLaboral = identificacionLaboral;
+
+	public void setId_ips(String id_ips) 
+	{
+		this.id_ips = id_ips;
 	}
-	/**
-	 * @return the numCc
-	 */
-	public String getNumCc() {
-		return numCc;
-	}
-	/**
-	 * @param numCc the numCc to set
-	 */
-	public void setNumCc(String numCc) {
-		this.numCc = numCc;
-	}
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
+
+	public String getnombre() 
+	{
 		return nombre;
 	}
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
+	
+	public void setnum_Cc(String num_Cc) 
+	{
+		this.num_Cc = num_Cc;
+	}
+	
+	public String getnum_Cc() 
+	{
+		return num_Cc;
+	}
+	
+	public void setNombre(String nombre) 
+	{
 		this.nombre = nombre;
+	}
+	
+	public void setCorreo_electronico(String correo)
+	{
+		this.correo_electronico = correo;
+	}
+	
+	public String getCorreo_electronico()
+	{
+		return correo_electronico;
 	}
 }

@@ -107,7 +107,7 @@ public class EpsAndes {
 	}
 	public boolean existeAfiliado(String NumCc) {
 		return Ep.darAfiliadoPorId(NumCc) !=null? true:false;
-		
+
 	}
 	public boolean existeMedico(String NumCc) {
 		return Ep.darMedicoPorId(NumCc) !=null? true:false;
@@ -124,11 +124,13 @@ public class EpsAndes {
 	}
 
 	public long crearAfiliado(String nombre, String correo,TipoDeDocumento tipoDoc, String numDoc, String fechaNac ) {
-		
+
 		return Ep.adicionarAfiliado(nombre, correo, tipoDoc, numDoc, fechaNac);
 	}
-	
 
-
-	
+	public long crearRecepcionista(String nombre, String numcc, String correo, String ips )
+	{
+		return Ep.adicionarRecepcionista(nombre, numcc, correo, ips);
 	}
+
+}

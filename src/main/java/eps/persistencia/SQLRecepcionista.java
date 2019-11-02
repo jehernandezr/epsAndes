@@ -33,10 +33,10 @@ public class SQLRecepcionista
 	 * Crea y ejecuta la sentencia SQL para adicionar un RECEPCIONISTA a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarRecepcionista(PersistenceManager pm, String pNombre, String pCorreo, String pNumCc) 
+	public long adicionarRecepcionista(PersistenceManager pm, String pNombre, String pCorreo, String pNumCc, String ips) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "( Nombre, Correo_Electronico, Num_Cc) values (?, ?, ?)");
-		q.setParameters( pNombre, pCorreo, pNumCc);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "( Nombre, Correo_Electronico, Num_Cc, Id_IPS) values (?, ?, ?, ?)");
+		q.setParameters( pNombre, pCorreo, pNumCc, ips);
 		return (long) q.executeUnique();
 	}
 

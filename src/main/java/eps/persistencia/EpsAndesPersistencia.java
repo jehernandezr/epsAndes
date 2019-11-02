@@ -517,4 +517,9 @@ public class EpsAndesPersistencia
 	{
 		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
+
+	public long adicionarRecepcionista(String nombre, String numcc, String correo, String ips) 
+	{
+		return sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
+	}
 }
