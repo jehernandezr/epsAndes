@@ -23,7 +23,7 @@ public class PanelRegistrarMedico
 		      JTextField numCc = new JTextField(15);
 		      JTextField numRegistro = new JTextField(15);
 		      
-		      String[] especialidad = {"INTERNA", "ODONTOLOGIA", "CIRUGIA", "CARDIOLOGIA","ORTOPEDIA", "DERMATOLOGIA", "PEDIATRIA", "TRAUMATOLOGIA", "NEUMOLOGIA"};
+		      String[] especialidad = {"INTERNA", "ODONTOLOGIA", "CIRUGIA", "CARDIOLOGIA","ORTOPEDIA", "DERMATOLOGIA", "PEDIATRIA", "TRAUMATOLOGIA", "NEUMOLOGIA", "GENERAL" };
 		      JComboBox especializacion = new JComboBox<String>(especialidad);
 		      
 		      GridLayout layout = new GridLayout(5,2);

@@ -15,13 +15,11 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
+import eps.negocio.Medico;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
 import eps.negocio.Especializacion;
 import eps.negocio.TipoDeDocumento;
-
-
 
 /**
  * @author dianis y jonatan
@@ -499,28 +497,23 @@ public class EpsAndesPersistencia
 
 	}
 
-
-
-
-	public Afiliado darAfiliadoPorId(String numCc) {
-	
+	public Afiliado darAfiliadoPorId(String numCc) 
+	{
 		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarAfiliado(String nombre, String correo, TipoDeDocumento esp, String numCc, String fecha) {
-		
+	public long adicionarAfiliado(String nombre, String correo, TipoDeDocumento esp, String numCc, String fecha)
+	{
 		return sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, esp, numCc, fecha);
 	}
 	
-	
-	
-	
-	
+	public Medico darMedicoPorId(String numCc)
+	{
+		return (Medico) sqlMedico.darMedicoPorId(pmf.getPersistenceManager(), numCc);
+	}
 
-	
-
-	public void AdicionarMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp) {
-		// TODO Auto-generated method stub
-		
+	public long adicionarMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp) 
+	{
+		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), nombre, correo, numCc, numRegistro, esp);		
 	}
 }

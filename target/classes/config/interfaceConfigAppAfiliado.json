@@ -9,10 +9,6 @@
 		  "options":
 			[
 				{
-					"label": "Hospitalización",
-					"event": "reservarhospitalizacion"
-				},
-				{
 					"label": "Consulta general",
 					"event": "reservarConsultaG"
 				},

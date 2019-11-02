@@ -31,17 +31,6 @@ public class SQLMedico
 		this.pp = pp;
 	}
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un MEDICO a la base de datos
-	 * @return EL número de tuplas insertadas
-	 */
-	public long adicionarMedico(PersistenceManager pm, String pNumCc, int numRegistro, String pCorreo, Especializacion pEspecializacion, Integer Id_Servicios_Asociados, Integer Id_Adscritos, String pNombre) 
-	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedico() + "(Num_Cc, Nombre, Correo_Electronico, Num_Registro, Especialidad, Id_Servicio_Asociado, Id_Adscritos) values (?, ?, ?, ?, ?, ?, ?)");
-		q.setParameters(pNumCc, pNombre, pCorreo, numRegistro, pEspecializacion, Id_Servicios_Asociados, Id_Adscritos);
-		return (long) q.executeUnique();
-	}
-
-	/**
 	 * Crea y ejecuta la sentencia SQL para eliminar MEDICO, por su nombre
 	 * @return EL número de tuplas eliminadas
 	 */
@@ -64,9 +53,9 @@ public class SQLMedico
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN MEDICO, por su identificador
-	 * @return El objeto GERENTE que tiene el identificador dado
+	 * @return El objeto MEDICO que tiene el identificador dado
 	 */
-	public Medico darMedicoPorId (PersistenceManager pm, long id) 
+	public Medico darMedicoPorId(PersistenceManager pm, String id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMedico() + " WHERE Num_Cc = ?");
 		q.setResultClass(Medico.class);
@@ -84,7 +73,16 @@ public class SQLMedico
 		q.setParameters(nombre);
 		return (List<Medico>) q.executeList();
 	}
-
+	/**
+	 * Crea y ejecuta la sentencia SQL para adicionar un MEDICO a la base de datos
+	 * @return EL número de tuplas insertadas
+	 */
+	public long adicionaMedico(PersistenceManager pm, String nombre, String correo, String numCc, String numRegistro, Especializacion esp) 
+	{
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedico() + "(Num_Cc, Nombre, Correo_Electronico, Num_Registro, Especialidad) values (?, ?, ?, ?, ?, ?, ?)");
+		q.setParameters(numCc, nombre, correo, numRegistro, esp);
+		return (long) q.executeUnique();	
+	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS MEDICOS
 	 * @param pm - El manejador de persistencia
@@ -107,7 +105,6 @@ public class SQLMedico
 		q.setParameters(pEspecializacion);
 		return (List<Medico>) q.executeList();
 	}
-
 	/**
 	 * Crea y ejecuta la sentencia SQL para cambiar el correo
 	 * @return El número de tuplas modificadas
@@ -118,5 +115,5 @@ public class SQLMedico
 		q.setParameters(correo, id);
 		return (long) q.executeUnique();            
 	}
-
+	
 }

@@ -108,7 +108,7 @@ public class EpsAndes {
 		
 	}
 	public boolean existeMedico(String NumCc) {
-		return true;
+		return Ep.darMedicoPorId(NumCc) !=null? true:false;
 	}
 
 	public String crearAdministrador(String nombre,  String pCorreo,String numCc)
@@ -118,7 +118,7 @@ public class EpsAndes {
 
 	public void crearMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
 	{
-		Ep.AdicionarMedico(nombre,  correo, numCc, numRegistro, esp);
+		Ep.adicionarMedico(nombre,  correo, numCc, numRegistro, esp);
 	}
 
 	public long crearAfiliado(String nombre, String correo,TipoDeDocumento tipoDoc, String numDoc, String fechaNac ) {
