@@ -149,13 +149,16 @@ public class EpsAndes {
 		Ep.AdicionarMedicoAdscrito(id, BigDecimal.valueOf(cedula));
 	}
 
+<<<<<<< HEAD
 	public Consulta crearServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		Ep.adicionarServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 			
 		
+=======
+	public Consulta crearServicioConsulta(String nit, String tipo) {
+		Ep.adicionarServicioConsulta(nit, tipo);
+>>>>>>> ab4713e1961475e31a6d28621ffa75a47953d5c6
 		return null;
-		
-		
 	}
 
 	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
@@ -181,6 +184,11 @@ public class EpsAndes {
 	public void crearServicioTerapia(String nit, String tipo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean verficarLaOrden(String numCc, String id_Orden) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	

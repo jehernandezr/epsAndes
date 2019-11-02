@@ -5,14 +5,32 @@
 	"bannerPath": "./src/main/resources/config/medico.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Registrar orden",
-		  "event": "registrarOrden"
+		{ "menuTitle": "Orden",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "registrarOrden"
+				}
+			]
 		},
-		{ "menuTitle": "Registrar receta",
-		  "event": "registrarReceta"
+		{ "menuTitle": "Receta",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "registrarReceta"
+				}
+			]
 		},
-		{ "menuTitle": "Registrar servicio prestado",
-		  "event": "registrarServicio"
+		{ "menuTitle": "Servicio prestado",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "registrarServicio"
+				}
+			]
 		}
 	]
 }
