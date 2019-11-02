@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
+import eps.InterfazApp.PanelDatos;
 /**
  * Clase principal de la interfaz
  */

@@ -198,12 +198,25 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
-    
-    
-    
-    public void registrarAfiliado(){
-    	
-    
+    public void reservarConsultaG()
+    {
+    	new PanelReservarConsultaGeneral(this);
+    }
+    public void reservarConsultaE()
+    {
+    	new PanelReservarConsultaEspecializada(this);
+    }
+    public void reservarExamen()
+    {
+    	new PanelReservarExamen(this);
+    }
+    public void reservaTerapia()
+    {
+    	new PanelReservarTerapia(this);
+    }
+    public void reservaProcedimiento()
+    {
+    	new PanelReservarProcedimiento(this);
     }
     /**
      * Método para la ejecución de los eventos que enlazan el menú con los métodos de negocio

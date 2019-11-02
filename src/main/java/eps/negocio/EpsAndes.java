@@ -38,7 +38,8 @@ public class EpsAndes {
 	/**
 	 * El constructor por defecto
 	 */
-	public EpsAndes() {
+	public EpsAndes()
+	{
 
 		Ep = EpsAndesPersistencia.getInstance ();
 	}
@@ -47,8 +48,6 @@ public class EpsAndes {
 	{
 		Ep=EpsAndesPersistencia.getInstance(tableConfig);
 	}
-
-
 
 	/**
 	 * Encuentra un adminsitrador y su información básica, según su identificador
@@ -92,23 +91,24 @@ public class EpsAndes {
 	 * Elimnar un administrador
 	 * @param numcc número de cédula del administrador
 	 */
-	public void eliminarAdministrador(String         numcc)
+	public void eliminarAdministrador(String numcc)
 	{
 
 	}
-	public boolean existeAdmin( String NumCc) {
+	public boolean existeAdmin( String NumCc) 
+	{
 		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
 	}
 
 	public boolean existeRecepcionista(String NumCc) {
-		return true;
+		return Ep.darRecepcionistaPorId(NumCc) !=null? true:false;
 	}
 	public boolean existeAfiliado(String NumCc) {
 		return Ep.darAfiliadoPorId(NumCc) !=null? true:false;
 		
 	}
 	public boolean existeMedico(String NumCc) {
-		return true;
+		return Ep.darMedicoPorId(NumCc) !=null? true:false;
 	}
 
 	public String crearAdministrador(String nombre,  String pCorreo,String numCc)
@@ -118,7 +118,7 @@ public class EpsAndes {
 
 	public void crearMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
 	{
-		Ep.AdicionarMedico(nombre,  correo, numCc, numRegistro, esp);
+		Ep.adicionarMedico(nombre,  correo, numCc, numRegistro, esp);
 	}
 
 	public long crearAfiliado(String nombre, String correo,TipoDeDocumento tipoDoc, String numDoc, String fechaNac ) {
