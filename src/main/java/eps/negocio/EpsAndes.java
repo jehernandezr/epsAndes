@@ -126,9 +126,9 @@ public class EpsAndes {
 		return Ep.adicionarAfiliado(nombre, correo, tipoDoc, numDoc, fechaNac);
 	}
 
-	public long crearRecepcionista(String nombre, String correo, String numDoc, String fechaNac ) {
-
-		return Ep.adicionarAfiliado(nombre, correo, tipoDoc, numDoc, fechaNac);
+	public long crearRecepcionista(String nombre, String numcc, String correo, String ips )
+	{
+		return Ep.adicionarRecepcionista(nombre, numcc, correo, ips);
 	}
 
 }
