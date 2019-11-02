@@ -412,7 +412,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 	}
 
 	
-	public void registrarMedicoAIps(String nombre, String numcc)
+	public void registrarMedicoAIps(String nombre, String numcc, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
 	{
 		try {
 			if (nombre != null &&  numcc != null)
@@ -438,7 +438,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioConsulta(String nit, String tipo) 
+	public void registrarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) 
 	{
 		try {
 			if (nit != null &&  tipo != null)
@@ -463,7 +463,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioConsultaUrgencia(String nit) {
+	public void registrarServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		try {
 			if (nit != null)
 			{
@@ -487,7 +487,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioProcedimiento(String nit, String tipo) {
+	public void registrarServicioProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		try {
 			if (nit != null &&  tipo != null)
 			{
@@ -511,7 +511,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioTerapia(String nit, String tipo) {
+	public void registrarServicioTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		try {
 			if (nit != null &&  tipo != null)
 			{
@@ -535,7 +535,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioExamen(String nit, String tipo) {
+	public void registrarServicioExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		try {
 			if (nit != null &&  tipo != null)
 			{
@@ -559,7 +559,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioHospitalizacion(String nit) {
+	public void registrarServicioHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		try {
 			if (nit != null )
 			{
