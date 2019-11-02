@@ -578,7 +578,6 @@ public class EpsAndesPersistencia
 
 	public Recepcionista adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{
-
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -707,16 +706,13 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
-
 	}
 	
 	
 	
 	
-	public Consulta adicionarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
-
-		
-		
+	public Consulta adicionarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) 
+	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -756,8 +752,8 @@ public class EpsAndesPersistencia
 
 	}
 
-	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
-
+	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
+	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -795,6 +791,11 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
+	}
+
+	public String consulta1_1() 
+	{
+			
 	}
 
 }

@@ -363,7 +363,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		}
 	}
 	/**
-	 * Registro de un administradror
+	 * Registro de un administrador
 	 */
 	public void registroDeDatosAdmin(String nombre, String correo, String numCc)
 	{
@@ -425,7 +425,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 	 */
 	public void mostrarModeloConceptual ()
 	{
-		mostrarArchivo ("data/Modelo Conceptual EpsAndes.pdf");
+		mostrarArchivo ("data/EPSAndes-Modelo Conceptual.png");
 	}
 	/**
 	 * Muestra el esquema de la base de datos de EpsAndes
@@ -440,6 +440,41 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 	public void mostrarScriptBD ()
 	{
 		mostrarArchivo ("data/EsquemaEpsAndes.sql");
+	}
+	/**
+	 * Requerimiento de consulta 1.1
+	 */
+	public void rfc1_1()
+	{
+		JOptionPane.showMessageDialog(null, epsAndes.reqConsulta1_1(), "Consulta 1_1", JOptionPane.INFORMATION_MESSAGE);
+	}
+	/**
+	 * Requerimiento de consulta 1.2
+	 */
+	public void rfc1_2()
+	{
+		
+	}
+	/**
+	 * Requerimiento de consulta 1.3
+	 */
+	public void rfc1_3()
+	{
+		
+	}
+	/**
+	 * Requerimiento de consulta 1.4
+	 */
+	public void rfc1_4()
+	{
+		
+	}
+	/**
+	 * Requerimiento de consulta 1.5
+	 */
+	public void rfc1_5()
+	{
+		
 	}
 	/**
 	 * Abre el archivo dado como parámetro con la aplicación por defecto del sistema

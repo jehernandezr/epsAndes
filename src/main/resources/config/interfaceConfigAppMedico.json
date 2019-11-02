@@ -23,12 +23,16 @@
 				}
 			]
 		},
-		{ "menuTitle": "Servicio prestado",
+		{ "menuTitle": "Consulta urgencias",
 		  "options":
 			[
 				{
-					"label": "Registrar",
-					"event": "registrarServicio"
+					"label": "Dar de alta",
+					"event": "darDeAlta"
+				},
+				{
+					"label": "Cambiar Triage",
+					"event": "cambiarTriage"
 				}
 			]
 		}

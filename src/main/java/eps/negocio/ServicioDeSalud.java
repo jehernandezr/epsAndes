@@ -61,6 +61,11 @@ public class ServicioDeSalud {
 	
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Constructor de unservicio de salud
+	 * 
+>>>>>>> dc998da77a59a2e174e4478826e94beed4284b59
 	 * @param id
 	 * @param fecha_Realizacion
 	 * @param id_Ips

@@ -186,6 +186,35 @@ public class EpsAndes {
 		return true;
 	}
 
+	public boolean consultaUrgenciasDadoAlta() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void cambiarTriage(String triage, String numDoc) 
+	{
+		
+	}
+
+	public boolean existeCitaReservada(String idCitaReservada) 
+	{
+		return true;
+	}
+
+	public void cambiarACumplidaCitaReservada(String idCitaReservada, String numCcRecpecionista) {
+		
+	}
+
+	public void cambiarACancelarCitaReservada(String idCitaReservada, String numCcRecpecionista) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String reqConsulta1_1() 
+	{
+		return Ep.consulta1_1();
+	}
+
 	
 	
 }

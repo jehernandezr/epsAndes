@@ -10,11 +10,11 @@
 			[
 				{
 					"label": "Cumplida",
-					"event": "iniciarAdmin"
+					"event": "cumplirServicio"
 				},
 				{
 					"label": "Cancelada",
-					"event": "iniciarAfiliado"
+					"event": "cancelarServicio"
 				}
 			]
 		}
