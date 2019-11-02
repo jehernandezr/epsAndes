@@ -54,7 +54,7 @@ public class PanelDatos extends JPanel
         setBorder (new TitledBorder ("Panel de información"));
         setLayout( new BorderLayout( ) );
         
-        textArea = new JTextArea("Aquí sale el resultado de las operaciones solicitadas");
+        textArea = new JTextArea("Aquí sale el resultado de las operaciones solicitadas: \n ");
         textArea.setEditable(true);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
@@ -72,7 +72,7 @@ public class PanelDatos extends JPanel
     public void actualizarInterfaz(String texto)
     {
     	
-    	textArea.append(texto);
+    	textArea.append("\n"+texto);
     }
     /**
      * Actualiza el panel con la información recibida por parámetro.

@@ -1,8 +1,10 @@
 package eps.negocio;
 
+import java.math.BigDecimal;
+
 public class Recepcionista 
 {
-	private String id_ips;
+	private BigDecimal id_ips;
 
 	private String num_Cc;
 
@@ -14,13 +16,13 @@ public class Recepcionista
 	 */
 	public Recepcionista() 
 	{
-		this.id_ips = "";
+		this.id_ips = null;
 		this.num_Cc = "";
 		this.nombre = "";
 		this.correo_electronico = "";
 	}
 
-	public Recepcionista(String id_ips, String num_Cc, String nombre, String correo_e) 
+	public Recepcionista(String correo_e,String nombre,String num_Cc,BigDecimal id_ips ) 
 	{
 		this.id_ips = id_ips;
 		this.num_Cc = num_Cc;
@@ -28,27 +30,27 @@ public class Recepcionista
 		this.correo_electronico = correo_e;
 	}
 
-	public String getId_ips() 
+	public BigDecimal getId_ips() 
 	{
 		return id_ips;
 	}
 
-	public void setId_ips(String id_ips) 
+	public void setId_ips(BigDecimal id_ips) 
 	{
 		this.id_ips = id_ips;
 	}
 
-	public String getnombre() 
+	public String getNombre() 
 	{
 		return nombre;
 	}
 	
-	public void setnum_Cc(String num_Cc) 
+	public void setNum_Cc(String num_Cc) 
 	{
 		this.num_Cc = num_Cc;
 	}
 	
-	public String getnum_Cc() 
+	public String getNum_Cc() 
 	{
 		return num_Cc;
 	}

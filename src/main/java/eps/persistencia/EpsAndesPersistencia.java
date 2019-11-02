@@ -177,7 +177,7 @@ public class EpsAndesPersistencia
 		tablas.add ("AFILIADOS");
 		tablas.add("GERENTES");
 		tablas.add("ADMINISTRADORES");
-		tablas.add("RECEPCIONISTAS");
+		tablas.add("RECEPCIONISTAS"); 
 		tablas.add("MEDICOS");
 		tablas.add("IPS");
 		tablas.add("PROCEDIMIENTOS_ESPECIALIZADOS");
@@ -267,7 +267,7 @@ public class EpsAndesPersistencia
 		return tablas.get(3);
 	}
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de RECEPCIONISTA
+	 * @return La cadena de caracteres con el nombre de la tabla de RECEPCIONISTA 
 	 */
 	public String darTablaRecepcionista()
 	{
@@ -467,7 +467,7 @@ public class EpsAndesPersistencia
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			//log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		}
 		finally
@@ -488,7 +488,7 @@ public class EpsAndesPersistencia
 	 */
 	public Administrador darAdministradorPorId(String numCc)
 	{
-		
+
 		return (Administrador) sqlAdministrador.darAdministradorPorId(pmf.getPersistenceManager(), numCc);
 
 	}
@@ -502,7 +502,7 @@ public class EpsAndesPersistencia
 	{
 		return sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, esp, numCc, fecha);
 	}
-	
+
 	public Medico darMedicoPorId(String numCc)
 	{
 		return (Medico) sqlMedico.darMedicoPorId(pmf.getPersistenceManager(), numCc);
@@ -518,7 +518,7 @@ public class EpsAndesPersistencia
 		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarRecepcionista(String nombre, String numcc, String correo, String ips) 
+	public long adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{
 		return sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
 	}
