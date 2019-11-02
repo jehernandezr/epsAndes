@@ -22,7 +22,7 @@ public class ServicioDeSalud {
 	}
 	
 	/**
-	 * COnstructor de unservicio de salud
+	 * Constructor de unservicio de salud
 	 * 
 	 * @param id
 	 * @param horarioAtencion

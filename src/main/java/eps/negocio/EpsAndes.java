@@ -210,6 +210,11 @@ public class EpsAndes {
 		
 	}
 
+	public String reqConsulta1_1() 
+	{
+		return Ep.consulta1_1();
+	}
+
 	
 	
 }
