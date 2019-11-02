@@ -36,10 +36,9 @@ public class SQLRecepcionista
 	public long adicionarRecepcionista(PersistenceManager pm, String pNombre, String pCorreo, String pNumCc, String ips) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "( Nombre, Correo_Electronico, Num_Cc, Id_IPS) values (?, ?, ?, ?)");
-		q.setParameters( pNombre, pCorreo, pNumCc, ips);
+		q.setParameters(pNombre, pCorreo, pNumCc, ips);
 		return (long) q.executeUnique();
 	}
-
 	/**
 	 * Crea y ejecuta la sentencia SQL para eliminar RECEPCIONISTA, por su nombre
 	 * @return EL número de tuplas eliminadas
