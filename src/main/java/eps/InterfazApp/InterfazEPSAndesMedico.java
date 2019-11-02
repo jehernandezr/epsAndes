@@ -234,7 +234,7 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 		int result = JOptionPane.showConfirmDialog(null, myPanel, "Cambiar triage", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION)
 			if(!epsAndes.consultaUrgenciasDadoAlta())
-				epsAndes.cambiarTriage(triage, numDoc);
+				epsAndes.cambiarTriage(triage.getText(), numDoc.getText());
 			else
 				panelDatos.actualizarInterfaz("La consulta en urgencias no se encuentra habiliatada: Afiliado dado de alta");
 
