@@ -32,10 +32,10 @@ public class SQLConsultasUrgencias {
 	 * Crea y ejecuta la sentencia SQL para adicionar una CONSULTA DE URGENCIA a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarConsulta(PersistenceManager pm, long Id, boolean Fue_Dado_De_Alta, Integer Triage, BigDecimal Id_Receta) 
+	public long adicionarConsulta(PersistenceManager pm, long Id, String Fue_Dado_De_Alta, Integer Triage, BigDecimal Id_Receta) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsultaUrgencia() + "(Id,Fue_Dado_De_Alta,Triage,Id_Receta) values (?, ?, ?,?)");
-		q.setParameters(Id,Fue_Dado_De_Alta?"T":"F",Triage,Id_Receta);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsultaUrgencia() + "(Id, Fue_Dado_De_Alta, Triage, Id_Receta) values (?, ?, ?, ?)");
+		q.setParameters(Id, Fue_Dado_De_Alta,Triage,Id_Receta);
 		return (long) q.executeUnique();
 	}
 

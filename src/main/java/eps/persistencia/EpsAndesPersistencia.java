@@ -23,6 +23,7 @@ import eps.negocio.Afiliado;
 import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
 import eps.negocio.Especializacion;
+import eps.negocio.HorarioAtencion;
 import eps.negocio.Ips;
 import eps.negocio.TipoDeDocumento;
 
@@ -673,20 +674,64 @@ public class EpsAndesPersistencia
 		return sqlIps.darIpsPorId(pmf.getPersistenceManager(), Long.valueOf(nit));
 	}
 
-	public Consulta adicionarServicioConsulta(String nit, String tipo) {
+	public HorarioAtencion adicionarHorarioAtencion(BigDecimal id_servicio,String respSemana, String horaInicial, String horaFinal, String numAfiliado)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		
+		try
+		{
+			int num = Integer.parseInt(numAfiliado);
+			
+			long id = nextval();
+			BigDecimal idGrande= BigDecimal.valueOf(id);
+			tx.begin();
+			long tuplasInsertadas = sqlHorarioDeAtencion.agregarHorarioDeAtencion(pm, idGrande, id_servicio,  respSemana, horaInicial, horaFinal, num);
+			
+			tx.commit();
 
+			log.trace ("Inserción de horario de Atencion: (" + id  + ") : " + tuplasInsertadas + " tuplas insertadas");
+			return new HorarioAtencion(idGrande, id_servicio,respSemana, horaInicial, horaFinal, num);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+	
+	
+	
+	
+	public Consulta adicionarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+
+		
+		
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			long idConsulta= nextval();
 			long id = nextval();
 			tx.begin();
+			
 			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, id, tipo, null);
-			sqlServicioDeSalud.adicionarServicioDeSalud(pm, nit, id, tipo, Direccion, Fecha_realizacion, Id_Medico_Asignado)
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  null);
+			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
 			tx.commit();
 
-			log.trace ("Inserción de Consulta: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
-
+			log.trace ("Inserción de Consulta: (" + idConsulta  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+			log.trace ("Inserción de Servicio De consulta: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
 			return new Consulta(tipo, null);
 		}
 		catch (Exception e)
@@ -706,21 +751,24 @@ public class EpsAndesPersistencia
 
 	}
 
-	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit) {
+	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			long id = nextval();
+			long idConsulta= nextval();
 			tx.begin();
 			//caundo el triage es 0  implica que no se ha añadido un cliente y por ello siempre se inicializa en false el dado de alta
-			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, id, false, 0, null);
+			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, idConsulta, null, 0, null);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),id, "Id_Consulta_Urgencia",  null);
+			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
 			tx.commit();
-
+			log.trace ("Inserción de Servicio De consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
 			log.trace ("Inserción de Consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
 
-			return new ConsultaUrgencia(false, 0, null);
+			return new ConsultaUrgencia(null, 0, null);
 		}
 		catch (Exception e)
 		{

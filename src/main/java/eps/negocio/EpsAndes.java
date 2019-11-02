@@ -149,14 +149,16 @@ public class EpsAndes {
 		Ep.AdicionarMedicoAdscrito(id, BigDecimal.valueOf(cedula));
 	}
 
-	public Consulta crearServicioConsulta(String nit, String tipo) {
-		Ep.adicionarServicioConsulta(nit, tipo);
+
+	public Consulta crearServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		Ep.adicionarServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
+			
 		return null;
 	}
 
-	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit) {
+	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 	
-		return Ep.adicionarServicioConsultaUrgencia(nit);
+		return Ep.adicionarServicioConsultaUrgencia(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
 	public void crearServicioProcedimiento(String nit, String tipo) {

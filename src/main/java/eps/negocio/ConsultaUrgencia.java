@@ -5,9 +5,27 @@ import java.math.BigDecimal;
 public class ConsultaUrgencia extends ServicioDeSalud{
 
 	/**
+	 * id de una consulta de urgencia
+	 */
+	private BigDecimal id;
+	/**
+	 * @return the id
+	 */
+	public BigDecimal getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(BigDecimal id) {
+		this.id = id;
+	}
+
+	/**
 	 * representa si el paciente fue dado de alta
 	 */
-	private boolean fueDadoAlta;
+	private String fue_Dado_De_Alta;
 	
 	/**
 	 * representa la urgencia de la consulta en una escala del 1 al 5
@@ -17,16 +35,16 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	/**
 	 * representa la receta si se genera
 	 */
-	private BigDecimal receta;
+	private BigDecimal Id_receta;
 
 	/**
 	 * Constructor por defecto
 	 */
 	public ConsultaUrgencia() {
 		super();
-		this.fueDadoAlta = false;
+		this.fue_Dado_De_Alta = "";
 		this.triage = 0;
-		this.receta = null;
+		this.Id_receta = null;
 	}
 	
 	/**
@@ -36,25 +54,25 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	 * @param triage
 	 * @param receta
 	 */
-	public ConsultaUrgencia(boolean fueDadoAlta, Integer triage, BigDecimal receta) {
+	public ConsultaUrgencia(String fueDadoAlta, Integer triage, BigDecimal receta) {
 		super();
-		this.fueDadoAlta = fueDadoAlta;
+		this.fue_Dado_De_Alta = fueDadoAlta;
 		this.triage = triage;
-		this.receta = receta;
+		this.Id_receta = receta;
 	}
 
 	/**
 	 * @return the fueDadoAlta
 	 */
-	public boolean isFueDadoAlta() {
-		return fueDadoAlta;
+	public String isFue_Dado_De_Alta() {
+		return fue_Dado_De_Alta;
 	}
 
 	/**
 	 * @param fueDadoAlta the fueDadoAlta to set
 	 */
-	public void setFueDadoAlta(boolean fueDadoAlta) {
-		this.fueDadoAlta = fueDadoAlta;
+	public void setFue_Dado_De_Alta(String fueDadoAlta) {
+		this.fue_Dado_De_Alta = fueDadoAlta;
 	}
 
 	/**
@@ -75,14 +93,14 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	 * @return the receta
 	 */
 	public BigDecimal getReceta() {
-		return receta;
+		return Id_receta;
 	}
 
 	/**
 	 * @param receta the receta to set
 	 */
 	public void setReceta(BigDecimal receta) {
-		this.receta = receta;
+		this.Id_receta = receta;
 	}
 	
 	

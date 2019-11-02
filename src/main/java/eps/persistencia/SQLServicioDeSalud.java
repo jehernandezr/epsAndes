@@ -3,6 +3,7 @@
  */
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -38,10 +39,10 @@ public class SQLServicioDeSalud {
 	 * Crea y ejecuta la sentencia SQL para adicionar un Servicio de salud a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarServicioDeSalud (PersistenceManager pm,long Id_Ips, long Id_Servicio, String tipoServicio, String Direccion, Date Fecha_realizacion, long Id_Medico_Asignado ) 
+	public long adicionarServicioDeSalud (PersistenceManager pm, long id,  BigDecimal Id_Ips, long Id_Servicio, String tipoServicio, String Fecha_realizacion ) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioDeSalud()+ "(Id_Ips," + tipoServicio +", Direccion, Fecha_realizacion, Id_Medico_Asignado) values (?,?,?,?,?)");
-		q.setParameters(Id_Ips,Id_Servicio,Direccion, Fecha_realizacion,Id_Medico_Asignado);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioDeSalud()+ "(Id," + tipoServicio +",  Fecha_realizacion, Id_Ips) values (?,?,?,?)");
+		q.setParameters(id, Id_Ips, Id_Servicio, Fecha_realizacion );
 		return (long) q.executeUnique();
 	}
 
@@ -74,21 +75,11 @@ public class SQLServicioDeSalud {
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos ServicioDeSalud
 	 */
-	public List<ServicioDeSalud> darAfiliado (PersistenceManager pm)
+	public List<ServicioDeSalud> darServicioDeSalud (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicioDeSalud());
 		q.setResultClass(ServicioDeSalud.class);
 		return (List<ServicioDeSalud>) q.executeList();
 	}
 
-	/**
-	 * Crea y ejecuta la sentencia SQL para cambiar el correo
-	 * @return El número de tuplas modificadas
-	 */
-	public long cambiarMedicoAsignadoAfiliado (PersistenceManager pm, long id, long nuevoId) 
-	{
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaServicioDeSalud() + " SET Id_Medico_Asignado = ? WHERE Id_Medico_Asignado = ?");
-		q.setParameters(nuevoId, id) ;
-		return (long) q.executeUnique();            
-	}
 }

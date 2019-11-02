@@ -447,7 +447,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioConsulta(nit, tipo);
+					epsAndes.crearServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 					panelDatos.actualizarInterfaz("El servico de consulta  : "+tipo+" fue registrado con exito ");
 				}
 				else
@@ -471,7 +471,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioConsultaUrgencia(nit);
+					epsAndes.crearServicioConsultaUrgencia(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 					panelDatos.actualizarInterfaz("El servico de consulta  urgencia : "+nit+" fue registrado con exito ");
 				}
 				else

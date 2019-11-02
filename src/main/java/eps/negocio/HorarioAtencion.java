@@ -1,43 +1,49 @@
 package eps.negocio;
 
-import java.time.LocalTime;
+import java.math.BigDecimal;
 
 public class HorarioAtencion {
 
-	private long id;
+	private BigDecimal id;
 	
 	/**
 	 * Representa los dias de atencion de un servicio de salud</br>
 	 * se representan con las letras de la inicial de cada dia excepto el miercoles, el cual </br>
 	 * su notacion es X
 	 */
-	private String diasSemanaAtencion;
+	private String dias_Sem_Atencion;
 	
 	/**
 	 * Representa la hora de inicio de un servicio
 	 */
-	private LocalTime horaDeInicio;
+	private String hora_Inicial;
 	
 	/**
 	 * Representa la hora de fin de un servicio
 	 */
-	private LocalTime horaFin;
+	private String hora_Fin;
 	
 	/**
 	 * Representa el numero de afiliados que se atienden
 	 */
-	private int numeroAfiliados;
+	private int num_Afiliados;
 	
+	
+	/**
+	 * id del servicio al cual corresponde el horario
+	 */
+	private BigDecimal id_Servicio;
 
 	/**
 	 * Constructor por defecto
 	 */
 	public HorarioAtencion() {
-		this.id=0;
-		this.diasSemanaAtencion = "";
-		this.horaDeInicio = LocalTime.MIN;
-		this.horaFin = LocalTime.MIN;
-		this.numeroAfiliados = 0;
+		this.id=null;
+		this.dias_Sem_Atencion = "";
+		this.hora_Inicial = "";
+		this.hora_Fin = "";
+		this.num_Afiliados = 0;
+		this.id_Servicio =null;
 	}
 	
 	/**
@@ -49,70 +55,70 @@ public class HorarioAtencion {
 	 * @param numeroAfiliados
 	 * @param numeroSesiones
 	 */
-	public HorarioAtencion(long id, String diasSemanaAtencion, LocalTime horaDeInicio, LocalTime horaFin, int numeroAfiliados,
-			int numeroSesiones) {
+	public HorarioAtencion(BigDecimal id,BigDecimal id_Servico, String diasSemanaAtencion, String horaDeInicio, String horaFin, int numeroAfiliados) {
 		this.id=id;
-		this.diasSemanaAtencion = diasSemanaAtencion;
-		this.horaDeInicio = horaDeInicio;
-		this.horaFin = horaFin;
-		this.numeroAfiliados = numeroAfiliados;
+		this.dias_Sem_Atencion = diasSemanaAtencion;
+		this.hora_Inicial = horaDeInicio;
+		this.hora_Fin = horaFin;
+		this.num_Afiliados = numeroAfiliados;
+		this.id_Servicio=id_Servico;
 		
 	}
 
 	/**
 	 * @return the diasSemanaAtencion
 	 */
-	public String getDiasSemanaAtencion() {
-		return diasSemanaAtencion;
+	public String getDias_Sem_Atencion() {
+		return dias_Sem_Atencion;
 	}
 
 	/**
 	 * @param diasSemanaAtencion the diasSemanaAtencion to set
 	 */
-	public void setDiasSemanaAtencion(String diasSemanaAtencion) {
-		this.diasSemanaAtencion = diasSemanaAtencion;
+	public void setDias_Sem_Atencion(String diasSemanaAtencion) {
+		this.dias_Sem_Atencion = diasSemanaAtencion;
 	}
 
 	/**
 	 * @return the horaDeInicio
 	 */
-	public LocalTime getHoraDeInicio() {
-		return horaDeInicio;
+	public String getHora_Inicial() {
+		return hora_Inicial;
 	}
 
 	/**
 	 * @param horaDeInicio the horaDeInicio to set
 	 */
-	public void setHoraDeInicio(LocalTime horaDeInicio) {
-		this.horaDeInicio = horaDeInicio;
+	public void setHora_Inicial(String horaDeInicio) {
+		this.hora_Inicial = horaDeInicio;
 	}
 
 	/**
 	 * @return the horaFin
 	 */
-	public LocalTime getHoraFin() {
-		return horaFin;
+	public String getHora_Fin() {
+		return hora_Fin;
 	}
 
 	/**
 	 * @param horaFin the horaFin to set
 	 */
-	public void setHoraFin(LocalTime horaFin) {
-		this.horaFin = horaFin;
+	public void setHora_Fin(String horaFin) {
+		this.hora_Fin = horaFin;
 	}
 
 	/**
 	 * @return the numeroAfiliados
 	 */
-	public int getNumeroAfiliados() {
-		return numeroAfiliados;
+	public int getNum_Afiliados() {
+		return num_Afiliados;
 	}
 
 	/**
 	 * @param numeroAfiliados the numeroAfiliados to set
 	 */
-	public void setNumeroAfiliados(int numeroAfiliados) {
-		this.numeroAfiliados = numeroAfiliados;
+	public void setNum_Afiliados(int numeroAfiliados) {
+		this.num_Afiliados = numeroAfiliados;
 	}
 
 
@@ -120,15 +126,29 @@ public class HorarioAtencion {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public BigDecimal getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(BigDecimal id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the id_Servicio
+	 */
+	public BigDecimal getId_Servicio() {
+		return id_Servicio;
+	}
+
+	/**
+	 * @param id_Servicio the id_Servicio to set
+	 */
+	public void setId_Servicio(BigDecimal id_Servicio) {
+		this.id_Servicio = id_Servicio;
 	}
 	
 }
