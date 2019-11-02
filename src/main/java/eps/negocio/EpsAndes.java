@@ -3,6 +3,8 @@
  */
 package eps.negocio;
 
+import java.math.BigDecimal;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
@@ -116,9 +118,9 @@ public class EpsAndes {
 		return Ep.adicionarAdministrador(nombre, pCorreo, numCc).toString();
 	}
 
-	public void crearMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
+	public void crearMedico( String numCc,String nombre, String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado, String correo, BigDecimal Id_Adscritos)
 	{
-		Ep.adicionarMedico(nombre,  correo, numCc, numRegistro, esp);
+		Ep.adicionarMedico(numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);
 	}
 
 	public long crearAfiliado(String nombre, String correo,TipoDeDocumento tipoDoc, String numDoc, String fechaNac ) {

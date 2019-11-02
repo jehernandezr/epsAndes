@@ -198,6 +198,78 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
         }        
         setJMenuBar ( menuBar );	
     }
+    
+    /** Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
+	 * @param e - La excepción recibida
+	 * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
+	private String generarMensajeError(Exception e) 
+	{
+		String resultado = "************ Error en la ejecución\n";
+		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
+		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
+		return resultado;
+	}
+	
+	
+	/* ****************************************************************
+	 * 			Programa principal
+	 *****************************************************************/
+    /**
+     * Este método ejecuta la aplicación, creando una nueva interfaz
+     * @param args Arreglo de argumentos que se recibe por línea de comandos
+     */
+    public static void main( String[] args )
+    {
+        try
+        {
+        	
+            // Unifica la interfaz para Mac y para Windows.
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
+            InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador( );
+            interfaz.setVisible( true );
+            BasicConfigurator.configure();
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace( );
+        }
+    }
+  
+    /* ****************************************************************
+	 * 			Métodos de la Interacción
+	 *****************************************************************/
+    /**
+     * Método para la ejecución de los eventos que enlazan el menú con los métodos de negocio
+     * Invoca al método correspondiente según el evento recibido
+     * @param pEvento - El evento del usuario
+     */
+    @Override
+	public void actionPerformed(ActionEvent pEvento)
+	{
+		String evento = pEvento.getActionCommand( );		
+        try 
+        {
+			Method req = InterfazEPSAndesAdministrador.class.getMethod ( evento );			
+			req.invoke ( this );
+		} 
+        catch (Exception e) 
+        {
+			e.printStackTrace();
+		} 
+	}
+	
+    
     /**
      * Registra un médico al sistema
      */
@@ -232,52 +304,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 	    String esp = opcion.toString();
     	new PanelRegistrarServicioSalud(this, esp);
     }
-	/* ****************************************************************
-	 * 			Métodos de la Interacción
-	 *****************************************************************/
-    /**
-     * Método para la ejecución de los eventos que enlazan el menú con los métodos de negocio
-     * Invoca al método correspondiente según el evento recibido
-     * @param pEvento - El evento del usuario
-     */
-    @Override
-	public void actionPerformed(ActionEvent pEvento)
-	{
-		String evento = pEvento.getActionCommand( );		
-        try 
-        {
-			Method req = InterfazEPSAndesAdministrador.class.getMethod ( evento );			
-			req.invoke ( this );
-		} 
-        catch (Exception e) 
-        {
-			e.printStackTrace();
-		} 
-	}
-	/* ****************************************************************
-	 * 			Programa principal
-	 *****************************************************************/
-    /**
-     * Este método ejecuta la aplicación, creando una nueva interfaz
-     * @param args Arreglo de argumentos que se recibe por línea de comandos
-     */
-    public static void main( String[] args )
-    {
-        try
-        {
-        	
-            // Unifica la interfaz para Mac y para Windows.
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
-            InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador( );
-            interfaz.setVisible( true );
-            BasicConfigurator.configure();
-        }
-        catch( Exception e )
-        {
-            e.printStackTrace( );
-        }
-    }
-  
+	
 	public void registrarMedicoDatos(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
 	{
 		try {
@@ -286,13 +313,11 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeMedico(numCc);
 				if(!existe)
 				{
-					epsAndes.crearMedico(nombre, correo, numCc, numRegistro, esp);
-					InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico();
-					interfaz.registrarNumCcIngresado(numCc);
-					interfaz.setVisible( true );
+					epsAndes.crearMedico(numCc, nombre, numRegistro, esp, null, correo, null);
+					
 				}
 				else
-					panelDatos.actualizarInterfaz("El médico no existe");
+					panelDatos.actualizarInterfaz("Ya existe un médico con ese numero de cedula.");
 			}
 			else
 			{
@@ -304,27 +329,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	/* Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
-	 * @param e - La excepción recibida
-	 * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
-	 */
-	private String darDetalleException(Exception e) 
-	{
-		String resp = "";
-		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
-		{
-			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
-			return je.getNestedExceptions() [0].getMessage();
-		}
-		return resp;
-	}
-	private String generarMensajeError(Exception e) 
-	{
-		String resultado = "************ Error en la ejecución\n";
-		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
-		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
-		return resultado;
-	}
+	
 	public void registrarIPSDatos(String nombre, String localizacion) 
 	{
 		
@@ -335,16 +340,13 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			if (numDoc != null && nombre != null && correo != null &&  numDoc != null && tipoDoc != null)
 			{
 				boolean existe = epsAndes.existeAfiliado(numDoc);
-				System.out.println("-----------------------------------------------------------");
 				if(!existe)
 				{
 					epsAndes.crearAfiliado(nombre, correo,tipoDoc ,numDoc,fechaNac);
-					InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado();
-					interfaz.registrarNumCcIngresado(numCc);
-					interfaz.setVisible( true );
+					panelDatos.actualizarInterfaz("Se agregó el afiliado : "+ nombre +".  Correctamente");
 				}
 				else
-					panelDatos.actualizarInterfaz("El médico no existe");
+					panelDatos.actualizarInterfaz("Ya se encuentra un afiliado registrado con ese numero de Cedula.");
 			}
 			else
 			{

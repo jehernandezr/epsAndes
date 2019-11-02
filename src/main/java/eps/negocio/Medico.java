@@ -1,22 +1,18 @@
 package eps.negocio;
 
-import java.util.List;
-
+import java.math.BigDecimal;
 public class Medico {
 
-	/**
-	 * Representa la asociacion con una ips a la cual el medico esta adscrito
-	 */
-	private List<Long> ips;
-	
+
 	/**
 	 * 
 	 */
-	private long idMedicosAdscritos;
+	private BigDecimal id_Adscritos;
+	
 	/**
 	 * Representa la especialidad del medico
 	 */
-	private Especializacion especialidad;
+	private String especialidad;
 	
 	/**
 	 * representa el nombre del medico
@@ -26,37 +22,67 @@ public class Medico {
 	/**
 	 * Representa el numero de registro del medico  
 	 */
-	private int numeroRegistro;
+	private BigDecimal num_Registro;
 
-	public Medico() {
-		this.idMedicosAdscritos=0;
-		this.ips = (List<Long>) new java.awt.List();
-		this.especialidad = null;
-		this.nombre = "";
-		this.numeroRegistro = 0;
-	}
+	/**
+	 * 
+	 */
+	private BigDecimal id_Servicio_Asociado;
 	
 	/**
-	 * Cosntructor de un medico
+	 *
+	 */
+	private String correo_Electronico;
+
+	/**
 	 * 
-	 * @param ips
+	 */
+	private String num_Cc;
+
+	
+
+	/**
+	 * Constructor de la clase
+	 * @param idAdscritos
 	 * @param especialidad
 	 * @param nombre
-	 * @param numeroRegistro
+	 * @param numRegistro
+	 * @param idServicoAsociado
+	 * @param correoElectronico
 	 */
-	public Medico(Especializacion especialidad, String nombre, int numeroRegistro, long medicosAdscritos) {
-		this.idMedicosAdscritos= medicosAdscritos;
-		this.ips = (List<Long>) new java.awt.List();
-		this.especialidad = especialidad;
+	public Medico(String numCc,String nombre,BigDecimal numRegistro, Especializacion especialidad, BigDecimal idServicoAsociado, 
+			 String correoElectronico, BigDecimal idAdscritos) {
+		this.num_Cc=numCc;
+		this.id_Adscritos = idAdscritos;
+		this.setEspecialidad(especialidad);
 		this.nombre = nombre;
-		this.numeroRegistro = numeroRegistro;
+		this.num_Registro = numRegistro;
+		this.id_Servicio_Asociado = idServicoAsociado;
+		this.correo_Electronico = correoElectronico;
 	}
-
+	/**
+	 * Constructor generico
+	 * @param id_Adscritos
+	 * @param especialidad
+	 * @param nombre
+	 * @param numRegistro
+	 * @param id_Servicio_Asociado
+	 * @param correo_Electronico
+	 */
+	public Medico() {
+		this.num_Cc="";
+		this.id_Adscritos = null;
+		this.especialidad = null;
+		this.nombre ="";
+		this.num_Registro = null;
+		this.id_Servicio_Asociado = null;
+		this.correo_Electronico = "";
+	}
 
 	/**
 	 * @return the especialidad
 	 */
-	public Especializacion getEspecialidad() {
+	public String getEspecialidad() {
 		return especialidad;
 	}
 
@@ -64,6 +90,13 @@ public class Medico {
 	 * @param especialidad the especialidad to set
 	 */
 	public void setEspecialidad(Especializacion especialidad) {
+		this.especialidad = especialidad.toString().toLowerCase();
+	}
+	
+	/**
+	 * @param especialidad the especialidad to set
+	 */
+	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
 	}
 
@@ -82,55 +115,73 @@ public class Medico {
 	}
 
 	/**
-	 * @return the numeroRegistro
+	 * @return the idAdscritos
 	 */
-	public int getNumeroRegistro() {
-		return numeroRegistro;
+	public BigDecimal getId_Adscritos() {
+		return id_Adscritos;
 	}
 
 	/**
-	 * @param numeroRegistro the numeroRegistro to set
+	 * @param idAdscritos the idAdscritos to set
 	 */
-	public void setNumeroRegistro(int numeroRegistro) {
-		this.numeroRegistro = numeroRegistro;
+	public void setId_Adscritos(BigDecimal idAdscritos) {
+		this.id_Adscritos = idAdscritos;
 	}
 
 	/**
-	 * @return the ips
+	 * @return the numRegistro
 	 */
-	public List<Long> getIps() {
-		return ips;
+	public BigDecimal getNum_Registro() {
+		return num_Registro;
 	}
 
 	/**
-	 * @param ips the ips to set
+	 * @param numRegistro the numRegistro to set
 	 */
-	public void setIps(List<Long> ips) {
-		this.ips = ips;
-	}
-	
-	/**
-	 * agrega una ips a la lista de ips en la cual el medico está adscrito
-	 * @param i
-	 */
-	public void addIps(Long i)
-	{
-		ips.add(i);
-		
+	public void setNum_Registro(BigDecimal numRegistro) {
+		this.num_Registro = numRegistro;
 	}
 
 	/**
-	 * @return the idMedicosAdscritos
+	 * @return the idServicoAsociado
 	 */
-	public long getIdMedicosAdscritos() {
-		return idMedicosAdscritos;
+	public BigDecimal getId_Servicio_Asociado() {
+		return id_Servicio_Asociado;
 	}
 
 	/**
-	 * @param idMedicosAdscritos the idMedicosAdscritos to set
+	 * @param idServicoAsociado the idServicoAsociado to set
 	 */
-	public void setIdMedicosAdscritos(long idMedicosAdscritos) {
-		this.idMedicosAdscritos = idMedicosAdscritos;
+	public void setId_Servicio_Asociado(BigDecimal idServicoAsociado) {
+		this.id_Servicio_Asociado = idServicoAsociado;
 	}
-	
+
+	/**
+	 * @return the correoElectronico
+	 */
+	public String getCorreo_Electronico() {
+		return correo_Electronico;
+	}
+
+	/**
+	 * @param correoElectronico the correoElectronico to set
+	 */
+	public void setCorreo_Electronico(String correoElectronico) {
+		this.correo_Electronico = correoElectronico;
+	}
+	/**
+	 * @return the num_Cc
+	 */
+	public String getNum_Cc() {
+		return num_Cc;
+	}
+	/**
+	 * @param num_Cc the num_Cc to set
+	 */
+	public void setNum_Cc(String num_Cc) {
+		this.num_Cc = num_Cc;
+	}
+
+
+
 }

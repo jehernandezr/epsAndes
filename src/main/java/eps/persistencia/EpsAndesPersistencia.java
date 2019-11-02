@@ -1,6 +1,7 @@
 
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -507,9 +508,9 @@ public class EpsAndesPersistencia
 		return (Medico) sqlMedico.darMedicoPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp) 
+	public long adicionarMedico( String numCc,String nombre,  String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado,String correo, BigDecimal Id_Adscritos) 
 	{
-		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), nombre, correo, numCc, numRegistro, esp);		
+		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);		
 	}
 
 	public Recepcionista darRecepcionistaPorId(String numCc) 

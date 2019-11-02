@@ -20,6 +20,7 @@ public class Administrador {
 	public Administrador() {
 		this.numCc = "";
 		this.nombre = "";
+		this.correo="";
 	}
 
 	/**
@@ -32,7 +33,7 @@ public class Administrador {
 	public Administrador(String nombre,  String correo,String numCc) {
 		this.numCc = numCc;
 		this.nombre = nombre;
-		this.setCorreo(correo);
+		this.correo=correo;
 	}
 
 	public String getNombre() {
