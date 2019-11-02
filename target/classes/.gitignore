@@ -1,8 +1,6 @@
 /META-INF/
 /config/
 /eps/
-<<<<<<< HEAD
-=======
 /hbase-site.xml
 /log4j.properties
 /package-cassandra.orm
@@ -14,5 +12,4 @@
 /package-mysql.orm
 /package-neo4j.orm
 /package-odf.orm
->>>>>>> 31a5ebf6df705ab99cdec787ab3a77238c41caff
 /uniandes/

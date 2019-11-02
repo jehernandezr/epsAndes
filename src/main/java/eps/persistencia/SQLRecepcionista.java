@@ -35,13 +35,8 @@ public class SQLRecepcionista
 	 */
 	public long adicionarRecepcionista(PersistenceManager pm, String pNombre, String pCorreo, String pNumCc, long ips) 
 	{
-<<<<<<< HEAD
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "( Nombre, Correo_Electronico, Num_Cc, Id_IPS) values (?, ?, ?, ?)");
-		q.setParameters(pNombre, pCorreo, pNumCc, ips);
-=======
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRecepcionista() + "(  Correo_Electronico, Nombre, Num_Cc, Id_IPS) values (?, ?, ?, ?)");
 		q.setParameters(  pCorreo, pNombre, pNumCc, ips);
->>>>>>> 31a5ebf6df705ab99cdec787ab3a77238c41caff
 		return (long) q.executeUnique();
 	}
 	/**
