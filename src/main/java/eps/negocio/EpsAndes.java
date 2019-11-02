@@ -38,7 +38,8 @@ public class EpsAndes {
 	/**
 	 * El constructor por defecto
 	 */
-	public EpsAndes() {
+	public EpsAndes()
+	{
 
 		Ep = EpsAndesPersistencia.getInstance ();
 	}
@@ -47,8 +48,6 @@ public class EpsAndes {
 	{
 		Ep=EpsAndesPersistencia.getInstance(tableConfig);
 	}
-
-
 
 	/**
 	 * Encuentra un adminsitrador y su información básica, según su identificador
@@ -92,16 +91,17 @@ public class EpsAndes {
 	 * Elimnar un administrador
 	 * @param numcc número de cédula del administrador
 	 */
-	public void eliminarAdministrador(String         numcc)
+	public void eliminarAdministrador(String numcc)
 	{
 
 	}
-	public boolean existeAdmin( String NumCc) {
+	public boolean existeAdmin( String NumCc) 
+	{
 		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
 	}
 
 	public boolean existeRecepcionista(String NumCc) {
-		return true;
+		return Ep.darRecepcionistaPorId(NumCc) !=null? true:false;
 	}
 	public boolean existeAfiliado(String NumCc) {
 		return Ep.darAfiliadoPorId(NumCc) !=null? true:false;

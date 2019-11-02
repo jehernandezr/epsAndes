@@ -16,6 +16,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import eps.negocio.Medico;
+import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
 import eps.negocio.Especializacion;
@@ -57,47 +58,42 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLAdministrador sqlAdministrador;
-
+	/**
+	 * 
+	 */
+	private SQLRecepcionista sqlRecepcionista;
 	/**
 	 * 
 	 */
 	private SQLAfiliado sqlAfiliado;
-
 	/**
 	 * 
 	 */
 	private SQLConsulta sqlConsulta;
-
 	/**
 	 * 
 	 */
 	private SQLConsultasUrgencias sqlConsultaUrgencia;
-
 	/**
 	 * 
 	 */
 	private SQLExamen sqlExamen;
-
 	/**
 	 * 
 	 */
 	private SQLGerente sqlGerente;
-
 	/**
 	 * 
 	 */
 	private SQLHorarioDeAtencion sqlHorarioDeAtencion;
-
 	/**
 	 * 
 	 */
 	private SQLIps sqlIps;
-
 	/**
 	 * 
 	 */
 	private SQLMedico sqlMedico;
-
 	/**
 	 * 
 	 */
@@ -126,8 +122,6 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLTerapia sqlTerapia;
-
-
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -224,6 +218,7 @@ public class EpsAndesPersistencia
 	private void crearClasesSQL ()
 	{
 		sqlAdministrador= new SQLAdministrador(this);
+		sqlRecepcionista= new SQLRecepcionista(this);
 		sqlAfiliado = new SQLAfiliado(this);
 		sqlConsulta = new SQLConsulta(this);
 		sqlConsultaUrgencia= new SQLConsultasUrgencias(this);
@@ -515,5 +510,10 @@ public class EpsAndesPersistencia
 	public long adicionarMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp) 
 	{
 		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), nombre, correo, numCc, numRegistro, esp);		
+	}
+
+	public Recepcionista darRecepcionistaPorId(String numCc) 
+	{
+		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
 }
