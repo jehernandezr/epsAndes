@@ -17,6 +17,10 @@
 					"event": "reservarConsultaE"
 				},
 				{
+					"label": "Consulta de control",
+					"event": "reservarConsultaC"
+				},
+				{
 					"label": "Examen",
 					"event": "reservarExamen"
 				},

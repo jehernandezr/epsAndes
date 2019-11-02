@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -171,12 +172,23 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 			JsonObject jom = men.getAsJsonObject(); 
 
 			String menuTitle = jom.get("menuTitle").getAsString();        	
-			String event = jom.get("event").getAsString();
+			JsonArray opciones = jom.getAsJsonArray("options");
 
 			JMenu menu = new JMenu( menuTitle);
-			menu.addActionListener( this );
-			menu.setActionCommand(event);
 
+			for (JsonElement op : opciones)
+			{       	
+				// Creación de cada una de las opciones del menú
+				JsonObject jo = op.getAsJsonObject(); 
+				String lb =   jo.get("label").getAsString();
+				String event = jo.get("event").getAsString();
+
+				JMenuItem mItem = new JMenuItem( lb );
+				mItem.addActionListener( this );
+				mItem.setActionCommand(event);
+
+				menu.add(mItem);
+			}       
 			menuBar.add( menu );
 		}        
 		setJMenuBar ( menuBar );	
@@ -240,8 +252,13 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 			e.printStackTrace( );
 		}
 	}
+	
 	public void registrarOrdenDatos(String fecha1, String numCcAfiliado, String tipoDeServicio) {
-		// TODO Auto-generated method stub
 
+	}
+	//Verificar que existe una consulta con el id
+	public void registrarRecetaDatos(String fecha1, String text, String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -19,11 +19,11 @@ public class PanelRegistrarOrden
 {
 	public PanelRegistrarOrden(InterfazEPSAndesMedico interfaz)
 	{
-		String[] tipoServicio = {"CONSULTA", "URGENCIAS", "HOSPITALIZACION", "EXAMENES", "TERAPIAS", "PROCEDIMIENTO ESPECIALIZADO"};
+		String[] tipoServicio = {"CONSULTA CONTROL", "CONSULTA ESPECIALIZADA", "URGENCIAS", "HOSPITALIZACION", "EXAMENES", "TERAPIAS", "PROCEDIMIENTO ESPECIALIZADO"};
 		JComboBox tipoSevicioSolicitado = new JComboBox<String>(tipoServicio);
 
 		JPanel myPanel = new JPanel();
-		GridLayout layout = new GridLayout(5,2);
+		GridLayout layout = new GridLayout(3,2);
 		myPanel.setLayout(layout);
 
 		//Bloque panel de dialogo de calendario
@@ -31,7 +31,7 @@ public class PanelRegistrarOrden
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		myPanel.add(jd);     
 
-		JTextField numCcAfiliado = new JTextField(15);
+		JTextField numCcAfiliado = new JTextField(15);		
 
 		myPanel.add(new JLabel("Tipo de servicio:"));
 		myPanel.add(tipoSevicioSolicitado);
@@ -40,8 +40,7 @@ public class PanelRegistrarOrden
 		myPanel.add(new JLabel("Fecha de solicitud:"));
 		myPanel.add(jd);
 
-		int result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un recepcionista"
-				+ "", JOptionPane.OK_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar una orden médica", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION)
 		{
 			String fecha1="";

@@ -151,11 +151,7 @@ public class EpsAndes {
 
 	public Consulta crearServicioConsulta(String nit, String tipo) {
 		Ep.adicionarServicioConsulta(nit, tipo);
-			
-		
 		return null;
-		
-		
 	}
 
 	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit) {
@@ -181,6 +177,11 @@ public class EpsAndes {
 	public void crearServicioTerapia(String nit, String tipo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean verficarLaOrden(String numCc, String id_Orden) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	
