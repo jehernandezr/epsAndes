@@ -20,6 +20,8 @@ import eps.negocio.Medico;
 import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
+import eps.negocio.Consulta;
+import eps.negocio.ConsultaUrgencia;
 import eps.negocio.Especializacion;
 import eps.negocio.Ips;
 import eps.negocio.TipoDeDocumento;
@@ -527,7 +529,7 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
-		
+
 	}
 
 	public Medico darMedicoPorId(String numCc)
@@ -537,7 +539,7 @@ public class EpsAndesPersistencia
 
 	public Medico adicionarMedico( String numCc,String nombre,  String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado,String correo, BigDecimal Id_Adscritos) 
 	{
-		
+
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -565,7 +567,7 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
-		
+
 	}
 
 	public Recepcionista darRecepcionistaPorId(String numCc) 
@@ -575,7 +577,7 @@ public class EpsAndesPersistencia
 
 	public Recepcionista adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{
-		
+
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -602,7 +604,7 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
-	 
+
 	}
 
 	public Ips adicionarIps(String nit, String nombre, String localizacion) {
@@ -633,9 +635,9 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
-	 
+
 	}
-	
+
 	public Long AdicionarMedicoAdscrito( BigDecimal Id_Ips, BigDecimal Medico_Num_Cc)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -665,10 +667,75 @@ public class EpsAndesPersistencia
 			pm.close();
 		}
 	}
-	
+
 	public Ips darIpsPorId(String nit)
 	{
 		return sqlIps.darIpsPorId(pmf.getPersistenceManager(), Long.valueOf(nit));
 	}
-	
+
+	public Consulta adicionarServicioConsulta(String nit, String tipo) {
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			tx.begin();
+			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, id, tipo, null);
+			sqlServicioDeSalud.adicionarServicioDeSalud(pm, nit, id, tipo, Direccion, Fecha_realizacion, Id_Medico_Asignado)
+			tx.commit();
+
+			log.trace ("Inserción de Consulta: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Consulta(tipo, null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+	}
+
+	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit) {
+
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			tx.begin();
+			//caundo el triage es 0  implica que no se ha añadido un cliente y por ello siempre se inicializa en false el dado de alta
+			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, id, false, 0, null);
+			tx.commit();
+
+			log.trace ("Inserción de Consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return new ConsultaUrgencia(false, 0, null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
 }

@@ -1,5 +1,6 @@
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -32,10 +33,10 @@ public class SQLConsulta {
 	 * Crea y ejecuta la sentencia SQL para adicionar una CONSULTA a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarConsulta(PersistenceManager pm, long Id, TipoDeConsulta pTipoConsulta, long Id_Receta) 
+	public long adicionarConsulta(PersistenceManager pm, long Id, String pTipoConsulta, BigDecimal Id_Receta) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsulta() + "(Id, Tipo_Consulta, Id_Receta) values (?, ?, ?)");
-		q.setParameters(Id,pTipoConsulta,Id_Receta);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsulta() + "(Id, Id_Receta,Tipo_Consulta ) values (?, ?, ?)");
+		q.setParameters(Id,Id_Receta,pTipoConsulta);
 		return (long) q.executeUnique();
 	}
 

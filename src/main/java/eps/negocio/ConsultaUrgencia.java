@@ -1,5 +1,7 @@
 package eps.negocio;
 
+import java.math.BigDecimal;
+
 public class ConsultaUrgencia extends ServicioDeSalud{
 
 	/**
@@ -15,7 +17,7 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	/**
 	 * representa la receta si se genera
 	 */
-	private long receta;
+	private BigDecimal receta;
 
 	/**
 	 * Constructor por defecto
@@ -24,7 +26,7 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 		super();
 		this.fueDadoAlta = false;
 		this.triage = 0;
-		this.receta = 0;
+		this.receta = null;
 	}
 	
 	/**
@@ -34,7 +36,7 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	 * @param triage
 	 * @param receta
 	 */
-	public ConsultaUrgencia(boolean fueDadoAlta, int triage, long receta) {
+	public ConsultaUrgencia(boolean fueDadoAlta, Integer triage, BigDecimal receta) {
 		super();
 		this.fueDadoAlta = fueDadoAlta;
 		this.triage = triage;
@@ -72,14 +74,14 @@ public class ConsultaUrgencia extends ServicioDeSalud{
 	/**
 	 * @return the receta
 	 */
-	public long getReceta() {
+	public BigDecimal getReceta() {
 		return receta;
 	}
 
 	/**
 	 * @param receta the receta to set
 	 */
-	public void setReceta(long receta) {
+	public void setReceta(BigDecimal receta) {
 		this.receta = receta;
 	}
 	

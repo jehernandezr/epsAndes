@@ -142,11 +142,47 @@ public class EpsAndes {
 		return Ep.adicionarIps(nit, nombre, localizacion);
 	}
 
-	public void AgregarMedicoIps(String nombreIps,String Medico_Num_Cc)
+	public void agregarMedicoIps(String nombreIps,String Medico_Num_Cc)
 	{
 		BigDecimal id= Ep.darIpsPorId(nombreIps).getId(); 
 		long cedula = Long.valueOf(Medico_Num_Cc);
 		Ep.AdicionarMedicoAdscrito(id, BigDecimal.valueOf(cedula));
 	}
+
+	public Consulta crearServicioConsulta(String nit, String tipo) {
+		Ep.adicionarServicioConsulta(nit, tipo);
+			
+		
+		return null;
+		
+		
+	}
+
+	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit) {
+	
+		return Ep.adicionarServicioConsultaUrgencia(nit);
+	}
+
+	public void crearServicioProcedimiento(String nit, String tipo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void crearServicioHospitalizacion(String nit) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void crearServicioExamen(String nit, String tipo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void crearServicioTerapia(String nit, String tipo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }

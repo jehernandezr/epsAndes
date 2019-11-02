@@ -28,10 +28,6 @@ public class HorarioAtencion {
 	 */
 	private int numeroAfiliados;
 	
-	/**
-	 * Representa el numero de recervas  que se hacen para servicio
-	 */
-	private int numeroSesiones;
 
 	/**
 	 * Constructor por defecto
@@ -42,7 +38,6 @@ public class HorarioAtencion {
 		this.horaDeInicio = LocalTime.MIN;
 		this.horaFin = LocalTime.MIN;
 		this.numeroAfiliados = 0;
-		this.numeroSesiones = 1;
 	}
 	
 	/**
@@ -61,7 +56,7 @@ public class HorarioAtencion {
 		this.horaDeInicio = horaDeInicio;
 		this.horaFin = horaFin;
 		this.numeroAfiliados = numeroAfiliados;
-		this.numeroSesiones = numeroSesiones;
+		
 	}
 
 	/**
@@ -120,19 +115,7 @@ public class HorarioAtencion {
 		this.numeroAfiliados = numeroAfiliados;
 	}
 
-	/**
-	 * @return the numeroSesiones
-	 */
-	public int getNumeroSesiones() {
-		return numeroSesiones;
-	}
 
-	/**
-	 * @param numeroSesiones the numeroSesiones to set
-	 */
-	public void setNumeroSesiones(int numeroSesiones) {
-		this.numeroSesiones = numeroSesiones;
-	}
 
 	/**
 	 * @return the id

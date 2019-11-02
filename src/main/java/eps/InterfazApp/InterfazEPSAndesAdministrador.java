@@ -422,7 +422,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe2 = epsAndes.existeIps(nombre);
 				if(existe&existe2)
 				{
-					epsAndes.AgregarMedicoIps(nombre, numcc);
+					epsAndes.agregarMedicoIps(nombre, numcc);
 					panelDatos.actualizarInterfaz("El usuario  : "+nombre+" fue registrado con exito ");
 				}
 				else
@@ -438,24 +438,150 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	public void registrarServicioConsulta(String ips, String string) 
+	public void registrarServicioConsulta(String nit, String tipo) 
 	{
-		
+		try {
+			if (nit != null &&  tipo != null)
+			{
+				
+				boolean existe = epsAndes.existeIps(nit);
+				if(existe)
+				{
+					epsAndes.crearServicioConsulta(nit, tipo);
+					panelDatos.actualizarInterfaz("El servico de consulta  : "+tipo+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Esta consulta : "+tipo+" ya está registrada ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
-	public void registrarServicioConsultaUrgencia(String ips) {
-		
+	public void registrarServicioConsultaUrgencia(String nit) {
+		try {
+			if (nit != null)
+			{
+				
+				boolean existe = epsAndes.existeIps(nit);
+				if(existe)
+				{
+					epsAndes.crearServicioConsultaUrgencia(nit);
+					panelDatos.actualizarInterfaz("El servico de consulta  urgencia : "+nit+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Esta consulta de urgencia: "+nit+" ya está registrada ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
-	public void registrarServicioProcedimiento(String ips, String tipo) {
-		
+	public void registrarServicioProcedimiento(String nit, String tipo) {
+		try {
+			if (nit != null &&  tipo != null)
+			{
+				
+				boolean existe = epsAndes.existeIps(nit);
+				if(existe)
+				{
+					epsAndes.crearServicioProcedimiento(nit, tipo);
+					panelDatos.actualizarInterfaz("El servico de Procedimiento  : "+tipo+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Este Procedimiento : "+tipo+" ya está registrada en la ips "+ nit);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
-	public void registrarServicioTerapia(String ips, String tipo) {
-		
+	public void registrarServicioTerapia(String nit, String tipo) {
+		try {
+			if (nit != null &&  tipo != null)
+			{
+				
+				boolean existe = epsAndes.existeIps(nit);
+				if(existe)
+				{
+					epsAndes.crearServicioTerapia(nit, tipo);
+					panelDatos.actualizarInterfaz("El servico de Terapia  : "+tipo+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Esta Terapia : "+tipo+" ya está registrada ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
-	public void registrarServicioExamen(String ips, String tipo) {
-		
+	public void registrarServicioExamen(String nit, String tipo) {
+		try {
+			if (nit != null &&  tipo != null)
+			{
+				
+				boolean existe = epsAndes.existeIps(nit);
+				if(existe)
+				{
+					epsAndes.crearServicioExamen(nit, tipo);
+					panelDatos.actualizarInterfaz("El servico de Examen  : "+tipo+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Este Examen : "+tipo+" ya está registrada ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
-	public void registrarServicioHospitalizacion(String ips) {
-		
+	public void registrarServicioHospitalizacion(String nit) {
+		try {
+			if (nit != null )
+			{
+				
+				boolean existe = epsAndes.existeIps(nit);
+				if(existe)
+				{
+					epsAndes.crearServicioHospitalizacion(nit);
+					panelDatos.actualizarInterfaz("El servico de Hospitalizacion  : "+nit+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Esta Hospitalizacion : "+nit+" ya está registrada ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 }
