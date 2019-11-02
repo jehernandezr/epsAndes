@@ -1,7 +1,5 @@
 package eps.negocio;
 
-import java.util.List;
-
 public class Afiliado {
 
 
@@ -26,12 +24,12 @@ public class Afiliado {
 	/**
 	 * Atributo que representa la lista de citas reservadas de un afiliado
 	 */
-	private List<Long> citasRecervadas;
+	//private List<Long> citasReservadas;
 
 	/**
 	 * Atributo que representa la lista de ordenes de servicios de un afiliado
 	 */
-	private List<Long> ordenes;
+	//private List<Long> ordenes;
 	
 	/**
 	 * constructor por defecto
@@ -42,8 +40,8 @@ public class Afiliado {
 		this.nombre = "";
 		this.numero_Documento ="";
 		this.tipo_De_Documento = null;
-		this.citasRecervadas = (List<Long>) new java.awt.List();
-		this.ordenes = (List<Long>) new java.awt.List();
+		//this.citasReservadas = (List<Long>) new java.awt.List();
+		//this.ordenes = (List<Long>) new java.awt.List();
 	}
 
 	/**
@@ -53,7 +51,7 @@ public class Afiliado {
 	 * @param nombre
 	 * @param numeroDeDocumento
 	 * @param tipoDocumento
-	 * @param citasRecervadas
+	 * @param citasReservadas
 	 * @param ordenes
 	 */
 	public Afiliado(String fechaDeNacimiento, String nombre, String numeroDeDocumento, TipoDeDocumento tipoDocumento) {
@@ -61,21 +59,21 @@ public class Afiliado {
 		this.nombre = nombre;
 		this.numero_Documento = numeroDeDocumento;
 		this.tipo_De_Documento = tipoDocumento;
-		this.citasRecervadas = (List<Long>) new java.awt.List();
-		this.ordenes = (List<Long>) new java.awt.List();
+		//this.citasReservadas = (List<Long>) new java.awt.List();
+		//this.ordenes = (List<Long>) new java.awt.List();
 	}
 
 	/**
 	 * @return the fechaDeNacimiento
 	 */
-	public String getFechaDeNacimiento() {
+	public String getFecha_Nacimiento() {
 		return fecha_Nacimiento;
 	}
 
 	/**
 	 * @param fechaDeNacimiento the fechaDeNacimiento to set
 	 */
-	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+	public void setFecha_Nacimiento(String fechaDeNacimiento) {
 		this.fecha_Nacimiento = fechaDeNacimiento;
 	}
 
@@ -96,71 +94,71 @@ public class Afiliado {
 	/**
 	 * @return the numeroDeDocumento
 	 */
-	public String getNumeroDeDocumento() {
+	public String getNumero_Documento() {
 		return numero_Documento;
 	}
 
 	/**
 	 * @param numeroDeDocumento the numeroDeDocumento to set
 	 */
-	public void setNumeroDeDocumento(String numeroDeDocumento) {
+	public void setNumero_Documento(String numeroDeDocumento) {
 		this.numero_Documento = numeroDeDocumento;
 	}
 
 	/**
 	 * @return the tipoDocumento
 	 */
-	public TipoDeDocumento getTipoDocumento() {
+	public TipoDeDocumento getTipo_De_Documento() {
 		return tipo_De_Documento;
 	}
 
 	/**
 	 * @param tipoDocumento the tipoDocumento to set
 	 */
-	public void setTipoDocumento(TipoDeDocumento tipoDocumento) {
+	public void setTipo_De_Documento(TipoDeDocumento tipoDocumento) {
 		this.tipo_De_Documento = tipoDocumento;
 	}
 
 	/**
 	 * agrega a la lista
 	 */
-	private void addCitaRecervada(Long cita)
-	{
-		citasRecervadas.add(cita);
-	}
+	//private void addCitaRecervada(Long cita)
+	//{
+	//	citasReservadas.add(cita);
+	//}
 
 	/**
 	 * agrega a la lista
 	 */
-	private void addOrden(Long orden)
-	{ordenes.add(orden);
-	}
+	//private void addOrden(Long orden)
+	//{ordenes.add(orden);
+	//}
 
 	/**
 	 * @return the citasRecervadas
 	 */
-	public List<Long> getCitasRecervadas() {
-		return citasRecervadas;
-	}
+	//public List<Long> getCitasRecervadas() {
+	//	return citasReservadas;
+	//}
 
-	/**
-	 * @param citasRecervadas the citasRecervadas to set
-	 */
-	public void setCitasRecervadas(List<Long> citasRecervadas) {
-		this.citasRecervadas = citasRecervadas;
-	}
-
-	/**
-	 * @return the ordenes
-	 */
-	public List<Long> getOrdenes() {
-		return ordenes;
-	}
-
-	/**
-	 * @param ordenes the ordenes to set
-	 */
-	public void setOrdenes(List<Long> ordenes) {
-		this.ordenes = ordenes;
-	} 
+//	/**
+//	 * @param citasRecervadas the citasRecervadas to set
+//	 */
+//	public void setCitasRecervadas(List<Long> citasRecervadas) {
+//		this.citasReservadas = citasRecervadas;
+//	}
+//
+//	/**
+//	 * @return the ordenes
+//	 */
+//	public List<Long> getOrdenes() {
+//		return ordenes;
+//	}
+//
+//	/**
+//	 * @param ordenes the ordenes to set
+//	 */
+//	public void setOrdenes(List<Long> ordenes) {
+//		this.ordenes = ordenes;
+//	} 
 }
