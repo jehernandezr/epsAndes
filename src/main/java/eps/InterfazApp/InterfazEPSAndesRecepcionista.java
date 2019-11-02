@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.lang.reflect.Method;
+
+import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -92,7 +94,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 		add( panelDatos, BorderLayout.CENTER );        
 	}
 	/**
-	 * Registrar el número de cédula del administrador
+	 * Registrar el número de cédula del recepcionista
 	 * @param numCc
 	 */
 	public void registrarNumCcIngresado(String numCc)
@@ -207,13 +209,91 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 		String evento = pEvento.getActionCommand( );		
 		try 
 		{
-			Method req = InterfazEPSAndes.class.getMethod ( evento );			
+			Method req = InterfazEPSAndesRecepcionista.class.getMethod ( evento );			
 			req.invoke ( this );
 		} 
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 		} 
+	}
+	/**
+	 * Establecer como cumplida una cita reservada
+	 */
+	public void cumplirServicio()
+	{
+		try 
+		{
+			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cumplir cita", JOptionPane.QUESTION_MESSAGE);
+			if (idCitaReservada != null)
+			{
+
+				boolean existe = epsAndes.existeCitaReservada(idCitaReservada);
+				if(existe)
+				{
+					epsAndes.cambiarACumplidaCitaReservada(idCitaReservada, numCc);
+				}
+				else
+					panelDatos.actualizarInterfaz("La cita no existe");
+			}
+			else
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		} 
+		catch (Exception e) 
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	/**
+	 * Establecer como cancelada una cita reservada
+	 */
+	public void cancelarServicio()
+	{
+		try 
+		{
+			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cancelar cita", JOptionPane.QUESTION_MESSAGE);
+			if (idCitaReservada != null)
+			{
+
+				boolean existe = epsAndes.existeCitaReservada(idCitaReservada);
+				if(existe)
+				{
+					epsAndes.cambiarACancelarCitaReservada(idCitaReservada, numCc);
+				}
+				else
+					panelDatos.actualizarInterfaz("La cita no existe");
+			}
+			else
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		} 
+		catch (Exception e) 
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	/**
+	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
+	 * @param e - La excepción recibida
+	 * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
+	private String generarMensajeError(Exception e) 
+	{
+		String resultado = "************ Error en la ejecución\n";
+		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
+		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
+		return resultado;
 	}
 	/* ****************************************************************
 	 * 			Programa principal

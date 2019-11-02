@@ -196,6 +196,20 @@ public class EpsAndes {
 		
 	}
 
+	public boolean existeCitaReservada(String idCitaReservada) 
+	{
+		return true;
+	}
+
+	public void cambiarACumplidaCitaReservada(String idCitaReservada, String numCcRecpecionista) {
+		
+	}
+
+	public void cambiarACancelarCitaReservada(String idCitaReservada, String numCcRecpecionista) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }
