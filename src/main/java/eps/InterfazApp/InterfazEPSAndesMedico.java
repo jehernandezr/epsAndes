@@ -13,6 +13,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import org.apache.log4j.BasicConfigurator;
@@ -207,6 +209,37 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 	{
 		new PanelRegistrarReceta(this);
 	}
+	/**
+	 * Dar de alta a un afiliado
+	 */
+	public void darDeAlta()
+	{
+
+	}
+
+	/**
+	 * Cambiar el triage
+	 */
+	public void cambiarTriage()
+	{
+		JTextField numDoc = new JTextField(15);
+		JTextField triage = new JTextField(15);
+
+		JPanel myPanel = new JPanel();
+		myPanel.add(new JLabel("Número de documento del afiliado:"));
+		myPanel.add(numDoc);
+		myPanel.add(new JLabel("Triage nuevo:"));
+		myPanel.add(triage);
+
+		int result = JOptionPane.showConfirmDialog(null, myPanel, "Cambiar triage", JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION)
+			if(!epsAndes.consultaUrgenciasDadoAlta())
+				epsAndes.cambiarTriage(triage, numDoc);
+			else
+				panelDatos.actualizarInterfaz("La consulta en urgencias no se encuentra habiliatada: Afiliado dado de alta");
+
+
+	}
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -252,13 +285,12 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 			e.printStackTrace( );
 		}
 	}
-	
+
 	public void registrarOrdenDatos(String fecha1, String numCcAfiliado, String tipoDeServicio) {
 
 	}
 	//Verificar que existe una consulta con el id
 	public void registrarRecetaDatos(String fecha1, String text, String string) {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

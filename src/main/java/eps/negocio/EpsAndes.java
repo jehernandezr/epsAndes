@@ -184,6 +184,16 @@ public class EpsAndes {
 		return true;
 	}
 
+	public boolean consultaUrgenciasDadoAlta() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void cambiarTriage(String triage, String numDoc) 
+	{
+		
+	}
+
 	
 	
 }
