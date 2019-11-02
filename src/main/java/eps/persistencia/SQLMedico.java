@@ -1,5 +1,6 @@
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -45,21 +46,21 @@ public class SQLMedico
 	 * Crea y ejecuta la sentencia SQL para eliminar UN MEDICO, por su identificador
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarMedicoPorId (PersistenceManager pm, long id)
+	public long eliminarMedicoPorId (PersistenceManager pm, String numCc)
 	{
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMedico() + " WHERE Num_Cc = ?");
-		q.setParameters(id);
+		q.setParameters(numCc);
 		return (long) q.executeUnique();            
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN MEDICO, por su identificador
 	 * @return El objeto MEDICO que tiene el identificador dado
 	 */
-	public Medico darMedicoPorId(PersistenceManager pm, String id) 
+	public Medico darMedicoPorId(PersistenceManager pm, String numCc) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMedico() + " WHERE Num_Cc = ?");
+		q.setParameters(numCc);
 		q.setResultClass(Medico.class);
-		q.setParameters(id);
 		return (Medico) q.executeUnique();
 	}
 	/**
@@ -69,18 +70,18 @@ public class SQLMedico
 	public List<Medico> darMedicoPorNombre (PersistenceManager pm, String nombre) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaMedico() + " WHERE nombre = ?");
-		q.setResultClass(Medico.class);
 		q.setParameters(nombre);
+		q.setResultClass(Medico.class);
 		return (List<Medico>) q.executeList();
 	}
 	/**
 	 * Crea y ejecuta la sentencia SQL para adicionar un MEDICO a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionaMedico(PersistenceManager pm, String nombre, String correo, String numCc, String numRegistro, Especializacion esp) 
+	public long adicionaMedico(PersistenceManager pm, String numCc,String nombre, String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado, String correo, BigDecimal Id_Adscritos ) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedico() + "(Num_Cc, Nombre, Correo_Electronico, Num_Registro, Especialidad) values (?, ?, ?, ?, ?, ?, ?)");
-		q.setParameters(numCc, nombre, correo, numRegistro, esp);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMedico() + "(Num_Cc, Nombre, Num_Registro, Especialidad, Id_Servicio_Asociado, Correo_Electronico, Id_Adscritos) values (?, ?, ?, ?, ?, ?, ?)");
+		q.setParameters(numCc, nombre,numRegistro, esp.toString().toLowerCase(),Id_Servicio_Asociado, correo,Id_Adscritos ); 
 		return (long) q.executeUnique();	
 	}
 	/**

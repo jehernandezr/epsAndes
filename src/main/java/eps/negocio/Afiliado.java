@@ -36,6 +36,7 @@ public class Afiliado {
 		this.nombre = "";
 		this.num_Documento ="";
 		this.tipo_De_Documento = null;
+		this.correo_electronico="";
 
 
 	}
@@ -50,11 +51,12 @@ public class Afiliado {
 	 * @param citasReservadas
 	 * @param ordenes
 	 */
-	public Afiliado(String fechaDeNacimiento, String nombre, String numeroDeDocumento, String tipoDocumento) {
+	public Afiliado( String nombre, String correo, String tipoDocumento,String numeroDeDocumento, String fechaDeNacimiento) {
 		this.fecha_Nacimiento = fechaDeNacimiento;
 		this.nombre = nombre;
 		this.num_Documento = numeroDeDocumento;
 		this.tipo_De_Documento = tipoDocumento;
+		this.correo_electronico=correo;
 
 	}
 

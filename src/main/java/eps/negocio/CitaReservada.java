@@ -1,40 +1,41 @@
 package eps.negocio;
 
-import java.sql.Date;
+import java.math.BigDecimal;
+
 
 public class CitaReservada {
 
-	private long id;
+	private BigDecimal id;
 	/**
 	 * Atributo que representa el estado de la cita
 	 */
-	private  EstadoCita estado; 
+	private  String estado; 
 	/**
 	 * Atributo que representa la fecha de la cita
 	 */
-	private Date fechaConsulta; 
+	private String fecha_Consulta; 
 	/**
 	 * Atributo que representa el afiliado asociado a la cita
 	 */
-	private long afiliado;
+	private BigDecimal id_Afiliado;
 	/**
 	 * Atributo que representa el servicio de salud asociado a la cita
 	 */
-	private long servicioAsociado;
+	private BigDecimal servicio_Asociado;
 
-	private long recepcionista;
+	private BigDecimal id_Recepcionista;
 	
 	
 	/**
 	 * constructor por defecto
 	 */
 	public CitaReservada() {
-		this.id =0;
+		this.id =null;
 		this.estado = null;
-		this.fechaConsulta = new Date(1232123);
-		this.afiliado =0;
-		this.servicioAsociado = 0;
-		this.recepcionista=0;
+		this.fecha_Consulta = "";
+		this.id_Afiliado =null;
+		this.servicio_Asociado = null;
+		this.id_Recepcionista=null;
 	}
 	
 	/**
@@ -45,18 +46,19 @@ public class CitaReservada {
 	 * @param afiliado
 	 * @param servicioAsociado
 	 */
-	public CitaReservada(EstadoCita estado, long recepcionista, Date fechaConsulta, long afiliado, long servicioAsociado, long id) {
+	public CitaReservada(BigDecimal id,EstadoCita estado,BigDecimal afiliado,String fechaConsulta,  BigDecimal recepcionista,  BigDecimal servicioAsociado ) {
 		this.id=id;
-		this.estado = estado;
-		this.fechaConsulta = fechaConsulta;
-		this.afiliado = afiliado;
-		this.servicioAsociado = servicioAsociado;
+		setEstado(estado);
+		this.fecha_Consulta = fechaConsulta;
+		this.id_Afiliado = afiliado;
+		this.servicio_Asociado = servicioAsociado;
+		this.id_Recepcionista=recepcionista;
 	}
 
 	/**
 	 * @return the estado
 	 */
-	public EstadoCita getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
@@ -64,77 +66,84 @@ public class CitaReservada {
 	 * @param estado the estado to set
 	 */
 	public void setEstado(EstadoCita estado) {
+		this.estado = estado.toString().toLowerCase();
+	}
+
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
 	/**
 	 * @return the fechaConsulta
 	 */
-	public Date getFechaConsulta() {
-		return fechaConsulta;
+	public String getFecha_Consulta() {
+		return fecha_Consulta;
 	}
 
 	/**
 	 * @param fechaConsulta the fechaConsulta to set
 	 */
-	public void setFechaConsulta(Date fechaConsulta) {
-		this.fechaConsulta = fechaConsulta;
+	public void setFecha_Consulta(String fechaConsulta) {
+		this.fecha_Consulta = fechaConsulta;
 	}
 
 	/**
 	 * @return the afiliado
 	 */
-	public long getAfiliado() {
-		return afiliado;
+	public BigDecimal getId_Afiliado() {
+		return id_Afiliado;
 	}
 
 	/**
 	 * @param afiliado the afiliado to set
 	 */
-	public void setAfiliado(long afiliado) {
-		this.afiliado = afiliado;
+	public void setId_Afiliado(BigDecimal afiliado) {
+		this.id_Afiliado = afiliado;
 	}
 
 	/**
 	 * @return the servicioAsociado
 	 */
-	public long getServicioAsociado() {
-		return servicioAsociado;
+	public BigDecimal getServicio_Asociado() {
+		return servicio_Asociado;
 	}
 
 	/**
 	 * @param servicioAsociado the servicioAsociado to set
 	 */
-	public void setServicioAsociado(long servicioAsociado) {
-		this.servicioAsociado = servicioAsociado;
+	public void setServicio_Asociado(BigDecimal servicioAsociado) {
+		this.servicio_Asociado = servicioAsociado;
 	}
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public BigDecimal getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(BigDecimal id) {
 		this.id = id;
 	}
 
 	/**
 	 * @return the recepcionista
 	 */
-	public long getRecepcionista() {
-		return recepcionista;
+	public BigDecimal getId_Recepcionista() {
+		return id_Recepcionista;
 	}
 
 	/**
 	 * @param recepcionista the recepcionista to set
 	 */
-	public void setRecepcionista(long recepcionista) {
-		this.recepcionista = recepcionista;
+	public void setId_Recepcionista(BigDecimal recepcionista) {
+		this.id_Recepcionista = recepcionista;
 	}
 	
 	

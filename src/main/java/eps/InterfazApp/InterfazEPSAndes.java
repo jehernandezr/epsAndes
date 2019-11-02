@@ -228,7 +228,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 	{
 		try 
 		{
-			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
+			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula ", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
 				
@@ -251,6 +251,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		} 
 		catch (Exception e) 
 		{
+			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -388,33 +389,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		}
 	}
 	
-	/**
-	 * Registro de un administradror
-	 */
-	public void registroDeDatosAfiliado(String nombre, String correo,String tipoDoc ,String numCc)
-	{
-		try {
-			if (numCc != null && nombre != null && correo != null)
-			{
 
-				boolean existe = epsAndes.existeAdmin(numCc);
-				if(!existe)
-				{
-					epsAndes.crearAdministrador(nombre, correo, numCc);
-					InterfazEPSAndesAdministrador interfaz = new InterfazEPSAndesAdministrador();
-					interfaz.registrarNumCcIngresado(numCc);
-					interfaz.setVisible( true );
-				}
-				else
-					panelDatos.actualizarInterfaz("El administrador no existe");
-			}
-			else
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-		} catch (Exception e) {
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
 	/**
 	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
 	 * @param e - La excepción recibida

@@ -1,6 +1,7 @@
 
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
 import eps.negocio.Especializacion;
+import eps.negocio.Ips;
 import eps.negocio.TipoDeDocumento;
 
 /**
@@ -176,7 +178,7 @@ public class EpsAndesPersistencia
 		tablas.add ("AFILIADOS");
 		tablas.add("GERENTES");
 		tablas.add("ADMINISTRADORES");
-		tablas.add("RECEPCIONISTAS");
+		tablas.add("RECEPCIONISTAS"); 
 		tablas.add("MEDICOS");
 		tablas.add("IPS");
 		tablas.add("PROCEDIMIENTOS_ESPECIALIZADOS");
@@ -266,7 +268,7 @@ public class EpsAndesPersistencia
 		return tablas.get(3);
 	}
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de RECEPCIONISTA
+	 * @return La cadena de caracteres con el nombre de la tabla de RECEPCIONISTA 
 	 */
 	public String darTablaRecepcionista()
 	{
@@ -466,7 +468,7 @@ public class EpsAndesPersistencia
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			//log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		}
 		finally
@@ -487,7 +489,7 @@ public class EpsAndesPersistencia
 	 */
 	public Administrador darAdministradorPorId(String numCc)
 	{
-		
+
 		return (Administrador) sqlAdministrador.darAdministradorPorId(pmf.getPersistenceManager(), numCc);
 
 	}
@@ -497,19 +499,45 @@ public class EpsAndesPersistencia
 		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarAfiliado(String nombre, String correo, TipoDeDocumento esp, String numCc, String fecha)
+	public Afiliado adicionarAfiliado(String nombre, String correo, TipoDeDocumento tipoDoc, String numCc, String fecha)
 	{
-		return sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, esp, numCc, fecha);
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, tipoDoc, numCc, fecha);
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Afiliado(nombre, correo, (tipoDoc.toString().toLowerCase()), numCc, fecha);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		
 	}
-	
+
 	public Medico darMedicoPorId(String numCc)
 	{
 		return (Medico) sqlMedico.darMedicoPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp) 
+	public long adicionarMedico( String numCc,String nombre,  String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado,String correo, BigDecimal Id_Adscritos) 
 	{
-		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), nombre, correo, numCc, numRegistro, esp);		
+		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);		
 	}
 
 	public Recepcionista darRecepcionistaPorId(String numCc) 
@@ -517,8 +545,39 @@ public class EpsAndesPersistencia
 		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarRecepcionista(String nombre, String numcc, String correo, String ips) 
+	public long adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{
 		return sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
+	}
+
+	public Ips adicionarIps(String nombre, String localizacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long id = nextval();
+			long tuplasInsertadas = SQLIps.adicionarIps(pmf.getPersistenceManager(),id,nombre, localizacion,  null) ;
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Ips(BigDecimal.valueOf(id), localizacion, nombre, null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	 
 	}
 }

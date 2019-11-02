@@ -1,5 +1,6 @@
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -20,7 +21,7 @@ public class SQLIps
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private EpsAndesPersistencia pp;
+	private static EpsAndesPersistencia pp;
 	/**
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
@@ -28,16 +29,6 @@ public class SQLIps
 	public SQLIps(EpsAndesPersistencia pp)
 	{
 		this.pp = pp;
-	}
-	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar una IPS a la base de datos
-	 * @return EL número de tuplas insertadas
-	 */
-	public long adicionarMedico(PersistenceManager pm, String Id, String pNombre, String pLocalizacion) 
-	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaIPS() + "(Id, Nombre, Localizacion) values (?, ?, ?)");
-		q.setParameters(Id, pNombre, pLocalizacion);
-		return (long) q.executeUnique();
 	}
 
 	/**
@@ -89,22 +80,24 @@ public class SQLIps
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos IPS
 	 */
-	public List<Ips> darMedicos (PersistenceManager pm)
+	public List<Ips> darIps (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaIPS());
 		q.setResultClass(Ips.class);
 		return (List<Ips>) q.executeList();
 	}
+
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LAS IPS, por su locacion
-	 * @return Una lista de objetos MEDICOS que tienen el nombre dado
+	 * Crea y ejecuta la sentencia SQL para adicionar una IPS a la base de datos
+	 * @return EL número de tuplas insertadas
 	 */
-	public List<Ips> darMedicoPorNombre (PersistenceManager pm, String pLocacion) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaIPS() + " WHERE Localizacion = ?");
+	public static long adicionarIps(PersistenceManager pm, long id, String nombre, String localizacion,
+			BigDecimal Id_Adscritos) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaIPS() + "('id','nombre','localizacion','Id_Adscritos') values (?,?,?,?)");
+		q.setParameters(id,nombre,localizacion,Id_Adscritos);
 		q.setResultClass(Ips.class);
-		q.setParameters(pLocacion);
-		return (List<Ips>) q.executeList();
+
+		return (long) q.executeUnique();
 	}
 
 }

@@ -1,2 +1,18 @@
+/META-INF/
+/config/
 /eps/
+<<<<<<< HEAD
+=======
+/hbase-site.xml
+/log4j.properties
+/package-cassandra.orm
+/package-excel.orm
+/package-h2.orm
+/package-hbase.orm
+/package-hsql.orm
+/package-mongodb.orm
+/package-mysql.orm
+/package-neo4j.orm
+/package-odf.orm
+>>>>>>> 31a5ebf6df705ab99cdec787ab3a77238c41caff
 /uniandes/
