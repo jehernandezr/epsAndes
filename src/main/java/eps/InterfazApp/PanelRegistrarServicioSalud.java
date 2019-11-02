@@ -1,6 +1,10 @@
 package eps.InterfazApp;
 
 
+import java.awt.GridLayout;
+
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -14,29 +18,67 @@ public class PanelRegistrarServicioSalud
 	public PanelRegistrarServicioSalud(InterfazEPSAndesAdministrador interfaz, String opcionSeleccionada)
 	{
 		JPanel myPanel = new JPanel();
-		JTextField nombreIps = new JTextField();
-		JTextField HorarioAtencion = new JTextField();
-		JTextField HorarioAtencio = new JTextField();
+		GridLayout layout;
+		JTextField idIPS;
 		switch(opcionSeleccionada)
 		{
 		case "Consulta médica":
-			
-			
+			layout = new GridLayout(2,2);
+			myPanel.setLayout(layout);
+			idIPS = new JTextField(15);
+			myPanel.add(new JLabel("NIT de la IPS:"));
+			myPanel.add(idIPS);
+			myPanel.add(new JLabel("Tipo de consulta:"));
+			String[] tipoCita = {"CONTROL", "GENERAL", "ESPECIALISTA" };
+			JComboBox consulta = new JComboBox<String>(tipoCita);
+			myPanel.add(consulta);
 			break;
 		case "Consulta de urgencia":
-			
+			layout = new GridLayout(1,2);
+			myPanel.setLayout(layout);
+			idIPS = new JTextField(15);
+			myPanel.add(new JLabel("NIT de la IPS:"));
+			myPanel.add(idIPS);
 			break;
 		case "Hospitalización":
-			
+			layout = new GridLayout(1,2);
+			myPanel.setLayout(layout);
+			idIPS = new JTextField(15);
+			myPanel.add(new JLabel("NIT de la IPS:"));
+			myPanel.add(idIPS);
 			break;
-		case "Exámenes":
-			
+		case "Examenes":
+			layout = new GridLayout(2,2);
+			myPanel.setLayout(layout);
+			idIPS = new JTextField(15);
+			myPanel.add(new JLabel("NIT de la IPS:"));
+			myPanel.add(idIPS);
+			myPanel.add(new JLabel("Tipo de examen:"));
+			String[] tipoExamen = {"Presión alta", "Coresterol", "Oculares", "Sangre - General", "ETS", "Diabetes" };
+			JComboBox tExamen = new JComboBox<String>(tipoExamen);
+			myPanel.add(tExamen);
 			break;
 		case "Terapias":
-			
+			layout = new GridLayout(2,2);
+			myPanel.setLayout(layout);
+			idIPS = new JTextField(15);
+			myPanel.add(new JLabel("NIT de la IPS:"));
+			myPanel.add(idIPS);
+			myPanel.add(new JLabel("Tipo de terapias:"));
+			String[] tipoTerapias = {"Ultrasonidos", "Electroterapia", "Magnetoterapia", "Hidroterapia", "Masoterapia", "Sueroterapia", "Termoterapia" };
+			JComboBox tTerapias = new JComboBox<String>(tipoTerapias);
+			myPanel.add(tTerapias);
 			break;
 		case "Procedimiento especializado":
-			
+			layout = new GridLayout(2,2);
+			myPanel.setLayout(layout);
+			idIPS = new JTextField(15);
+			myPanel.add(new JLabel("NIT de la IPS:"));
+			myPanel.add(idIPS);
+			myPanel.add(new JLabel("Tipo de procedimiento:"));
+			String[] tipoProcedimiento = {"Intervenciones", "Cirugia", "Cirugia Ambulatoria", "Dialisis" };
+			JComboBox tProcedimiento = new JComboBox<String>(tipoProcedimiento);
+			myPanel.add(tProcedimiento);
 			break;
 		}
 		int result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);

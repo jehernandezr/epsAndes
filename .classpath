@@ -15,7 +15,6 @@
 	<classpathentry kind="lib" path="lib/gson-2.8.5.jar"/>
 	<classpathentry kind="lib" path="lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/jfoenix-9.0.8.jar"/>
-	<classpathentry kind="lib" path="lib/JavaFXCalendar-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="output" path="target/classes"/>
