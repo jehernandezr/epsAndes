@@ -66,7 +66,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
     /**
      * Número de cédula
      */
-    private Long numCc;
+    private String numCc;
     /**
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
@@ -95,7 +95,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
      * Registrar el número de cédula del administrador
      * @param numCc
      */
-    public void registrarNumCcIngresado(long numCc)
+    public void registrarNumCcIngresado(String numCc)
     {
     	this.numCc = numCc;
     }

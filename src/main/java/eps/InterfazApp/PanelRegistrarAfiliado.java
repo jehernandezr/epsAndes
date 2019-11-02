@@ -23,7 +23,7 @@ public class PanelRegistrarAfiliado
 		JTextField nombre = new JTextField(15);
 		JTextField correo = new JTextField(15);
 		JTextField numDocumento = new JTextField(15);
-		JTextField fechaNacimiento = new JTextField(15);
+		
 
 		String[] tipoDeDocumento = {"CEDULAEXTRANJERIA", "CEDULACIUDADANIA", "REGISTROCIVIL", "TARJETAIDENTIDAD"};
 		JComboBox tipoDoc = new JComboBox<String>(tipoDeDocumento);
@@ -55,7 +55,7 @@ public class PanelRegistrarAfiliado
 		{
 			String fecha1="";
 			fecha1 = sdf.format(jd.getDate()).toString();	
-			interfaz.registrarAfiliadoDatos(nombre.getText(), correo.getText(), numDocumento.getText(), fechaNacimiento.getText(), esp);
+			interfaz.registrarAfiliadoDatos(nombre.getText(), correo.getText(), esp,numDocumento.getText(), fecha1);
 		}
 	}
 }

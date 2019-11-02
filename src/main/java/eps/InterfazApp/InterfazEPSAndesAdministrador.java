@@ -219,6 +219,8 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
     {
     	new PanelRegistrarAfiliado(this);
     }
+    
+    
     public void registrarRecepcionista()
     {
     	new PanelRegistrarRecepcionista(this);
@@ -281,7 +283,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		try {
 			if (numCc != null && nombre != null && correo != null && numRegistro != null && esp != null)
 			{
-				boolean existe = epsAndes.existeAdmin(numCc);
+				boolean existe = epsAndes.existeMedico(numCc);
 				if(!existe)
 				{
 					epsAndes.crearMedico(nombre, correo, numCc, numRegistro, esp);
@@ -327,9 +329,32 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 	{
 		
 	}
-	public void registrarAfiliadoDatos(String nombre, String correo, String numDoc, String fechaNac, TipoDeDocumento esp)
+	public void registrarAfiliadoDatos(String nombre, String correo, TipoDeDocumento tipoDoc,String numDoc, String fechaNac)
 	{		
-		
+		try {
+			if (numDoc != null && nombre != null && correo != null &&  numDoc != null && tipoDoc != null)
+			{
+				boolean existe = epsAndes.existeAfiliado(numDoc);
+				System.out.println("-----------------------------------------------------------");
+				if(!existe)
+				{
+					epsAndes.crearAfiliado(nombre, correo,tipoDoc ,numDoc,fechaNac);
+					InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado();
+					interfaz.registrarNumCcIngresado(numCc);
+					interfaz.setVisible( true );
+				}
+				else
+					panelDatos.actualizarInterfaz("El médico no existe");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 	public void registrarRecepcionistaDatos(String nombre, String numcc, String correo)
 	{

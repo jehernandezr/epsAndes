@@ -1,6 +1,5 @@
 package eps.negocio;
 
-import java.sql.Date;
 import java.util.List;
 
 public class Afiliado {
@@ -9,7 +8,7 @@ public class Afiliado {
 	/**
 	 * Atributo que representa la fecha de nacimiento de un afiliado
 	 */
-	private Date fechaDeNacimiento;
+	private String fecha_Nacimiento;
 	/**
 	 * Atrubuto que representa el nombre de un afiliado
 	 */
@@ -17,12 +16,12 @@ public class Afiliado {
 	/**
 	 * Atributo que representa el numero de cedula de un afiliado
 	 */
-	private String numeroDeDocumento;
+	private String numero_Documento;
 
 	/**
 	 * Atributo que representa el tipo de documento de un afiliado
 	 */
-	private TipoDeDocumento tipoDocumento;
+	private TipoDeDocumento tipo_De_Documento;
 
 	/**
 	 * Atributo que representa la lista de citas reservadas de un afiliado
@@ -33,17 +32,16 @@ public class Afiliado {
 	 * Atributo que representa la lista de ordenes de servicios de un afiliado
 	 */
 	private List<Long> ordenes;
-
 	
 	/**
 	 * constructor por defecto
 	 */
 	@SuppressWarnings("deprecation")
 	public Afiliado() {
-		this.fechaDeNacimiento = new Date(0, 0, 0);
+		this.fecha_Nacimiento = "";
 		this.nombre = "";
-		this.numeroDeDocumento ="";
-		this.tipoDocumento = null;
+		this.numero_Documento ="";
+		this.tipo_De_Documento = null;
 		this.citasRecervadas = (List<Long>) new java.awt.List();
 		this.ordenes = (List<Long>) new java.awt.List();
 	}
@@ -58,11 +56,11 @@ public class Afiliado {
 	 * @param citasRecervadas
 	 * @param ordenes
 	 */
-	public Afiliado(Date fechaDeNacimiento, String nombre, String numeroDeDocumento, TipoDeDocumento tipoDocumento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
+	public Afiliado(String fechaDeNacimiento, String nombre, String numeroDeDocumento, TipoDeDocumento tipoDocumento) {
+		this.fecha_Nacimiento = fechaDeNacimiento;
 		this.nombre = nombre;
-		this.numeroDeDocumento = numeroDeDocumento;
-		this.tipoDocumento = tipoDocumento;
+		this.numero_Documento = numeroDeDocumento;
+		this.tipo_De_Documento = tipoDocumento;
 		this.citasRecervadas = (List<Long>) new java.awt.List();
 		this.ordenes = (List<Long>) new java.awt.List();
 	}
@@ -70,15 +68,15 @@ public class Afiliado {
 	/**
 	 * @return the fechaDeNacimiento
 	 */
-	public Date getFechaDeNacimiento() {
-		return fechaDeNacimiento;
+	public String getFechaDeNacimiento() {
+		return fecha_Nacimiento;
 	}
 
 	/**
 	 * @param fechaDeNacimiento the fechaDeNacimiento to set
 	 */
-	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
+	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+		this.fecha_Nacimiento = fechaDeNacimiento;
 	}
 
 	/**
@@ -99,28 +97,28 @@ public class Afiliado {
 	 * @return the numeroDeDocumento
 	 */
 	public String getNumeroDeDocumento() {
-		return numeroDeDocumento;
+		return numero_Documento;
 	}
 
 	/**
 	 * @param numeroDeDocumento the numeroDeDocumento to set
 	 */
 	public void setNumeroDeDocumento(String numeroDeDocumento) {
-		this.numeroDeDocumento = numeroDeDocumento;
+		this.numero_Documento = numeroDeDocumento;
 	}
 
 	/**
 	 * @return the tipoDocumento
 	 */
 	public TipoDeDocumento getTipoDocumento() {
-		return tipoDocumento;
+		return tipo_De_Documento;
 	}
 
 	/**
 	 * @param tipoDocumento the tipoDocumento to set
 	 */
 	public void setTipoDocumento(TipoDeDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
+		this.tipo_De_Documento = tipoDocumento;
 	}
 
 	/**

@@ -66,7 +66,6 @@ public class SQLAdministrador
 	 */
 	public Administrador darAdministradorPorId (PersistenceManager pm,String numCc) 
 	{
-		System.out.println("OE BN?");
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAdministrador() + " WHERE Num_Cc=?");
 		q.setParameters(numCc);
 		q.setResultClass(Administrador.class);
