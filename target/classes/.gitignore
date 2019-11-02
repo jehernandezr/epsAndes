@@ -1,5 +1,6 @@
 /META-INF/
 /config/
+/eps/
 /hbase-site.xml
 /log4j.properties
 /package-cassandra.orm
@@ -11,5 +12,4 @@
 /package-mysql.orm
 /package-neo4j.orm
 /package-odf.orm
-/eps/
 /uniandes/

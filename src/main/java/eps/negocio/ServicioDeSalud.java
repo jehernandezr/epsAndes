@@ -1,32 +1,24 @@
 package eps.negocio;
 
-import java.sql.Date;
+import java.math.BigDecimal;
+
 
 public class ServicioDeSalud {
 
-	private long id;
+	private BigDecimal id;
 
-	private long horarioAtencion;
+	private String fecha_Realizacion;
 
-	private String direccion;
-
-	private Date fechaDeRealizacion;
-
-	private long medicoAsignado;
-
-	private long ipsAsociada;
+	private BigDecimal id_Ips;
 
 	/**
 	 * Constructor por defecto
 	 * 
 	 */
 	public ServicioDeSalud() {
-		this.id = 0;
-		this.horarioAtencion = 0;
-		this.direccion = "";
-		this.fechaDeRealizacion = new Date(214524);
-		this.medicoAsignado = 0;
-		this.ipsAsociada = 0;
+		this.id = null;
+		this.fecha_Realizacion ="";
+		this.id_Ips = null;
 	}
 	
 	/**
@@ -39,97 +31,56 @@ public class ServicioDeSalud {
 	 * @param medicoAsignado
 	 * @param ipsAsociada
 	 */
-	public ServicioDeSalud(long id, long horarioAtencion, String direccion, Date fechaDeRealizacion,
-			long medicoAsignado, long ipsAsociada) {
+	public ServicioDeSalud(BigDecimal id,  String fechaDeRealizacion,
+			long medicoAsignado, BigDecimal ipsAsociada) {
 		this.id = id;
-		this.horarioAtencion = horarioAtencion;
-		this.direccion = direccion;
-		this.fechaDeRealizacion = fechaDeRealizacion;
-		this.medicoAsignado = medicoAsignado;
-		this.ipsAsociada = ipsAsociada;
+		
+		this.fecha_Realizacion = fechaDeRealizacion;
+		this.id_Ips = ipsAsociada;
 	}
 
-	/**
-	 * @return the horarioAtencion
-	 */
-	public long getHorarioAtencion() {
-		return horarioAtencion;
-	}
 
-	/**
-	 * @param horarioAtencion the horarioAtencion to set
-	 */
-	public void setHorarioAtencion(long horarioAtencion) {
-		this.horarioAtencion = horarioAtencion;
-	}
-
-	/**
-	 * @return the direccion
-	 */
-	public String getDireccion() {
-		return direccion;
-	}
-
-	/**
-	 * @param direccion the direccion to set
-	 */
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
 
 	/**
 	 * @return the fechaDeRealizacion
 	 */
-	public Date getFechaDeRealizacion() {
-		return fechaDeRealizacion;
+	public String getFecha_Realizacion() {
+		return fecha_Realizacion;
 	}
 
 	/**
 	 * @param fechaDeRealizacion the fechaDeRealizacion to set
 	 */
-	public void setFechaDeRealizacion(Date fechaDeRealizacion) {
-		this.fechaDeRealizacion = fechaDeRealizacion;
+	public void setFecha_Realizacion(String fechaDeRealizacion) {
+		this.fecha_Realizacion = fechaDeRealizacion;
 	}
 
-	/**
-	 * @return the medicoAsignado
-	 */
-	public long getMedicoAsignado() {
-		return medicoAsignado;
-	}
-
-	/**
-	 * @param medicoAsignado the medicoAsignado to set
-	 */
-	public void setMedicoAsignado(long medicoAsignado) {
-		this.medicoAsignado = medicoAsignado;
-	}
 
 	/**
 	 * @return the ipsAsociada
 	 */
-	public long getIpsAsociada() {
-		return ipsAsociada;
+	public BigDecimal getIpsAsociada() {
+		return id_Ips;
 	}
 
 	/**
 	 * @param ipsAsociada the ipsAsociada to set
 	 */
-	public void setIpsAsociada(long ipsAsociada) {
-		this.ipsAsociada = ipsAsociada;
+	public void setIpsAsociada(BigDecimal ipsAsociada) {
+		this.id_Ips = ipsAsociada;
 	}
 
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public BigDecimal getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(BigDecimal id) {
 		this.id = id;
 	}
 
