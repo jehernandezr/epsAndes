@@ -21,6 +21,7 @@ import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
 import eps.negocio.Especializacion;
+import eps.negocio.Ips;
 import eps.negocio.TipoDeDocumento;
 
 /**
@@ -498,9 +499,35 @@ public class EpsAndesPersistencia
 		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
 	}
 
-	public long adicionarAfiliado(String nombre, String correo, TipoDeDocumento esp, String numCc, String fecha)
+	public Afiliado adicionarAfiliado(String nombre, String correo, TipoDeDocumento tipoDoc, String numCc, String fecha)
 	{
-		return sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, esp, numCc, fecha);
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, tipoDoc, numCc, fecha);
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Afiliado(nombre, correo, (tipoDoc.toString().toLowerCase()), numCc, fecha);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		
 	}
 
 	public Medico darMedicoPorId(String numCc)
@@ -521,5 +548,36 @@ public class EpsAndesPersistencia
 	public long adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{
 		return sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
+	}
+
+	public Ips adicionarIps(String nombre, String localizacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long id = nextval();
+			long tuplasInsertadas = SQLIps.adicionarIps(pmf.getPersistenceManager(),id,nombre, localizacion,  null) ;
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Ips(BigDecimal.valueOf(id), localizacion, nombre, null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	 
 	}
 }

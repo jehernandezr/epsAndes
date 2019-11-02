@@ -332,7 +332,27 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 
 	public void registrarIPSDatos(String nombre, String localizacion) 
 	{
-
+		try {
+			if ( nombre != null && localizacion != null)
+			{
+				boolean existe = epsAndes.existeAfiliado(nombre);
+				if(!existe)
+				{
+					epsAndes.crearIps(nombre, localizacion);
+					panelDatos.actualizarInterfaz("Se agregó la Ips : "+ nombre +".  Correctamente");
+				}
+				else
+					panelDatos.actualizarInterfaz("Ya se encuentra una ips registrada con ese nombre.");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 	public void registrarAfiliadoDatos(String nombre, String correo, TipoDeDocumento tipoDoc,String numDoc, String fechaNac)
 	{		
