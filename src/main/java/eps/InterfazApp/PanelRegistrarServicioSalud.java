@@ -37,7 +37,8 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				interfaz.registrarServicioConsulta(idIPS.getText(), consulta.getSelectedItem().toString());
+				PanelRegistrarHorarioServicio horario = new PanelRegistrarHorarioServicio(interfaz);
+				interfaz.registrarServicioConsulta(idIPS.getText(), consulta.getSelectedItem().toString(), horario.respSemana, horario.horaInicial, horario.horaFinal, horario.numAfiliado);
 			}
 			break;
 		case "Consulta de urgencia":
@@ -50,7 +51,9 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				interfaz.registrarServicioConsultaUrgencia(idIPS.getText());
+				PanelRegistrarHorarioServicio horario = new PanelRegistrarHorarioServicio(interfaz);
+				interfaz.registrarServicioConsultaUrgencia(idIPS.getText(), horario.respSemana, horario.horaInicial, horario.horaFinal, horario.numAfiliado);
+				new PanelRegistrarHorarioServicio(interfaz);
 			}
 			break;
 		case "Hospitalización":
@@ -63,7 +66,9 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				interfaz.registrarServicioHospitalizacion(idIPS.getText());
+				PanelRegistrarHorarioServicio horario = new PanelRegistrarHorarioServicio(interfaz);
+				interfaz.registrarServicioHospitalizacion(idIPS.getText(), horario.respSemana, horario.horaInicial, horario.horaFinal, horario.numAfiliado);
+				new PanelRegistrarHorarioServicio(interfaz);
 			}
 			break;
 		case "Examenes":
@@ -80,7 +85,9 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				interfaz.registrarServicioExamen(idIPS.getText(), tExamen.getSelectedItem().toString());
+				PanelRegistrarHorarioServicio horario = new PanelRegistrarHorarioServicio(interfaz);
+				interfaz.registrarServicioExamen(idIPS.getText(), tExamen.getSelectedItem().toString(), horario.respSemana, horario.horaInicial, horario.horaFinal, horario.numAfiliado);
+				new PanelRegistrarHorarioServicio(interfaz);
 			}
 			break;
 		case "Terapias":
@@ -97,7 +104,9 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				interfaz.registrarServicioTerapia(idIPS.getText(), tTerapias.getSelectedItem().toString());
+				PanelRegistrarHorarioServicio horario = new PanelRegistrarHorarioServicio(interfaz);
+				interfaz.registrarServicioTerapia(idIPS.getText(), tTerapias.getSelectedItem().toString(), horario.respSemana, horario.horaInicial, horario.horaFinal, horario.numAfiliado);
+				new PanelRegistrarHorarioServicio(interfaz);
 			}
 			break;
 		case "Procedimiento especializado":
@@ -114,7 +123,9 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				interfaz.registrarServicioProcedimiento(idIPS.getText(), tProcedimiento.getSelectedItem().toString());
+				PanelRegistrarHorarioServicio horario = new PanelRegistrarHorarioServicio(interfaz);
+				interfaz.registrarServicioProcedimiento(idIPS.getText(), tProcedimiento.getSelectedItem().toString(), horario.respSemana, horario.horaInicial, horario.horaFinal, horario.numAfiliado);
+				new PanelRegistrarHorarioServicio(interfaz);
 			}
 			break;
 		}
