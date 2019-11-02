@@ -114,7 +114,7 @@ public class EpsAndes {
 	}
 
 	public boolean existeIps(String nombre) {
-		return Ep.darIpsPorNombre(nombre) !=null? true:false;
+		return Ep.darIpsPorId(nombre) !=null? true:false;
 	}
 
 	public Administrador crearAdministrador(String nombre,  String pCorreo,String numCc)
@@ -137,14 +137,14 @@ public class EpsAndes {
 		return Ep.adicionarRecepcionista(nombre, numcc, correo, ips);
 	}
 
-	public Ips crearIps(String nombre, String localizacion) {
+	public Ips crearIps(String nit, String nombre, String localizacion) {
 
-		return Ep.adicionarIps(nombre, localizacion);
+		return Ep.adicionarIps(nit, nombre, localizacion);
 	}
 
 	public void AgregarMedicoIps(String nombreIps,String Medico_Num_Cc)
 	{
-		BigDecimal id= Ep.darIpsPorNombre(nombreIps).getId(); 
+		BigDecimal id= Ep.darIpsPorId(nombreIps).getId(); 
 		long cedula = Long.valueOf(Medico_Num_Cc);
 		Ep.AdicionarMedicoAdscrito(id, BigDecimal.valueOf(cedula));
 	}

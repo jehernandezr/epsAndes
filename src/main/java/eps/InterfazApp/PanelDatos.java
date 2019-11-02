@@ -55,7 +55,7 @@ public class PanelDatos extends JPanel
         setLayout( new BorderLayout( ) );
         
         textArea = new JTextArea("Aquí sale el resultado de las operaciones solicitadas: \n ");
-        textArea.setEditable(true);
+        textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         add (new JScrollPane(textArea), BorderLayout.CENTER);

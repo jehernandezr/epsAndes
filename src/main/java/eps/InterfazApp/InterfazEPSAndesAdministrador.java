@@ -154,7 +154,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			ancho = guiConfig.get("frameW").getAsInt();
 		}
 
-		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setLocation (50,50);
 		setResizable( true );
 		setBackground( Color.WHITE );
@@ -331,19 +331,19 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		}
 	}
 
-	public void registrarIPSDatos(String nombre, String localizacion) 
+	public void registrarIPSDatos(String nombre, String localizacion, String nit) 
 	{
 		try {
-			if ( nombre != null && localizacion != null)
+			if ( nombre != null && localizacion != null&& nit!=null)
 			{
-				boolean existe = epsAndes.existeIps(nombre);
+				boolean existe = epsAndes.existeIps(nit);
 				if(!existe)
 				{
-					epsAndes.crearIps(nombre, localizacion);
+					epsAndes.crearIps(nit,nombre, localizacion);
 					panelDatos.actualizarInterfaz("Se agregó la Ips : "+ nombre +".  Correctamente");
 				}
 				else
-					panelDatos.actualizarInterfaz("Ya se encuentra una ips registrada con ese nombre.");
+					panelDatos.actualizarInterfaz("Ya se encuentra una ips registrada con ese id.");
 			}
 			else
 			{

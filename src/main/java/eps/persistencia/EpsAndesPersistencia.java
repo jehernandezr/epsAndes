@@ -605,14 +605,14 @@ public class EpsAndesPersistencia
 	 
 	}
 
-	public Ips adicionarIps(String nombre, String localizacion) {
+	public Ips adicionarIps(String nit, String nombre, String localizacion) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long id = nextval();
-			long tuplasInsertadas = SQLIps.adicionarIps(pmf.getPersistenceManager(),id,nombre, localizacion,  null) ;
+			long id = Long.valueOf(nit);
+			long tuplasInsertadas = SQLIps.adicionarIps(pmf.getPersistenceManager(), id, nombre, localizacion,  null) ;
 			tx.commit();
 
 			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -636,14 +636,39 @@ public class EpsAndesPersistencia
 	 
 	}
 	
-	public long AdicionarMedicoAdscrito( BigDecimal Id_Ips, BigDecimal Medico_Num_Cc)
+	public Long AdicionarMedicoAdscrito( BigDecimal Id_Ips, BigDecimal Medico_Num_Cc)
 	{
-		return sqlMedicosAdscritos.adicionarMedicoAdscrito(pmf.getPersistenceManager(), Id_Ips, Medico_Num_Cc);
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlMedicosAdscritos.adicionarMedicoAdscrito(pmf.getPersistenceManager(), Id_Ips, Medico_Num_Cc);
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: (" + Id_Ips  +" , " + Medico_Num_Cc + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return tuplasInsertadas;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 	
-	public Ips darIpsPorNombre(String nombre)
+	public Ips darIpsPorId(String nit)
 	{
-		return sqlIps.darIpsPorNombre(pmf.getPersistenceManager(), nombre);
+		return sqlIps.darIpsPorId(pmf.getPersistenceManager(), Long.valueOf(nit));
 	}
 	
 }

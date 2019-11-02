@@ -18,7 +18,8 @@ public class PanelRegistrarIPS
 	   {
 		      JTextField nombre = new JTextField(15);
 		      JTextField localizacion = new JTextField(15);
-		      GridLayout layout = new GridLayout(2,2);
+		      JTextField Nit = new JTextField(15);
+		      GridLayout layout = new GridLayout(3,2);
 
 		      JPanel myPanel = new JPanel();
 		      myPanel.setLayout(layout);
@@ -26,13 +27,15 @@ public class PanelRegistrarIPS
 		      myPanel.add(nombre);
 		      myPanel.add(new JLabel("Dirección:"));
 		      myPanel.add(localizacion);
+		      myPanel.add(new JLabel("NIT:"));
+		      myPanel.add(Nit);
 		      
 
 		      int result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un IPS"
 		      		+ "", JOptionPane.OK_CANCEL_OPTION);
 		      if (result == JOptionPane.OK_OPTION)
 		      {
-		    	  interfaz.registrarIPSDatos(nombre.getText(), localizacion.getText());
+		    	  interfaz.registrarIPSDatos(nombre.getText(), localizacion.getText(),Nit.getText());
 		      }
 		   }
 		}

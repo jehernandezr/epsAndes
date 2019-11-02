@@ -86,7 +86,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 
 		String path = guiConfig.get("bannerPath").getAsString();
 		panelDatos = new PanelDatos( );
-
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLayout (new BorderLayout());
 		add (new JLabel (new ImageIcon (path)), BorderLayout.NORTH );          
 		add( panelDatos, BorderLayout.CENTER );        
@@ -232,7 +232,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 			UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
 			InterfazEPSAndesRecepcionista interfaz = new InterfazEPSAndesRecepcionista( );
 			interfaz.setVisible( true );
-			
+
 		}
 		catch( Exception e )
 		{
