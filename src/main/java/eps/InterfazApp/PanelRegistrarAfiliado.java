@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import eps.negocio.TipoDeDocumento;
+import jdk.nashorn.internal.runtime.linker.JavaAdapterFactory;
 
 /**
  * Dialogo para agregar un nuevo afiliado al sistema.
@@ -42,7 +43,6 @@ public class PanelRegistrarAfiliado
 		myPanel.add(numDocumento);
 		myPanel.add(new JLabel("Fecha de nacimiento:"));
 		
-
 		//Bloque panel de dialogo de calendario
 		JDateChooser jd = new JDateChooser();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

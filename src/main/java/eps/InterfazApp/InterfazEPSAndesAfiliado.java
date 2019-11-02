@@ -83,7 +83,7 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
         epsAndes = new EpsAndes();
-        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos( );
 

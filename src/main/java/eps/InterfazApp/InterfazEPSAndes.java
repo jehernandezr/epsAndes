@@ -83,6 +83,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			crearMenu( guiConfig.getAsJsonArray("menuBar") );
 		}
 
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
 		epsAndes = new EpsAndes();
 
