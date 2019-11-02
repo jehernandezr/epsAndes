@@ -18,6 +18,8 @@ import com.google.gson.JsonObject;
 
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
+import eps.negocio.Especializacion;
+import eps.negocio.TipoDeDocumento;
 
 
 
@@ -426,7 +428,21 @@ public class EpsAndesPersistencia
 		}
 	}
 
-
+	/**
+	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
+	 * @param e - La excepción que ocurrio
+	 * @return El mensaje de la excepción JDO
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar los Administradores
 	 *****************************************************************/
@@ -485,24 +501,26 @@ public class EpsAndesPersistencia
 
 
 
-	/**
-	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
-	 * @param e - La excepción que ocurrio
-	 * @return El mensaje de la excepción JDO
-	 */
-	private String darDetalleException(Exception e) 
-	{
-		String resp = "";
-		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
-		{
-			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
-			return je.getNestedExceptions() [0].getMessage();
-		}
-		return resp;
-	}
 
 	public Afiliado darAfiliadoPorId(String numCc) {
 	
 		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
+	}
+
+	public long adicionarAfiliado(String nombre, String correo, TipoDeDocumento esp, String numCc, String fecha) {
+		
+		return sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, esp, numCc, fecha);
+	}
+	
+	
+	
+	
+	
+
+	
+
+	public void AdicionarMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp) {
+		// TODO Auto-generated method stub
+		
 	}
 }

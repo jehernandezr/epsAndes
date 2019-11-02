@@ -33,10 +33,11 @@ public class SQLAfiliado
 	 * Crea y ejecuta la sentencia SQL para adicionar un AFILIADO a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarAfiliado (PersistenceManager pm, String pNombre, String pCorreo, String pNumDoc, String pFecha, TipoDeDocumento pTipo) 
+	public long adicionarAfiliado (PersistenceManager pm, String pNombre, String pCorreo, TipoDeDocumento pTipo, String pNumDoc, String pFecha) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAfiliado() + "(Tipo_De_Documento, Nombre, Correo_Electronico, Num_Documento, Fecha_Nacimiento) values (?, ?, ?, ?,?)");
-		q.setParameters(pTipo, pNombre, pCorreo, pNumDoc, pFecha);
+		System.out.println(pFecha);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAfiliado() + "( Nombre, Correo_Electronico, Tipo_De_Documento, Num_Documento, Fecha_Nacimiento) values (?, ?, ?, ?,?)");
+		q.setParameters( pNombre, pCorreo, pTipo.toString().toLowerCase(),pNumDoc, pFecha);
 		return (long) q.executeUnique();
 	}
 
@@ -68,8 +69,8 @@ public class SQLAfiliado
 	public Afiliado darAfiliadoPorId (PersistenceManager pm, String numcc) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAfiliado() + " WHERE Num_Documento = ?");
-		q.setResultClass(Afiliado.class);
 		q.setParameters(numcc);
+		q.setResultClass(Afiliado.class);
 		return (Afiliado) q.executeUnique();
 	}
 	/**

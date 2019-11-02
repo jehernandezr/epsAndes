@@ -118,6 +118,15 @@ public class EpsAndes {
 
 	public void crearMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
 	{
-		
+		Ep.AdicionarMedico(nombre,  correo, numCc, numRegistro, esp);
 	}
-}
+
+	public long crearAfiliado(String nombre, String correo,TipoDeDocumento tipoDoc, String numDoc, String fechaNac ) {
+		
+		return Ep.adicionarAfiliado(nombre, correo, tipoDoc, numDoc, fechaNac);
+	}
+	
+
+
+	
+	}
