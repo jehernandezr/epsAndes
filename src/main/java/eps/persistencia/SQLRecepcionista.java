@@ -39,7 +39,6 @@ public class SQLRecepcionista
 		q.setParameters(  pCorreo, pNombre, pNumCc, ips);
 		return (long) q.executeUnique();
 	}
-
 	/**
 	 * Crea y ejecuta la sentencia SQL para eliminar RECEPCIONISTA, por su nombre
 	 * @return EL número de tuplas eliminadas
