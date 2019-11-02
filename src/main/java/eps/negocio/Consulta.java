@@ -8,17 +8,17 @@ public class Consulta extends ServicioDeSalud{
 	/**
 	 * Representa el tipo de consulta que se realiza
 	 */
-	private String tipoConsulta;
+	private String tipo_Consulta;
 
-	private BigDecimal receta;
+	private BigDecimal id_receta;
 
 	/**
 	 * Constructor por defecto
 	 */
 	public Consulta() {
 		super();
-		this.tipoConsulta = null;
-		this.receta = null;
+		this.tipo_Consulta = null;
+		this.id_receta = null;
 	}
 
 	/**
@@ -29,36 +29,36 @@ public class Consulta extends ServicioDeSalud{
 	 */
 	public Consulta(String tipoConsulta, BigDecimal receta) {
 		super();
-		this.tipoConsulta = tipoConsulta;
-		this.receta = receta;
+		this.tipo_Consulta = tipoConsulta;
+		this.id_receta = receta;
 	}
 
 	/**
 	 * @return the tipoConsulta
 	 */
 	public String getTipoConsulta() {
-		return tipoConsulta;
+		return tipo_Consulta;
 	}
 
 	/**
 	 * @param tipoConsulta the tipoConsulta to set
 	 */
 	public void setTipoConsulta(String tipoConsulta) {
-		this.tipoConsulta = tipoConsulta;
+		this.tipo_Consulta = tipoConsulta;
 	}
 
 	/**
 	 * @return the recetas
 	 */
 	public BigDecimal getReceta() {
-		return receta;
+		return id_receta;
 	}
 
 	/**
 	 * @param recetas the recetas to set
 	 */
 	public void setReceta(BigDecimal receta) {
-		this.receta = receta;
+		this.id_receta = receta;
 	}
 
 

@@ -195,7 +195,7 @@ public class EpsAndesPersistencia
 		tablas.add("HORARIOS_DE_ATENCION");
 		tablas.add("Medicos_Adscritos");
 		tablas.add("Roles_En_Sistema");
-		tablas.add("Servicio_De_Salud");
+		tablas.add("Servicios_De_Salud");
 		tablas.add("Servicios_Requeridos");
 	}
 
@@ -722,11 +722,16 @@ public class EpsAndesPersistencia
 		try
 		{
 			long idConsulta= nextval();
+			
 			long id = nextval();
 			tx.begin();
-			
 			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, id, tipo, null);
+			tx.commit();
+			tx.begin();
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  null);
+			tx.commit();
+		
+			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
 			tx.commit();
 
@@ -761,8 +766,14 @@ public class EpsAndesPersistencia
 			long idConsulta= nextval();
 			tx.begin();
 			//caundo el triage es 0  implica que no se ha añadido un cliente y por ello siempre se inicializa en false el dado de alta
-			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, idConsulta, null, 0, null);
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),id, "Id_Consulta_Urgencia",  null);
+			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, idConsulta, "F", 0, null);
+			
+			tx.commit();
+
+			tx.begin();
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  null);
+			tx.commit();
+			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
 			tx.commit();
 			log.trace ("Inserción de Servicio De consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");

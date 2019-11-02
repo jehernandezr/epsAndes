@@ -11,32 +11,77 @@ public class ServicioDeSalud {
 
 	private BigDecimal id_Ips;
 
+	
+
+	private BigDecimal id_Consulta;
+	private BigDecimal id_Consulta_Urgencia;
+	
+	private BigDecimal id_Examenes; 
+	
+	private BigDecimal id_Terapias; 
+	
+	private BigDecimal id_Procedimiento_Especializado; 
+	
+	
+	
 	/**
 	 * Constructor por defecto
 	 * 
 	 */
 	public ServicioDeSalud() {
-		this.id = null;
-		this.fecha_Realizacion ="";
+		super();
+		this.setId(id);
+		this.fecha_Realizacion = "";
 		this.id_Ips = null;
+		this.id_Consulta = null;
+		this.id_Consulta_Urgencia = null;
+		this.id_Examenes = null;
+		this.id_Terapias = null;
+		this.id_Procedimiento_Especializado = null;
 	}
-	
+
 	/**
-	 * COnstructor de unservicio de salud
-	 * 
-	 * @param id
-	 * @param horarioAtencion
-	 * @param direccion
-	 * @param fechaDeRealizacion
-	 * @param medicoAsignado
-	 * @param ipsAsociada
+	 * @return the id
 	 */
-	public ServicioDeSalud(BigDecimal id,  String fechaDeRealizacion,
-			long medicoAsignado, BigDecimal ipsAsociada) {
+	public BigDecimal getId() {
+		return id;
+	}
+
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(BigDecimal id) {
 		this.id = id;
-		
-		this.fecha_Realizacion = fechaDeRealizacion;
-		this.id_Ips = ipsAsociada;
+	}
+
+
+
+	
+
+	/**
+	 * @param id
+	 * @param fecha_Realizacion
+	 * @param id_Ips
+	 * @param id_Consulta
+	 * @param id_Consulta_Urgencia
+	 * @param id_Examenes
+	 * @param id_Terapias
+	 * @param id_Procedimiento_Especializado
+	 */
+	public ServicioDeSalud(BigDecimal id, String fecha_Realizacion, BigDecimal id_Ips, BigDecimal id_Consulta,
+			BigDecimal id_Consulta_Urgencia, BigDecimal id_Examenes, BigDecimal id_Terapias,
+			BigDecimal id_Procedimiento_Especializado) {
+		super();
+		this.setId(id);
+		this.fecha_Realizacion = fecha_Realizacion;
+		this.id_Ips = id_Ips;
+		this.id_Consulta = id_Consulta;
+		this.id_Consulta_Urgencia = id_Consulta_Urgencia;
+		this.id_Examenes = id_Examenes;
+		this.id_Terapias = id_Terapias;
+		this.id_Procedimiento_Especializado = id_Procedimiento_Especializado;
 	}
 
 
@@ -56,33 +101,93 @@ public class ServicioDeSalud {
 	}
 
 
+
 	/**
-	 * @return the ipsAsociada
+	 * @return the id_Ips
 	 */
-	public BigDecimal getIpsAsociada() {
+	public BigDecimal getId_Ips() {
 		return id_Ips;
 	}
 
 	/**
-	 * @param ipsAsociada the ipsAsociada to set
+	 * @param id_Ips the id_Ips to set
 	 */
-	public void setIpsAsociada(BigDecimal ipsAsociada) {
-		this.id_Ips = ipsAsociada;
+	public void setId_Ips(BigDecimal id_Ips) {
+		this.id_Ips = id_Ips;
 	}
 
 	/**
-	 * @return the id
+	 * @return the id_Consulta
 	 */
-	public BigDecimal getId() {
-		return id;
+	public BigDecimal getId_Consulta() {
+		return id_Consulta;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id_Consulta the id_Consulta to set
 	 */
-	public void setId(BigDecimal id) {
-		this.id = id;
+	public void setId_Consulta(BigDecimal id_Consulta) {
+		this.id_Consulta = id_Consulta;
 	}
+
+	/**
+	 * @return the id_Consulta_Urgencia
+	 */
+	public BigDecimal getId_Consulta_Urgencia() {
+		return id_Consulta_Urgencia;
+	}
+
+	/**
+	 * @param id_Consulta_Urgencia the id_Consulta_Urgencia to set
+	 */
+	public void setId_Consulta_Urgencia(BigDecimal id_Consulta_Urgencia) {
+		this.id_Consulta_Urgencia = id_Consulta_Urgencia;
+	}
+
+	/**
+	 * @return the id_Examnes
+	 */
+	public BigDecimal getId_Examnes() {
+		return id_Examenes;
+	}
+
+	/**
+	 * @param id_Examnes the id_Examnes to set
+	 */
+	public void setId_Examenes(BigDecimal id_Examnes) {
+		this.id_Examenes = id_Examnes;
+	}
+
+	/**
+	 * @return the id_Terapias
+	 */
+	public BigDecimal getId_Terapias() {
+		return id_Terapias;
+	}
+
+	/**
+	 * @param id_Terapias the id_Terapias to set
+	 */
+	public void setId_Terapias(BigDecimal id_Terapias) {
+		this.id_Terapias = id_Terapias;
+	}
+
+	/**
+	 * @return the id_Procedimiento_Especializado
+	 */
+	public BigDecimal getId_Procedimiento_Especializado() {
+		return id_Procedimiento_Especializado;
+	}
+
+	/**
+	 * @param id_Procedimiento_Especializado the id_Procedimiento_Especializado to set
+	 */
+	public void setId_Procedimiento_Especializado(BigDecimal id_Procedimiento_Especializado) {
+		this.id_Procedimiento_Especializado = id_Procedimiento_Especializado;
+	}
+
+	
+
 
 
 }

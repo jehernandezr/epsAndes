@@ -37,7 +37,7 @@ public class SQLHorarioDeAtencion {
 	
 	public long agregarHorarioDeAtencion(PersistenceManager pm, BigDecimal id,BigDecimal id_Servicio, String Dias_Sem_Atencion, String Hora_Inicio, String Hora_Fin, int Num_Afiliados)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHorariosDeAtencion() + "(id, id_Servicio, Dias_Sem_Atencion, Hora_Inicio, Hora_Fin, Num_Afiliados) values (?, ?, ?, ?,?,?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHorariosDeAtencion() + "(id, id_Servicio, Dias_Sem_Atencion, Hora_Inicial, Hora_Fin, Num_Afiliados) values (?, ?, ?, ?,?,?)");
 		q.setParameters(id, id_Servicio,Dias_Sem_Atencion, Hora_Inicio, Hora_Fin, Num_Afiliados);
 		return (long) q.executeUnique();
 	}
