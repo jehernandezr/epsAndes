@@ -438,5 +438,24 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	public void registrarServicioConsulta(String ips, String string) 
+	{
+		
+	}
+	public void registrarServicioConsultaUrgencia(String ips) {
+		
+	}
+	public void registrarServicioProcedimiento(String ips, String tipo) {
+		
+	}
+	public void registrarServicioTerapia(String ips, String tipo) {
+		
+	}
+	public void registrarServicioExamen(String ips, String tipo) {
+		
+	}
+	public void registrarServicioHospitalizacion(String ips) {
+		
+	}
 
 }

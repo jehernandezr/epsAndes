@@ -37,7 +37,7 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				
+				interfaz.registrarServicioConsulta(idIPS.getText(), consulta.getSelectedItem().toString());
 			}
 			break;
 		case "Consulta de urgencia":
@@ -50,7 +50,7 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				
+				interfaz.registrarServicioConsultaUrgencia(idIPS.getText());
 			}
 			break;
 		case "Hospitalización":
@@ -63,7 +63,7 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				
+				interfaz.registrarServicioHospitalizacion(idIPS.getText());
 			}
 			break;
 		case "Examenes":
@@ -80,7 +80,7 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				
+				interfaz.registrarServicioExamen(idIPS.getText(), tExamen.getSelectedItem().toString());
 			}
 			break;
 		case "Terapias":
@@ -97,7 +97,7 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
-				
+				interfaz.registrarServicioTerapia(idIPS.getText(), tTerapias.getSelectedItem().toString());
 			}
 			break;
 		case "Procedimiento especializado":
@@ -114,8 +114,8 @@ public class PanelRegistrarServicioSalud
 			result = JOptionPane.showConfirmDialog(null, myPanel, "Registrar un servicio de salud", JOptionPane.OK_CANCEL_OPTION);
 			if (result == JOptionPane.OK_OPTION)
 			{
+				interfaz.registrarServicioProcedimiento(idIPS.getText(), tProcedimiento.getSelectedItem().toString());
 			}
-			
 			break;
 		}
 		
