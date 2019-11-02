@@ -3,6 +3,8 @@
  */
 package eps.negocio;
 
+import java.math.BigDecimal;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
@@ -38,7 +40,8 @@ public class EpsAndes {
 	/**
 	 * El constructor por defecto
 	 */
-	public EpsAndes() {
+	public EpsAndes()
+	{
 
 		Ep = EpsAndesPersistencia.getInstance ();
 	}
@@ -47,8 +50,6 @@ public class EpsAndes {
 	{
 		Ep=EpsAndesPersistencia.getInstance(tableConfig);
 	}
-
-
 
 	/**
 	 * Encuentra un adminsitrador y su información básica, según su identificador
@@ -92,31 +93,49 @@ public class EpsAndes {
 	 * Elimnar un administrador
 	 * @param numcc número de cédula del administrador
 	 */
-	public void eliminarAdministrador(String         numcc)
+	public void eliminarAdministrador(String numcc)
 	{
 
 	}
-	public boolean existeAdmin( String NumCc) {
+	public boolean existeAdmin( String NumCc) 
+	{
 		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
 	}
 
-	public boolean existeRecepcionista(long idNumCc) {
-		return true;
+	public boolean existeRecepcionista(String NumCc) {
+		return Ep.darRecepcionistaPorId(NumCc) !=null? true:false;
 	}
-	public boolean existeAfiliado(long idNumCc) {
-		return true;
+	public boolean existeAfiliado(String NumCc) {
+		return Ep.darAfiliadoPorId(NumCc) !=null? true:false;
+
 	}
-	public boolean existeMedico(long idNumCc) {
-		return true;
+	public boolean existeMedico(String NumCc) {
+		return Ep.darMedicoPorId(NumCc) !=null? true:false;
 	}
 
-	public String crearAdministrador(String nombre,  String pCorreo,String numCc)
+	public Administrador crearAdministrador(String nombre,  String pCorreo,String numCc)
 	{
-		return Ep.adicionarAdministrador(nombre, pCorreo, numCc).toString();
+		return Ep.adicionarAdministrador(nombre, pCorreo, numCc);
 	}
 
-	public void crearMedico(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
+	public void crearMedico( String numCc,String nombre, String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado, String correo, BigDecimal Id_Adscritos)
 	{
+		Ep.adicionarMedico(numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);
+	}
+
+	public Afiliado crearAfiliado(String nombre, String correo,TipoDeDocumento tipoDoc, String numDoc, String fechaNac ) {
+
+		return Ep.adicionarAfiliado(nombre, correo, tipoDoc, numDoc, fechaNac);
+	}
+
+	public long crearRecepcionista(String nombre, String numcc, String correo, long ips )
+	{
+		return Ep.adicionarRecepcionista(nombre, numcc, correo, ips);
+	}
+
+	public Ips crearIps(String nombre, String localizacion) {
 		
+		return Ep.adicionarIps(nombre, localizacion);
 	}
+
 }

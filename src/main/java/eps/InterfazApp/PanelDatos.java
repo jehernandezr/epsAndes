@@ -17,6 +17,7 @@ package eps.InterfazApp;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
@@ -53,8 +54,10 @@ public class PanelDatos extends JPanel
         setBorder (new TitledBorder ("Panel de información"));
         setLayout( new BorderLayout( ) );
         
-        textArea = new JTextArea("Aquí sale el resultado de las operaciones solicitadas");
-        textArea.setEditable(false);
+        textArea = new JTextArea("Aquí sale el resultado de las operaciones solicitadas: \n ");
+        textArea.setEditable(true);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         add (new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
@@ -68,7 +71,16 @@ public class PanelDatos extends JPanel
      */
     public void actualizarInterfaz(String texto)
     {
-    	textArea.setText(texto);
+    	
+    	textArea.append("\n"+texto);
+    }
+    /**
+     * Actualiza el panel con la información recibida por parámetro.
+     * @param texto El texto con el que actualiza el área
+     */
+    public void limpiarInterfaz()
+    {
+    	textArea.setText("");
     }
 
 }

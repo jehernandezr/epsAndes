@@ -2,18 +2,10 @@
 package eps.InterfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
-
-import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +25,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
-import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
 /**
  * Clase principal de la interfaz
  */
@@ -75,7 +66,7 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
     /**
      * Número de cédula
      */
-    private Long numCc;
+    private String numCc;
     /**
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
@@ -100,14 +91,16 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
         add (new JLabel (new ImageIcon (path)), BorderLayout.NORTH );          
         add( panelDatos, BorderLayout.CENTER );        
     }
+    
     /**
      * Registrar el número de cédula del administrador
      * @param numCc
      */
-    public void registrarNumCcIngresado(long numCc)
+    public void registrarNumCcIngresado(String numCc)	
     {
     	this.numCc = numCc;
     }
+    
     /**
      * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
      * @param tipo - El tipo de configuración deseada
@@ -205,6 +198,26 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
+    public void reservarConsultaG()
+    {
+    	new PanelReservarConsultaGeneral(this);
+    }
+    public void reservarConsultaE()
+    {
+    	new PanelReservarConsultaEspecializada(this);
+    }
+    public void reservarExamen()
+    {
+    	new PanelReservarExamen(this);
+    }
+    public void reservaTerapia()
+    {
+    	new PanelReservarTerapia(this);
+    }
+    public void reservaProcedimiento()
+    {
+    	new PanelReservarProcedimiento(this);
+    }
     /**
      * Método para la ejecución de los eventos que enlazan el menú con los métodos de negocio
      * Invoca al método correspondiente según el evento recibido
@@ -235,9 +248,7 @@ public class InterfazEPSAndesAfiliado extends JFrame implements ActionListener
     {
         try
         {
-        	
-            // Unifica la interfaz para Mac y para Windows.
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
+        	UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado( );
             interfaz.setVisible( true );
             BasicConfigurator.configure();

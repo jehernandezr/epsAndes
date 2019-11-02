@@ -2,24 +2,15 @@
 package eps.InterfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
-
-import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -33,7 +24,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
-import uniandes.isis2304.parranderos.negocio.VOTipoBebida;
 /**
  * Clase principal de la interfaz
  */
@@ -191,6 +181,20 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
         }        
         setJMenuBar ( menuBar );	
     }
+    /**
+     * Registrar una orden médica
+     */
+     public void registrarOrden()
+     {
+    	 new PanelRegistrarOrden(this);
+     }
+     /**
+      * Registrar una receta médica
+      */
+     public void registrarReceta()
+     {
+    	 new PanelRegistrarReceta(this);
+     }
 	/* ****************************************************************
 	 * 			Métodos de la Interacción
 	 *****************************************************************/
@@ -224,7 +228,6 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
     {
         try
         {
-        	
             // Unifica la interfaz para Mac y para Windows.
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
             InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico( );
@@ -236,4 +239,8 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
             e.printStackTrace( );
         }
     }
+	public void registrarOrdenDatos(String fecha1, String numCcAfiliado, String tipoDeServicio) {
+		// TODO Auto-generated method stub
+		
+	}
 }

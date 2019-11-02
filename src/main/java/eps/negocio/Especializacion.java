@@ -10,6 +10,7 @@ public enum Especializacion {
 		DERMATOLOGIA,
 		PEDIATRIA,
 		TRAUMATOLOGIA,
-		NEUMOLOGIA
+		NEUMOLOGIA,
+		GENERAL
 		
 }

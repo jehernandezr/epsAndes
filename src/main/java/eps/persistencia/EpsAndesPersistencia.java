@@ -1,6 +1,7 @@
 
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,10 +16,13 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
+import eps.negocio.Medico;
+import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
-
-
+import eps.negocio.Afiliado;
+import eps.negocio.Especializacion;
+import eps.negocio.Ips;
+import eps.negocio.TipoDeDocumento;
 
 /**
  * @author dianis y jonatan
@@ -56,47 +60,42 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLAdministrador sqlAdministrador;
-
+	/**
+	 * 
+	 */
+	private SQLRecepcionista sqlRecepcionista;
 	/**
 	 * 
 	 */
 	private SQLAfiliado sqlAfiliado;
-
 	/**
 	 * 
 	 */
 	private SQLConsulta sqlConsulta;
-
 	/**
 	 * 
 	 */
 	private SQLConsultasUrgencias sqlConsultaUrgencia;
-
 	/**
 	 * 
 	 */
 	private SQLExamen sqlExamen;
-
 	/**
 	 * 
 	 */
 	private SQLGerente sqlGerente;
-
 	/**
 	 * 
 	 */
 	private SQLHorarioDeAtencion sqlHorarioDeAtencion;
-
 	/**
 	 * 
 	 */
 	private SQLIps sqlIps;
-
 	/**
 	 * 
 	 */
 	private SQLMedico sqlMedico;
-
 	/**
 	 * 
 	 */
@@ -125,8 +124,6 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLTerapia sqlTerapia;
-
-
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -181,7 +178,7 @@ public class EpsAndesPersistencia
 		tablas.add ("AFILIADOS");
 		tablas.add("GERENTES");
 		tablas.add("ADMINISTRADORES");
-		tablas.add("RECEPCIONISTAS");
+		tablas.add("RECEPCIONISTAS"); 
 		tablas.add("MEDICOS");
 		tablas.add("IPS");
 		tablas.add("PROCEDIMIENTOS_ESPECIALIZADOS");
@@ -223,6 +220,7 @@ public class EpsAndesPersistencia
 	private void crearClasesSQL ()
 	{
 		sqlAdministrador= new SQLAdministrador(this);
+		sqlRecepcionista= new SQLRecepcionista(this);
 		sqlAfiliado = new SQLAfiliado(this);
 		sqlConsulta = new SQLConsulta(this);
 		sqlConsultaUrgencia= new SQLConsultasUrgencias(this);
@@ -270,7 +268,7 @@ public class EpsAndesPersistencia
 		return tablas.get(3);
 	}
 	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de RECEPCIONISTA
+	 * @return La cadena de caracteres con el nombre de la tabla de RECEPCIONISTA 
 	 */
 	public String darTablaRecepcionista()
 	{
@@ -425,7 +423,21 @@ public class EpsAndesPersistencia
 		}
 	}
 
-
+	/**
+	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
+	 * @param e - La excepción que ocurrio
+	 * @return El mensaje de la excepción JDO
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar los Administradores
 	 *****************************************************************/
@@ -456,7 +468,7 @@ public class EpsAndesPersistencia
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			//log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		}
 		finally
@@ -477,26 +489,95 @@ public class EpsAndesPersistencia
 	 */
 	public Administrador darAdministradorPorId(String numCc)
 	{
-		System.out.println("OE MAL?");
+
 		return (Administrador) sqlAdministrador.darAdministradorPorId(pmf.getPersistenceManager(), numCc);
 
 	}
 
-
-
-	/**
-	 * Extrae el mensaje de la exception JDODataStoreException embebido en la Exception e, que da el detalle específico del problema encontrado
-	 * @param e - La excepción que ocurrio
-	 * @return El mensaje de la excepción JDO
-	 */
-	private String darDetalleException(Exception e) 
+	public Afiliado darAfiliadoPorId(String numCc) 
 	{
-		String resp = "";
-		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
+	}
+
+	public Afiliado adicionarAfiliado(String nombre, String correo, TipoDeDocumento tipoDoc, String numCc, String fecha)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
 		{
-			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
-			return je.getNestedExceptions() [0].getMessage();
+			tx.begin();
+			long tuplasInsertadas = sqlAfiliado.adicionarAfiliado(pmf.getPersistenceManager(), nombre, correo, tipoDoc, numCc, fecha);
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Afiliado(nombre, correo, (tipoDoc.toString().toLowerCase()), numCc, fecha);
 		}
-		return resp;
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		
+	}
+
+	public Medico darMedicoPorId(String numCc)
+	{
+		return (Medico) sqlMedico.darMedicoPorId(pmf.getPersistenceManager(), numCc);
+	}
+
+	public long adicionarMedico( String numCc,String nombre,  String numRegistro, Especializacion esp, BigDecimal Id_Servicio_Asociado,String correo, BigDecimal Id_Adscritos) 
+	{
+		return sqlMedico.adicionaMedico(pmf.getPersistenceManager(), numCc, nombre, numRegistro, esp, Id_Servicio_Asociado, correo, Id_Adscritos);		
+	}
+
+	public Recepcionista darRecepcionistaPorId(String numCc) 
+	{
+		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
+	}
+
+	public long adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
+	{
+		return sqlRecepcionista.adicionarRecepcionista(pmf.getPersistenceManager(), nombre, correo, numcc, ips);
+	}
+
+	public Ips adicionarIps(String nombre, String localizacion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long id = nextval();
+			long tuplasInsertadas = SQLIps.adicionarIps(pmf.getPersistenceManager(),id,nombre, localizacion,  null) ;
+			tx.commit();
+
+			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Ips(BigDecimal.valueOf(id), localizacion, nombre, null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	 
 	}
 }

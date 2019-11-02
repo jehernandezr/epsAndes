@@ -1,5 +1,5 @@
 {
-	"title": "EPSAndes - Administrador",
+	"title": "EPSAndes - Afiliado",
 	"frameH": 500,
 	"frameW": 1000,
 	"bannerPath": "./src/main/resources/config/afiliado.png",
@@ -8,10 +8,6 @@
 		{ "menuTitle": "Reservar un servicio de salud",
 		  "options":
 			[
-				{
-					"label": "Hospitalización",
-					"event": "reservarhospitalizacion"
-				},
 				{
 					"label": "Consulta general",
 					"event": "reservarConsultaG"

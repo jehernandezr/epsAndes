@@ -30,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import eps.negocio.EpsAndes;
+import eps.InterfazApp.PanelDatos;
 /**
  * Clase principal de la interfaz
  */
@@ -227,15 +228,15 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 	{
 		try 
 		{
-			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
+			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula ", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
-				boolean existe = epsAndes.existeRecepcionista(idNumCc);
+				
+				boolean existe = epsAndes.existeRecepcionista(numCc);
 				if(existe)
 				{
 					InterfazEPSAndesRecepcionista interfaz = new InterfazEPSAndesRecepcionista();
-					interfaz.registrarNumCcIngresado(idNumCc);
+					interfaz.registrarNumCcIngresado(numCc);
 					interfaz.setVisible( true );
 				}
 				else
@@ -250,6 +251,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		} 
 		catch (Exception e) 
 		{
+			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -264,12 +266,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como afiliado", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
-				boolean existe = epsAndes.existeAfiliado(idNumCc);
+				
+				boolean existe = epsAndes.existeAfiliado(numCc);
 				if(existe)
 				{
 					InterfazEPSAndesAfiliado interfaz = new InterfazEPSAndesAfiliado();
-					interfaz.registrarNumCcIngresado(idNumCc);
+					interfaz.registrarNumCcIngresado(numCc);
 					interfaz.setVisible( true );
 				}
 				else
@@ -294,12 +296,12 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como médico", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
-				boolean existe = epsAndes.existeMedico(idNumCc);
+				
+				boolean existe = epsAndes.existeMedico(numCc);
 				if(existe)
 				{
 					InterfazEPSAndesMedico interfaz = new InterfazEPSAndesMedico();
-					interfaz.registrarNumCcIngresado(Long.toString(idNumCc));
+					interfaz.registrarNumCcIngresado(numCc);
 					interfaz.setVisible( true );
 				}
 				else
@@ -331,7 +333,6 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Eliminar administrador", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
 			{
-				long idNumCc = Long.valueOf (numCc);
 				epsAndes.eliminarAdministrador(numCc);
 			}
 			else
@@ -387,6 +388,8 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	
+
 	/**
 	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
 	 * @param e - La excepción recibida

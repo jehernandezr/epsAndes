@@ -2,18 +2,10 @@
 package eps.InterfazApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
-
-import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -74,7 +66,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
     /**
      * Número de cédula
      */
-    private Long numCc;
+    private String numCc;
     /**
      * Construye la ventana principal de la aplicación. <br>
      * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
@@ -103,7 +95,7 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
      * Registrar el número de cédula del administrador
      * @param numCc
      */
-    public void registrarNumCcIngresado(long numCc)
+    public void registrarNumCcIngresado(String numCc)
     {
     	this.numCc = numCc;
     }

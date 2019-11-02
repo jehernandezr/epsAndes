@@ -1,78 +1,72 @@
 package eps.negocio;
 
-public class Recepcionista {
+import java.math.BigDecimal;
 
-	
-	/**
-	 * Atributo Representa Identificacion laboral del usuario
-	 */
-	private int identificacionLaboral;
+public class Recepcionista 
+{
+	private BigDecimal id_ips;
 
-	/**
-	 * Atributo que representa la cedula de ciudadania del usuario
-	 */
-	private String numCc;
-	/**
-	 * atributo que representa el nombre del usuario
-	 */
+	private String num_Cc;
+
 	private String nombre;
-	
+
+	private String correo_electronico;	
 	/**
 	 * Constructor por defecto
 	 */
-	
-	public Recepcionista() {
-		this.identificacionLaboral = 0;
-		this.numCc = "";
+	public Recepcionista() 
+	{
+		this.id_ips = null;
+		this.num_Cc = "";
 		this.nombre = "";
+		this.correo_electronico = "";
 	}
-	/**
-	 * Constructor de Recepcionista
-	 * 
-	 * @param identificacionLaboral
-	 * @param numCc
-	 * @param nombre
-	 */
-	public Recepcionista(int identificacionLaboral, String numCc, String nombre) {
-		this.identificacionLaboral = identificacionLaboral;
-		this.numCc = numCc;
+
+	public Recepcionista(String correo_e,String nombre,String num_Cc,BigDecimal id_ips ) 
+	{
+		this.id_ips = id_ips;
+		this.num_Cc = num_Cc;
 		this.nombre = nombre;
+		this.correo_electronico = correo_e;
 	}
-	
-	/**
-	 * @return the identificacionLaboral
-	 */
-	public int getIdentificacionLaboral() {
-		return identificacionLaboral;
+
+	public BigDecimal getId_ips() 
+	{
+		return id_ips;
 	}
-	/**
-	 * @param identificacionLaboral the identificacionLaboral to set
-	 */
-	public void setIdentificacionLaboral(int identificacionLaboral) {
-		this.identificacionLaboral = identificacionLaboral;
+
+	public void setId_ips(BigDecimal id_ips) 
+	{
+		this.id_ips = id_ips;
 	}
-	/**
-	 * @return the numCc
-	 */
-	public String getNumCc() {
-		return numCc;
-	}
-	/**
-	 * @param numCc the numCc to set
-	 */
-	public void setNumCc(String numCc) {
-		this.numCc = numCc;
-	}
-	/**
-	 * @return the nombre
-	 */
-	public String getNombre() {
+
+	public String getNombre() 
+	{
 		return nombre;
 	}
-	/**
-	 * @param nombre the nombre to set
-	 */
-	public void setNombre(String nombre) {
+	
+	public void setNum_Cc(String num_Cc) 
+	{
+		this.num_Cc = num_Cc;
+	}
+	
+	public String getNum_Cc() 
+	{
+		return num_Cc;
+	}
+	
+	public void setNombre(String nombre) 
+	{
 		this.nombre = nombre;
+	}
+	
+	public void setCorreo_electronico(String correo)
+	{
+		this.correo_electronico = correo;
+	}
+	
+	public String getCorreo_electronico()
+	{
+		return correo_electronico;
 	}
 }
