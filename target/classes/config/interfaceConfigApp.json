@@ -72,11 +72,7 @@
 					"event": "mostrarModeloConceptual"
 				},
 				{
-					"label": "Esquema de la BD",
-					"event": "mostrarEsquemaBD"
-				},
-				{
-					"label": "Script creacionn de la BD",
+					"label": "Script de datos utilizados",
 					"event": "mostrarScriptBD"
 				},
 				{

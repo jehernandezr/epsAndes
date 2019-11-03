@@ -214,7 +214,16 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 	 */
 	public void darDeAlta()
 	{
-
+		String numCC = JOptionPane.showInputDialog(null, "Ingresar número de documento", "Dar de alta a un afiliado");
+        if (numCC != "" || numCC != null) 
+        {
+    	int reply = JOptionPane.showConfirmDialog(null, "¿Se desea dar de alta al afiliado?", "Dar de alta", JOptionPane.YES_NO_OPTION);
+		epsAndes.consultaUrgenciasDadoAlta(numCC);
+        }
+        else 
+        {
+           System.exit(0);
+        }
 	}
 
 	/**
@@ -222,23 +231,21 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 	 */
 	public void cambiarTriage()
 	{
-		JTextField numDoc = new JTextField(15);
+		JTextField id = new JTextField(15);
 		JTextField triage = new JTextField(15);
 
 		JPanel myPanel = new JPanel();
-		myPanel.add(new JLabel("Número de documento del afiliado:"));
-		myPanel.add(numDoc);
+		myPanel.add(new JLabel("ID de la consulta:"));
+		myPanel.add(id);
 		myPanel.add(new JLabel("Triage nuevo:"));
 		myPanel.add(triage);
 
 		int result = JOptionPane.showConfirmDialog(null, myPanel, "Cambiar triage", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION)
-			if(!epsAndes.consultaUrgenciasDadoAlta())
-				epsAndes.cambiarTriage(triage.getText(), numDoc.getText());
+			if(!epsAndes.consultaUrgenciasDadoAlta(id.getText()))
+				epsAndes.cambiarTriage(triage.getText(), id.getText());
 			else
 				panelDatos.actualizarInterfaz("La consulta en urgencias no se encuentra habiliatada: Afiliado dado de alta");
-
-
 	}
 	/* ****************************************************************
 	 * 			Métodos de la Interacción

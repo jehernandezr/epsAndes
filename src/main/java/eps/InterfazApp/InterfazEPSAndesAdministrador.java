@@ -294,6 +294,10 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 	{
 		new PanelRegistrarRecepcionista(this);
 	}
+	public void registrarOrganizador()
+	{
+		new PanelRegistrarOrganizador(this);
+	}
 	public void registrarServicioSalud()
 	{
 		String [] servicios ={"Consulta médica","Consulta de urgencia","Hospitalización","Examenes","Terapias","Procedimiento especializado"}; 
@@ -405,6 +409,30 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		}
 	}
 
+	public void registrarOrganizadorDatos(String nombre, String numcc, String correo)
+	{
+		try {
+			if (nombre != null && correo != null &&  numcc != null)
+			{
+				boolean existe = epsAndes.existeOrganizador(numcc);
+				if(!existe)
+				{
+					epsAndes.crearOrganizador(nombre, numcc, correo);
+					panelDatos.actualizarInterfaz("El usuario  : "+nombre+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("Esta cedula : "+numcc+" ya está registrada como organizador ");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 	
 	public void registrarMedicoAIps(String nombre, String numcc, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
 	{
