@@ -150,34 +150,34 @@ public class EpsAndes {
 	}
 
 
-	public Consulta crearServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado, String habilitado) {
-		Ep.adicionarServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado,habilitado);
+	public Consulta crearServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		Ep.adicionarServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 			
 		return null;
 	}
 
-	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
+	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 	
-		return Ep.adicionarServicioConsultaUrgencia(nit, respSemana, horaInicial, horaFinal, numAfiliado,habilitado);
+		return Ep.adicionarServicioConsultaUrgencia(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
-	public ProcedimientoEspecializado crearServicioProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
+	public ProcedimientoEspecializado crearServicioProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 	
-		return Ep.adcionarProcedimiento(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado,habilitado);
+		return Ep.adcionarProcedimiento(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
-	public Hospitalizacion crearServicioHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
-		return Ep.adicionarHospitalizacion(nit, respSemana, horaInicial, horaFinal, numAfiliado,habilitado);
+	public Hospitalizacion crearServicioHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		return Ep.adicionarHospitalizacion(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 		
 	}
 
-	public Examen crearServicioExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
-		return Ep.adicionarExamen(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado,habilitado);
+	public Examen crearServicioExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		return Ep.adicionarExamen(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 		
 	}
 
-	public Terapia crearServicioTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
-		return Ep.adicionarTerapia(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado,habilitado);
+	public Terapia crearServicioTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		return Ep.adicionarTerapia(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 		
 	}
 
