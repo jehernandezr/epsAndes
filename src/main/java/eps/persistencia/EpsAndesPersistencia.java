@@ -648,7 +648,7 @@ public class EpsAndesPersistencia
 
 	}
 
-	public Long AdicionarMedicoAdscrito( BigDecimal Id_Ips, BigDecimal Medico_Num_Cc)
+	public Long adicionarMedicoAdscrito( BigDecimal Id_Ips, BigDecimal Medico_Num_Cc)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -807,7 +807,35 @@ public class EpsAndesPersistencia
 	{
 			return null;
 	}
+	
+	public void cambiarACitaCancelada(String idCitaReservada, String numCcRecepcionista)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlCitaReservada.cambiarCitaCancelada(pm, idCitaReservada, numCcRecepcionista);
+			tx.commit();
 
+			log.trace ("Cita cancelada: " + idCitaReservada + " - " + numCcRecepcionista + ".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	
 	public void cambiarACitaCumplida(String idCitaReservada, String numCcRecepcionista)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();

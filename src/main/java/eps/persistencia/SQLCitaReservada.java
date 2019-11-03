@@ -112,4 +112,11 @@ public class SQLCitaReservada {
 		q.setParameters(numCcRecepcionista, idCitaReservada);
 		return (long) q.executeUnique(); 
 	}
+	
+	public long cambiarCitaCancelada(PersistenceManager pm, String idCitaReservada, String numCcRecepcionista)
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCitaReservada() + " SET Estado = 'cancelada' AND ID_RECEPCIONISTA = ? WHERE Id = ?");
+		q.setParameters(numCcRecepcionista, idCitaReservada);
+		return (long) q.executeUnique(); 
+	}
 }

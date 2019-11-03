@@ -251,10 +251,9 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 	{
 		try 
 		{
-			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cancelar cita", JOptionPane.QUESTION_MESSAGE);
+			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cumplir cita", JOptionPane.QUESTION_MESSAGE);
 			if (idCitaReservada != null)
 			{
-
 				boolean existe = epsAndes.existeCitaReservada(idCitaReservada);
 				if(existe)
 				{
