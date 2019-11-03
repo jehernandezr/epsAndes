@@ -166,18 +166,18 @@ public class EpsAndes {
 		return Ep.adcionarProcedimiento(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
-	public void crearServicioHospitalizacion(String nit) {
-		// TODO Auto-generated method stub
+	public Hospitalizacion crearServicioHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		return Ep.adicionarHospitalizacion(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 		
 	}
 
-	public void crearServicioExamen(String nit, String tipo) {
-		// TODO Auto-generated method stub
+	public Examen crearServicioExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		return Ep.adicionarExamen(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 		
 	}
 
-	public void crearServicioTerapia(String nit, String tipo) {
-		// TODO Auto-generated method stub
+	public Terapia crearServicioTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		return Ep.adicionarTerapia(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 		
 	}
 

@@ -20,13 +20,16 @@ import eps.negocio.Medico;
 import eps.negocio.Procedimiento;
 import eps.negocio.ProcedimientoEspecializado;
 import eps.negocio.Recepcionista;
+import eps.negocio.Terapia;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
 import eps.negocio.CitaReservada;
 import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
 import eps.negocio.Especializacion;
+import eps.negocio.Examen;
 import eps.negocio.HorarioAtencion;
+import eps.negocio.Hospitalizacion;
 import eps.negocio.Ips;
 import eps.negocio.TipoDeDocumento;
 
@@ -86,6 +89,10 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLExamen sqlExamen;
+	/**
+	 * 
+	 */
+	private SQLHospitalizacion sqlHospitalizacion;
 	/**
 	 * 
 	 */
@@ -874,21 +881,21 @@ public class EpsAndesPersistencia
 			long id = nextval();
 			long idConsulta= nextval();
 			tx.begin();
-			//caundo el triage es 0  implica que no se ha añadido un cliente y por ello siempre se inicializa en false el dado de alta
-			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, idConsulta, "F", 0, null);
+			
+			long tuplasInsertadas = sqlProcedimientoEspecializado.adicionarProcedimiento(pm, idConsulta, tipo.toLowerCase());
 			
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  "//");
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Procedimiento_Especializado",  "//");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
 			tx.commit();
-			log.trace ("Inserción de Servicio De consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
-			log.trace ("Inserción de Consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+			log.trace ("Inserción de Servicio De Procedimiento: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
+			log.trace ("Inserción de procedimiento Servicio: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
 
-			return new ProcedimientoEspecializado();
+			return new ProcedimientoEspecializado(tipo.toLowerCase());
 		}
 		catch (Exception e)
 		{
@@ -904,6 +911,127 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
+	}
+
+	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			long idConsulta= nextval();
+			tx.begin();
+			
+			long tuplasInsertadas = sqlTerapia.adicionarTerapia(pm, idConsulta, tipo);
+			
+			tx.commit();
+
+			tx.begin();
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//");
+			tx.commit();
+			tx.begin();
+			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
+			tx.commit();
+			log.trace ("Inserción de Servicio De Terapias: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
+			log.trace ("Inserción de Terapia: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Terapia(tipo, BigDecimal.valueOf(idConsulta));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public Examen adicionarExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			long idConsulta= nextval();
+			tx.begin();
+			
+			long tuplasInsertadas = sqlExamen.adicionarExamen(pm, idConsulta , tipo.toLowerCase());
+			
+			tx.commit();
+
+			tx.begin();
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Examenes",  "//");
+			tx.commit();
+			tx.begin();
+			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
+			tx.commit();
+			log.trace ("Inserción de Servicio De Examenes: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
+			log.trace ("Inserción de Examen: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Examen(tipo.toLowerCase());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public Hospitalizacion adicionarHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			long idConsulta= nextval();
+			tx.begin();
+			//caundo dado de alta es f  implica que no se ha añadido un cliente y por ello siempre se inicializa en null el servicio requerido
+			long tuplasInsertadas = sqlHospitalizacion.adicionarHospitalizacion(pm, idConsulta, "f", null);
+			
+			tx.commit();
+
+			tx.begin();
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//");
+			tx.commit();
+			tx.begin();
+			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
+			tx.commit();
+			log.trace ("Inserción de Servicio De hospitalizacion: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
+			log.trace ("Inserción de hospitalizacion (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Hospitalizacion("F", BigDecimal.valueOf(idConsulta));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		
 	}
 
 }

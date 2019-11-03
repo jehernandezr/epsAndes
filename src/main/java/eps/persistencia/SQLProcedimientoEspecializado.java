@@ -34,7 +34,7 @@ public class SQLProcedimientoEspecializado
 	 * Crea y ejecuta la sentencia SQL para adicionar un PROCEDIMIENTO_ESPECIALIZADO a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarProcedimiento(PersistenceManager pm, int Id, Procedimiento pProcedimiento) 
+	public long adicionarProcedimiento(PersistenceManager pm, long Id, String pProcedimiento) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaProcedimientoEspecializado() + "(Id, Tipo_Procedimiento) values (?, ?)");
 		q.setParameters(Id, pProcedimiento);

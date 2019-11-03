@@ -1,26 +1,27 @@
 package eps.negocio;
 
-import java.util.List;
+import java.math.BigDecimal;
+
 
 public class Hospitalizacion extends ServicioDeSalud {
 
 	/**
 	 * representa si el paciente fue dado de alta
 	 */
-	private boolean fueDadoAlta;
+	private String fue_Dado_Alta;
 	
 	/**
 	 * representa los servicios adicionales que puede requerir una hospitalizacion
 	 */
-	private List<Long>serviciosRequeridos;
+	BigDecimal id_servicio_Requerido;
 
 	/**
 	 * constructor por defecto
 	 */
 	public Hospitalizacion() {
 		super();
-		this.fueDadoAlta = false;
-		this.serviciosRequeridos = (List<Long>) new java.awt.List();
+		this.fue_Dado_Alta = "";
+		this.id_servicio_Requerido = null;
 	}
 	
 	/**
@@ -28,45 +29,40 @@ public class Hospitalizacion extends ServicioDeSalud {
 	 * @param fueDadoAlta
 	 * @param serviciosRequeridos
 	 */
-	public Hospitalizacion(boolean fueDadoAlta) {
+	public Hospitalizacion(String fueDadoAlta, BigDecimal id) {
 		super();
-		this.fueDadoAlta = fueDadoAlta;
-		this.serviciosRequeridos = (List<Long>) new java.awt.List();
+		this.fue_Dado_Alta = fueDadoAlta;
+		this.id_servicio_Requerido = id;
 	}
 
 	/**
 	 * @return the fueDadoAlta
 	 */
-	public boolean isFueDadoAlta() {
-		return fueDadoAlta;
+	public String getFue_Dado_Alta() {
+		return fue_Dado_Alta;
 	}
 
 	/**
 	 * @param fueDadoAlta the fueDadoAlta to set
 	 */
-	public void setFueDadoAlta(boolean fueDadoAlta) {
-		this.fueDadoAlta = fueDadoAlta;
+	public void setFue_Dado_Alta(String fueDadoAlta) {
+		this.fue_Dado_Alta = fueDadoAlta;
 	}
 
 	/**
 	 * @return the serviciosRequeridos
 	 */
-	public List<Long> getServiciosRequeridos() {
-		return serviciosRequeridos;
+	public BigDecimal getId_Servicio_Requerido() {
+		return id_servicio_Requerido;
 	}
 
 	/**
 	 * @param serviciosRequeridos the serviciosRequeridos to set
 	 */
-	public void setServiciosRequeridos(List<Long> serviciosRequeridos) {
-		this.serviciosRequeridos = serviciosRequeridos;
+	public void setId_Servicio_Requerido(BigDecimal serviciosRequerido) {
+		this.id_servicio_Requerido = serviciosRequerido;
 	}
 	
-	/**
-	 * Agrega un servicio de salud a la lista
-	 */
-	public void addServicioRequerido(Long servicio){
-		serviciosRequeridos.add(servicio);
-	}
+	
 	
 }
