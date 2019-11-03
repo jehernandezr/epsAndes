@@ -211,6 +211,11 @@ public class EpsAndesPersistencia
 		tablas.add("Roles_En_Sistema");
 		tablas.add("Servicios_De_Salud");
 		tablas.add("Servicios_Requeridos");
+		tablas.add("CAMPANIAS");
+		tablas.add("ORGANIZADORESCAMPANIA");
+		tablas.add("SERVICIOS_CAMPANIA");
+		tablas.add("PARTICIPANTES");
+		
 	}
 
 	/**
@@ -388,6 +393,26 @@ public class EpsAndesPersistencia
 		return tablas.get(19);
 	}
 
+	public String darTablaCampanias()
+	{
+		return tablas.get(20);
+		
+	}
+	
+	public String darTablaOrganizadoresDeCampania()
+	{
+		return tablas.get(21);
+	}
+	
+	public String darTablaServiciosCampania(){
+		return tablas.get(22);
+	}
+	
+	public String darTablaParticipantes()
+	{
+		return  tablas.get(23);
+	}
+	
 	/**
 	 * Transacción para el generador de secuencia de EpsAndes
 	 * Adiciona entradas al log de la aplicación

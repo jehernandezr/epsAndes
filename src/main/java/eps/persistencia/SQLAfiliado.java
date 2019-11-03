@@ -35,7 +35,7 @@ public class SQLAfiliado
 	 */
 	public long adicionarAfiliado (PersistenceManager pm, String pNombre, String pCorreo, TipoDeDocumento pTipo, String pNumDoc, String pFecha) 
 	{
-		System.out.println(pFecha);
+		
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaAfiliado() + "( Nombre, Correo_Electronico, Tipo_De_Documento, Num_Documento, Fecha_Nacimiento) values (?, ?, ?, ?,?)");
 		q.setParameters( pNombre, pCorreo, pTipo.toString().toLowerCase(),pNumDoc, pFecha);
 		return (long) q.executeUnique();

@@ -3,7 +3,7 @@
 	"unidadPersistencia": "EpsAndes",
 	"tablas":
 	[
-		"EPSAndes_sequence",	
+	"EPSAndes_sequence",	
 		"AFILIADOS",
 		"GERENTES",
 		"ADMINISTRADORES",
@@ -21,7 +21,11 @@
 		"HORARIOS_DE_ATENCION",
 		"Medicos_Adscritos",
 		"Roles_En_Sistema",
-		"Servicio_De_Salud",
-		"Servicios_Requeridos"
+		"Servicios_De_Salud",
+		"Servicios_Requeridos",
+		"CAMPANIAS",
+		"ORGANIZADORESCAMPANIA",
+		"SERVICIOS_CAMPANIA",
+		"PARTICIPANTES"
 	]
 }

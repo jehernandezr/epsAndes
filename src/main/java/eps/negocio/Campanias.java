@@ -28,11 +28,12 @@ public class Campanias {
 	 * @param id_Ips
 	 * @param id_OrganizadorCampania
 	 */
-	public Campanias(BigDecimal id, String campania_Acepta, BigDecimal id_Ips, BigDecimal id_OrganizadorCampania) {
+	public Campanias(BigDecimal id, String campania_Acepta,String estadoCampania, BigDecimal id_Ips, BigDecimal id_OrganizadorCampania) {
 		this.id = id;
 		this.campania_Acepta = campania_Acepta;
 		this.id_Ips = id_Ips;
 		this.id_OrganizadorCampania = id_OrganizadorCampania;
+		this.estado_Campania= estadoCampania;
 	}
 	
 
