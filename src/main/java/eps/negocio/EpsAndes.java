@@ -220,6 +220,7 @@ public class EpsAndes {
 		return Ep.consulta8();
 	}
 
+<<<<<<< HEAD
 	public boolean existeOrganizador(String numCc) 
 	{
 		return Ep.darOrganizadorPorId(numCc) !=null? true:false;
@@ -228,6 +229,11 @@ public class EpsAndes {
 	public OrganizadorCampania crearOrganizador(String nombre, String numcc, String correo) 
 	{
 		return Ep.adicionarOrganizador(nombre, numcc, correo);
+=======
+	public boolean existeOrganizador(String numCc) {
+	
+		return Ep.darOrganizador(numCc) != null? true:false;
+>>>>>>> da95b524fdf3c8b5f7a0a2483cf4aa7eda0bdd6b
 	}
 
 	

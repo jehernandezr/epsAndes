@@ -147,6 +147,28 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLCitaReservada sqlCitaReservada;
+
+	/**
+	 * 
+	 */
+	private SQLCampanias sqlCampania;
+
+	/**
+	 * 
+	 */
+	private SQLOrganizadoresCampania sqlOrganizador;
+
+	/**
+	 * 
+	 */
+	private SQLServiciosCampania sqlServiciosCampania;
+
+	/**
+	 * 
+	 */
+	private SQLParticipantes sqlParticipante;
+
+
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -265,6 +287,10 @@ public class EpsAndesPersistencia
 		sqlTerapia= new SQLTerapia(this);
 		sqlOrganizador= new SQLOrganizadoresCampania(this);
 		sqlUtil = new SQLUtil(this);
+		sqlOrganizador= new SQLOrganizadoresCampania(this);
+		sqlCampania = new SQLCampanias(this);
+		sqlParticipante= new SQLParticipantes(this);
+		sqlServiciosCampania = new SQLServiciosCampania(this);
 	}
 
 	/**
@@ -1165,6 +1191,7 @@ public class EpsAndesPersistencia
 		}
 	}
 
+<<<<<<< HEAD
 	public void cambiarTriage(String triage, String id)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -1231,6 +1258,10 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
+=======
+	public OrganizadorCampania darOrganizador(String numCc) {
+		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
+>>>>>>> da95b524fdf3c8b5f7a0a2483cf4aa7eda0bdd6b
 
 	}
 }

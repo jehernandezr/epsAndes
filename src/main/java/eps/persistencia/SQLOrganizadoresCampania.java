@@ -55,10 +55,17 @@ public class SQLOrganizadoresCampania {
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN AFILIADO, por su identificador
 	 * @return El objeto campanias que tiene el identificador dado
 	 */
+<<<<<<< HEAD
 	public OrganizadorCampania darOrganizadorPorId (PersistenceManager pm,Long  long1 ) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOrganizadoresDeCampania()+ " WHERE num_cc = ?");
 		q.setParameters(long1);
+=======
+	public OrganizadorCampania darOrganizadorPorId (PersistenceManager pm, String  id ) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOrganizadoresDeCampania()+ " WHERE num_Cc = ?");
+		q.setParameters(id);
+>>>>>>> da95b524fdf3c8b5f7a0a2483cf4aa7eda0bdd6b
 		q.setResultClass(OrganizadorCampania.class);
 		return (OrganizadorCampania) q.executeUnique();
 	}
