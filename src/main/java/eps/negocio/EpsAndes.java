@@ -216,8 +216,8 @@ public class EpsAndes {
 		return Ep.consulta7();
 	}
 
-	public String reqConsulta2() {
-		return Ep.consulta2();
+	public String reqConsulta8() {
+		return Ep.consulta8();
 	}
 
 	
