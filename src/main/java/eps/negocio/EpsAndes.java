@@ -146,7 +146,7 @@ public class EpsAndes {
 	{
 		BigDecimal id= Ep.darIpsPorId(nombreIps).getId(); 
 		long cedula = Long.valueOf(Medico_Num_Cc);
-		Ep.AdicionarMedicoAdscrito(id, BigDecimal.valueOf(cedula));
+		Ep.adicionarMedicoAdscrito(id, BigDecimal.valueOf(cedula));
 	}
 
 
@@ -198,16 +198,17 @@ public class EpsAndes {
 
 	public boolean existeCitaReservada(String idCitaReservada) 
 	{
-		return true;
+		return Ep.darCitaReservada(idCitaReservada) !=null? true:false;
 	}
 
-	public void cambiarACumplidaCitaReservada(String idCitaReservada, String numCcRecpecionista) {
-		
+	public void cambiarACumplidaCitaReservada(String idCitaReservada, String numCcRecepcionista)
+	{
+		Ep.cambiarACitaCumplida(idCitaReservada, numCcRecepcionista);
 	}
 
-	public void cambiarACancelarCitaReservada(String idCitaReservada, String numCcRecpecionista) {
-		// TODO Auto-generated method stub
-		
+	public void cambiarACancelarCitaReservada(String idCitaReservada, String numCcRecepcionista)
+	{
+		Ep.cambiarACitaCancelada(idCitaReservada, numCcRecepcionista);
 	}
 
 	public String reqConsulta1_1() 

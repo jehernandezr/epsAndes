@@ -227,7 +227,6 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cumplir cita", JOptionPane.QUESTION_MESSAGE);
 			if (idCitaReservada != null)
 			{
-
 				boolean existe = epsAndes.existeCitaReservada(idCitaReservada);
 				if(existe)
 				{
@@ -252,10 +251,9 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 	{
 		try 
 		{
-			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cancelar cita", JOptionPane.QUESTION_MESSAGE);
+			String idCitaReservada = JOptionPane.showInputDialog (this, "Ingrese el id de la cita reservada", "Cumplir cita", JOptionPane.QUESTION_MESSAGE);
 			if (idCitaReservada != null)
 			{
-
 				boolean existe = epsAndes.existeCitaReservada(idCitaReservada);
 				if(existe)
 				{
@@ -306,7 +304,6 @@ public class InterfazEPSAndesRecepcionista extends JFrame implements ActionListe
 	{
 		try
 		{
-
 			BasicConfigurator.configure();
 			// Unifica la interfaz para Mac y para Windows.
 			UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
