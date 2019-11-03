@@ -222,7 +222,7 @@ public class EpsAndes {
 
 	public boolean existeOrganizador(String numCc) 
 	{
-		return Ep.darOrganizadorPorId(numCc) !=null? true:false;
+		return Ep.darOrganizador(numCc) !=null? true:false;
 	}
 
 	public OrganizadorCampania crearOrganizador(String nombre, String numcc, String correo) 
