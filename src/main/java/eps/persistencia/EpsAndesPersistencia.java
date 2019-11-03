@@ -797,12 +797,8 @@ public class EpsAndesPersistencia
 			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, idConsulta, tipo, null);
 			tx.commit();
 			tx.begin();
-<<<<<<< HEAD
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//", "T");
-=======
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//","T");
->>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
-			tx.commit();
+		tx.commit();
 
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -966,12 +962,7 @@ public class EpsAndesPersistencia
 		}
 	}
 
-<<<<<<< HEAD
-	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
-	{
-=======
 	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
->>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -985,11 +976,8 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-<<<<<<< HEAD
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//", "T");
-=======
+			
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//","T");
->>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1074,11 +1062,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-<<<<<<< HEAD
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//", "T");
-=======
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//","T");
->>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1297,5 +1281,60 @@ public class EpsAndesPersistencia
 			pm.close();
 		}			
 	}
+
+	public void cambiarTriage(String triage, String id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlHospitalizacion.cambiarTriage(pm, triage, id);
+			tx.commit();
+
+			log.trace ("Cambiar triage: " + id+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}					
+	}
+
+	public Hospitalizacion consultarDadoAlta(String idHospitalizacion)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = Long.parseLong(idHospitalizacion);
+			tx.begin();
+			Hospitalizacion hops = sqlHospitalizacion.darHospitalizacionPorId(pm, id);
+			tx.commit();
+
+			log.trace ("Consultar dado de alta: " + id+".");
+			return hops;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}	}
 
 }
