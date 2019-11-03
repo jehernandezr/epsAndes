@@ -1,0 +1,44 @@
+{
+	"title": "EPSAndes - Organizador",
+	"frameH": 500,
+	"frameW": 1000,
+	"bannerPath": "./src/main/resources/config/organizadores.png",
+	"menuBar":
+	[
+		{ "menuTitle": "CampaNa",
+		  "options":
+			[
+				{
+					"label": "Registrar campaNa",
+					"event": "registrarCampaNa"
+				},
+				{
+					"label": "Eliminar campaNa",
+					"event": "eliminarCampaNa"
+				},
+				{
+					"label": "Agregar servicio a campaNa",
+					"event": "agregarServicio"
+				}
+			]
+		},
+		{ "menuTitle": "Estado CampaNa",
+		  "options":
+			[
+				{
+					"label": "Cambiar a cumplida",
+					"event": "cambiarCumplida"
+				},
+				{
+					"label": "Cambiar a en proceso",
+					"event": "cambiarEnProceso"
+				},
+				{
+					"label": "Cambiar a confirmada",
+					"event": "estadoConfirmada"
+				}
+			]
+		}
+	]
+}
+	

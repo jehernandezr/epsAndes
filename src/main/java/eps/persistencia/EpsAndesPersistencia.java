@@ -9,6 +9,7 @@ import javax.jdo.JDODataStoreException;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import org.apache.log4j.Logger;
@@ -540,7 +541,7 @@ public class EpsAndesPersistencia
 	{
 		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
 	}
-	
+
 	public CitaReservada darCitaReservada(String id)
 	{
 		return (CitaReservada) sqlCitaReservada.darCitaReservadaPorId(pmf.getPersistenceManager(), id);
@@ -663,7 +664,7 @@ public class EpsAndesPersistencia
 
 			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Ips(BigDecimal.valueOf(id), localizacion, nombre, null);
+			return new Ips(BigDecimal.valueOf(id), localizacion, nombre);
 		}
 		catch (Exception e)
 		{
@@ -721,16 +722,16 @@ public class EpsAndesPersistencia
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
-		
+
 		try
 		{
 			int num = Integer.parseInt(numAfiliado);
-			
+
 			long id = nextval();
 			BigDecimal idGrande= BigDecimal.valueOf(id);
 			tx.begin();
 			long tuplasInsertadas = sqlHorarioDeAtencion.agregarHorarioDeAtencion(pm, idGrande, id_servicio,  respSemana, horaInicial, horaFinal, num);
-			
+
 			tx.commit();
 
 			log.trace ("Inserción de horario de Atencion: (" + id  + ") : " + tuplasInsertadas + " tuplas insertadas");
@@ -751,10 +752,10 @@ public class EpsAndesPersistencia
 			pm.close();
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	public Consulta adicionarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -762,7 +763,7 @@ public class EpsAndesPersistencia
 		try
 		{
 			long idConsulta= nextval();
-			
+
 			long id = nextval();
 			tx.begin();
 			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, idConsulta, tipo, null);
@@ -770,7 +771,7 @@ public class EpsAndesPersistencia
 			tx.begin();
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//");
 			tx.commit();
-		
+
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
 			tx.commit();
@@ -807,7 +808,7 @@ public class EpsAndesPersistencia
 			tx.begin();
 			//caundo el triage es 0  implica que no se ha añadido un cliente y por ello siempre se inicializa en false el dado de alta
 			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, idConsulta, "F", 0, null);
-			
+
 			tx.commit();
 
 			tx.begin();
@@ -837,11 +838,6 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public String consulta1_1() 
-	{
-			return null;
-	}
-	
 	public void cambiarACitaCancelada(String idCitaReservada, String numCcRecepcionista)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -869,7 +865,7 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	
+
 	public void cambiarACitaCumplida(String idCitaReservada, String numCcRecepcionista)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -898,7 +894,7 @@ public class EpsAndesPersistencia
 	}
 
 	public ProcedimientoEspecializado adcionarProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
-		
+
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -906,9 +902,9 @@ public class EpsAndesPersistencia
 			long id = nextval();
 			long idConsulta= nextval();
 			tx.begin();
-			
+
 			long tuplasInsertadas = sqlProcedimientoEspecializado.adicionarProcedimiento(pm, idConsulta, tipo.toLowerCase());
-			
+
 			tx.commit();
 
 			tx.begin();
@@ -946,9 +942,9 @@ public class EpsAndesPersistencia
 			long id = nextval();
 			long idConsulta= nextval();
 			tx.begin();
-			
+
 			long tuplasInsertadas = sqlTerapia.adicionarTerapia(pm, idConsulta, tipo);
-			
+
 			tx.commit();
 
 			tx.begin();
@@ -978,6 +974,10 @@ public class EpsAndesPersistencia
 		}
 	}
 
+	public void consulta6(String unidadTiempo, String tipoServicio)
+	{
+
+	}
 	public Examen adicionarExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -986,9 +986,9 @@ public class EpsAndesPersistencia
 			long id = nextval();
 			long idConsulta= nextval();
 			tx.begin();
-			
+
 			long tuplasInsertadas = sqlExamen.adicionarExamen(pm, idConsulta , tipo.toLowerCase());
-			
+
 			tx.commit();
 
 			tx.begin();
@@ -1018,7 +1018,8 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public Hospitalizacion adicionarHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+	public Hospitalizacion adicionarHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) 
+	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -1028,7 +1029,7 @@ public class EpsAndesPersistencia
 			tx.begin();
 			//caundo dado de alta es f  implica que no se ha añadido un cliente y por ello siempre se inicializa en null el servicio requerido
 			long tuplasInsertadas = sqlHospitalizacion.adicionarHospitalizacion(pm, idConsulta, "f", null);
-			
+
 			tx.commit();
 
 			tx.begin();
@@ -1055,8 +1056,107 @@ public class EpsAndesPersistencia
 				tx.rollback();
 			}
 			pm.close();
-		}
-		
+		}		
 	}
 
+	public String consulta8() 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 7: Comenzada");
+			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			tx.begin();
+			
+			Query q = pm.newQuery(SQL, "SELECT DISTINCT SERVICIO_ASOCIADO, CANTIDAD " + 
+					"FROM( " + 
+					"SELECT SERVICIO_ASOCIADO, COUNT(SERVICIO_ASOCIADO) CANTIDAD " + 
+					"FROM CITAS_RESERVADAS " + 
+					"WHERE cr.ESTADO = 'cumplida' " + 
+					"GROUP BY ID_SERVICIO,to_number(to_char(TO_DATE(tp.FECHA_CONSULTA,'DD-MM-YY HH24:MI:SS'), 'WW'))) " + 
+					"WHERE CANTIDAD < 3;");
+			List<Object[]> datos = (List<Object[]>) q.executeUnique();
+	
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] datoColumnas = (Object[]) datos.get(i);
+				for(int j = 0; j < datoColumnas.length; j++)
+				{
+					long info = ((BigDecimal)datoColumnas[j]).longValue();
+					cadena += info +"\t";
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+	
+			log.trace ("Consulta 7: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public String consulta7() 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 8: Comenzada");
+			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			tx.begin();
+			
+			Query q = pm.newQuery(SQL, "SELECT contador.numDocumento, contador.Id_Servicio " + 
+					"FROM ( " + 
+					"SELECT cr.ID_AFILIADO numDocumento, COUNT (DISTINCT ss.SERVICIO_ASOCIADO) TiposDeServicios, COUNT (ss.ID) servicios " + 
+					" FROM CITAS_RESERVADAS cr, SERVICIOS_DE_SALUD ss " + 
+					" WHERE ss.ID = cr.SERVICIO_ASOCIADO AND to_number(to_char(TO_DATE(cr.FECHA_CONSULTA,'DD-MM-YY HH24:MI:SS'), 'YY'))=to_number(to_char(CURRENT_DATE, 'YY'))-1 " + 
+					" AND cr.ESTADO = 'cumplida' " + 
+					") contador " + 
+					" WHERE contador.TiposDeServicio>2 AND contador.CitasReservadas > 11");
+			List<Object[]> datos = (List<Object[]>) q.executeUnique();
+
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] datoColumnas = (Object[]) datos.get(i);
+				for(int j = 0; j < datoColumnas.length; j++)
+				{
+					long info = ((BigDecimal)datoColumnas[j]).longValue();
+					cadena += info +"\t";
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 8: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
 }

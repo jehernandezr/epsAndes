@@ -211,9 +211,18 @@ public class EpsAndes {
 		Ep.cambiarACitaCancelada(idCitaReservada, numCcRecepcionista);
 	}
 
-	public String reqConsulta1_1() 
+	public String reqConsulta7() 
 	{
-		return Ep.consulta1_1();
+		return Ep.consulta7();
+	}
+
+	public String reqConsulta8() {
+		return Ep.consulta8();
+	}
+
+	public boolean existeOrganizador(String numCc) {
+	
+		return false;
 	}
 
 	

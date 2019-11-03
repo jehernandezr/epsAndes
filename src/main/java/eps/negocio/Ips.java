@@ -18,20 +18,12 @@ public class Ips {
 	private String nombre;
 
 	/**
-	 * id de los medicos adscritos
-	 */
-	private BigDecimal id_Adscritos;
-
-	
-
-	/**
 	 * Constructor por defecto
 	 */
 	public Ips() {
 		this.id=null;
 		this.localizacion = "";
 		this.nombre = "";
-		this.id_Adscritos=null;
 	}
 
 	/**
@@ -42,12 +34,10 @@ public class Ips {
 	 * @param serviciosOfrecidos
 	 * @param medicosAdscritos
 	 */
-	public Ips(BigDecimal id,String localizacion, String nombre, BigDecimal medicosAdscritos) {
+	public Ips(BigDecimal id,String localizacion, String nombre) {
 		this.id=id;
 		this.localizacion = localizacion;
-		this.nombre = nombre;
-		this.id_Adscritos =medicosAdscritos;
-		
+		this.nombre = nombre;		
 	}
 
 	/**
@@ -91,20 +81,6 @@ public class Ips {
 	 */
 	public void setId(BigDecimal id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the id_Adscritos
-	 */
-	public BigDecimal getId_Adscritos() {
-		return id_Adscritos;
-	}
-
-	/**
-	 * @param id_Adscritos the id_Adscritos to set
-	 */
-	public void setId_Adscritos(BigDecimal id_Adscritos) {
-		this.id_Adscritos = id_Adscritos;
 	}
 
 }
