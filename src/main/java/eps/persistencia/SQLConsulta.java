@@ -35,8 +35,8 @@ public class SQLConsulta {
 	 */
 	public long adicionarConsulta(PersistenceManager pm, long Id, String pTipoConsulta, BigDecimal Id_Receta) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsulta() + "(Id, Id_Receta,Tipo_Consulta ) values (?, ?, ?)");
-		q.setParameters(Id,Id_Receta,pTipoConsulta);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConsulta() + "(Id,  Tipo_Consulta, Id_Receta ) values (?, ?, ?)");
+		q.setParameters(Id,pTipoConsulta.toLowerCase(),Id_Receta);
 		return (long) q.executeUnique();
 	}
 

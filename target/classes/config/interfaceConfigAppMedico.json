@@ -1,0 +1,41 @@
+{
+	"title": "EPSAndes - Médico",
+	"frameH": 500,
+	"frameW": 1000,
+	"bannerPath": "./src/main/resources/config/medico.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Orden",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "registrarOrden"
+				}
+			]
+		},
+		{ "menuTitle": "Receta",
+		  "options":
+			[
+				{
+					"label": "Registrar",
+					"event": "registrarReceta"
+				}
+			]
+		},
+		{ "menuTitle": "Consulta urgencias",
+		  "options":
+			[
+				{
+					"label": "Dar de alta",
+					"event": "darDeAlta"
+				},
+				{
+					"label": "Cambiar Triage",
+					"event": "cambiarTriage"
+				}
+			]
+		}
+	]
+}
+	
