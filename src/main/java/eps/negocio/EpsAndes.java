@@ -198,15 +198,16 @@ public class EpsAndes {
 
 	public boolean existeCitaReservada(String idCitaReservada) 
 	{
-		return true;
+		return Ep.darCitaReservada(idCitaReservada) !=null? true:false;
 	}
 
-	public void cambiarACumplidaCitaReservada(String idCitaReservada, String numCcRecpecionista) {
-		
+	public void cambiarACumplidaCitaReservada(String idCitaReservada, String numCcRecepcionista)
+	{
+		Ep.cambiarACitaCumplida(idCitaReservada, numCcRecepcionista);
 	}
 
-	public void cambiarACancelarCitaReservada(String idCitaReservada, String numCcRecpecionista) {
-		// TODO Auto-generated method stub
+	public void cambiarACancelarCitaReservada(String idCitaReservada, String numCcRecpecionista)
+	{
 		
 	}
 

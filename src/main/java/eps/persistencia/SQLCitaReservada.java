@@ -63,7 +63,7 @@ public class SQLCitaReservada {
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UNA CONSULTA, por su identificador
 	 * @return El objeto GERENTE que tiene el identificador dado
 	 */
-	public CitaReservada darCitaReservadaPorId (PersistenceManager pm, long id) 
+	public CitaReservada darCitaReservadaPorId (PersistenceManager pm, String id) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCitaReservada() + " WHERE Id = ?");
 		q.setResultClass(CitaReservada.class);
@@ -101,8 +101,15 @@ public class SQLCitaReservada {
 	 */
 	public long cambiarEstadoCitaReservada (PersistenceManager pm, long id, EstadoCita estado) 
 	{
-		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCitaReservada() + " SET Estado_Cita = ? WHERE Id = ?");
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCitaReservada() + " SET Estado = ? WHERE Id = ?");
 		q.setParameters(estado, id);
 		return (long) q.executeUnique();            
+	}
+
+	public long cambiarCitaCumplida(PersistenceManager pm, String idCitaReservada, String numCcRecepcionista)
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCitaReservada() + " SET Estado = 'cumplida' AND ID_RECEPCIONISTA = ? WHERE Id = ?");
+		q.setParameters(numCcRecepcionista, idCitaReservada);
+		return (long) q.executeUnique(); 
 	}
 }

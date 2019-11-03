@@ -3,13 +3,13 @@ package eps.negocio;
 import java.math.BigDecimal;
 
 
-public class CitaReservada {
-
+public class CitaReservada
+{
 	private BigDecimal id;
 	/**
 	 * Atributo que representa el estado de la cita
 	 */
-	private  String estado; 
+	private String estado; 
 	/**
 	 * Atributo que representa la fecha de la cita
 	 */
@@ -24,10 +24,9 @@ public class CitaReservada {
 	private BigDecimal servicio_Asociado;
 
 	private BigDecimal id_Recepcionista;
-	
-	
+
 	/**
-	 * constructor por defecto
+	 * Constructor por defecto
 	 */
 	public CitaReservada() {
 		this.id =null;
@@ -37,7 +36,7 @@ public class CitaReservada {
 		this.servicio_Asociado = null;
 		this.id_Recepcionista=null;
 	}
-	
+
 	/**
 	 * constructor de cita
 	 * 
@@ -145,7 +144,7 @@ public class CitaReservada {
 	public void setId_Recepcionista(BigDecimal recepcionista) {
 		this.id_Recepcionista = recepcionista;
 	}
-	
-	
-	
+
+
+
 }

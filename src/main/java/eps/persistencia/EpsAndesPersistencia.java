@@ -20,6 +20,7 @@ import eps.negocio.Medico;
 import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
+import eps.negocio.CitaReservada;
 import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
 import eps.negocio.Especializacion;
@@ -127,6 +128,10 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLTerapia sqlTerapia;
+	/**
+	 * 
+	 */
+	private SQLCitaReservada sqlCitaReservada;
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -501,6 +506,11 @@ public class EpsAndesPersistencia
 	{
 		return (Afiliado) sqlAfiliado.darAfiliadoPorId(pmf.getPersistenceManager(), numCc);
 	}
+	
+	public CitaReservada darCitaReservada(String id)
+	{
+		return (CitaReservada) sqlCitaReservada.darCitaReservadaPorId(pmf.getPersistenceManager(), id);
+	}
 
 	public Afiliado adicionarAfiliado(String nombre, String correo, TipoDeDocumento tipoDoc, String numCc, String fecha)
 	{
@@ -795,7 +805,34 @@ public class EpsAndesPersistencia
 
 	public String consulta1_1() 
 	{
-			
+			return null;
+	}
+
+	public void cambiarACitaCumplida(String idCitaReservada, String numCcRecepcionista)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlCitaReservada.cambiarCitaCumplida(pm, idCitaReservada, numCcRecepcionista);
+			tx.commit();
+
+			log.trace ("Cita cumplida: " + idCitaReservada + " - " + numCcRecepcionista + ".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
 }
