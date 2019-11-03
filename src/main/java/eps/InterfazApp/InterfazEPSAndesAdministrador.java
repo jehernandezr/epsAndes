@@ -269,8 +269,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			e.printStackTrace();
 		} 
 	}
-
-
 	/**
 	 * Registra un médico al sistema
 	 */
@@ -292,8 +290,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 	{
 		new PanelRegistrarAfiliado(this);
 	}
-
-
 	public void registrarRecepcionista()
 	{
 		new PanelRegistrarRecepcionista(this);
@@ -305,7 +301,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		String esp = opcion.toString();
 		new PanelRegistrarServicioSalud(this, esp);
 	}
-
 	public void registrarMedicoDatos(String nombre, String correo, String numCc, String numRegistro, Especializacion esp)
 	{
 		try {
@@ -330,7 +325,6 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-
 	public void registrarIPSDatos(String nombre, String localizacion, String nit) 
 	{
 		try {

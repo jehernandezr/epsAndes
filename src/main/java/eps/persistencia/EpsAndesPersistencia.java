@@ -9,6 +9,7 @@ import javax.jdo.JDODataStoreException;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import org.apache.log4j.Logger;
@@ -629,7 +630,7 @@ public class EpsAndesPersistencia
 
 			log.trace ("Inserción de Afiliado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Ips(BigDecimal.valueOf(id), localizacion, nombre, null);
+			return new Ips(BigDecimal.valueOf(id), localizacion, nombre);
 		}
 		catch (Exception e)
 		{
@@ -803,9 +804,48 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public String consulta1_1() 
+	public String consulta1() 
 	{
-			return null;
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 1.1: Comenzada");
+			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			tx.begin();
+			Query q = pm.newQuery(SQL, "SELECT COUNT(id_ips), servicios_de_salud.id_ips FROM "+ darTablaServicioDeSalud() +" INNER JOIN "+ darTablaCitaReservada() + 
+					" ON servicios_de_salud.id = citas_reservadas.servicio_asociado WHERE citas_reservadas.estado = 'cumplida' GROUP BY servicios_de_salud.id_ips");
+			List<Object[]> datos = (List<Object[]>) q.executeUnique();
+			
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] datoColumnas = (Object[]) datos.get(i);
+				for(int j = 0; j < datoColumnas.length; j++)
+				{
+					long info = ((BigDecimal)datoColumnas[j]).longValue();
+					cadena += info +"\t";
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 1.1: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 	
 	public void cambiarACitaCancelada(String idCitaReservada, String numCcRecepcionista)
@@ -852,6 +892,98 @@ public class EpsAndesPersistencia
 		{
 			e.printStackTrace();
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public String consulta2()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 1.2: Comenzada");
+			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			tx.begin();
+			Query q = pm.newQuery(SQL, "SELECT COUNT(*) FROM "+ darTablaServicioDeSalud() +" INNER JOIN "+ darTablaCitaReservada() + 
+					" ON servicios_de_salud.id = citas_reservadas.servicio_asociado WHERE citas_reservadas.estado = 'cumplida' GROUP BY servicios_de_salud.id_ips");
+			List<Object[]> datos = (List<Object[]>) q.executeUnique();
+			
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] datoColumnas = (Object[]) datos.get(i);
+				for(int j = 0; j < datoColumnas.length; j++)
+				{
+					long info = ((BigDecimal)datoColumnas[j]).longValue();
+					cadena += info +"\t";
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 1.2: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public void consulta6(String unidadTiempo, String tipoServicio)
+	{
+		
+	}
+	public String consulta7()
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 1.2: Comenzada");
+			String cadena = "";
+			tx.begin();
+			Query q = pm.newQuery(SQL, "SELECT COUNT(*) FROM "+ darTablaServicioDeSalud() +" INNER JOIN "+ darTablaCitaReservada() + 
+					" ON servicios_de_salud.id = citas_reservadas.servicio_asociado WHERE citas_reservadas.estado = 'cumplida' GROUP BY servicios_de_salud.id_ips");
+			List<Object[]> datos = (List<Object[]>) q.executeUnique();
+			
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] datoColumnas = (Object[]) datos.get(i);
+				for(int j = 0; j < datoColumnas.length; j++)
+				{
+					long info = ((BigDecimal)datoColumnas[j]).longValue();
+					cadena += info +"\t";
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 1.2: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
 		}
 		finally
 		{

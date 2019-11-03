@@ -446,14 +446,14 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 	 */
 	public void rfc1_1()
 	{
-		JOptionPane.showMessageDialog(null, epsAndes.reqConsulta1_1(), "Consulta 1_1", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, epsAndes.reqConsulta1(), "Consulta 1_1", JOptionPane.INFORMATION_MESSAGE);
 	}
 	/**
 	 * Requerimiento de consulta 1.2
 	 */
 	public void rfc1_2()
 	{
-		
+		JOptionPane.showMessageDialog(null, epsAndes.reqConsulta2(), "Consulta 1_2", JOptionPane.INFORMATION_MESSAGE);
 	}
 	/**
 	 * Requerimiento de consulta 1.3
