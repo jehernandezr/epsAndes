@@ -82,5 +82,17 @@ public class SQLServicioDeSalud {
 		q.setResultClass(ServicioDeSalud.class);
 		return (List<ServicioDeSalud>) q.executeList();
 	}
+	public void habilitarServicio(PersistenceManager pm, String id) 
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaServicioDeSalud() + " SET HABILITADO = 'T' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();  		
+	}
+	public void deshabilitarServicio(PersistenceManager pm, String id) 
+	{
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaServicioDeSalud() + " SET HABILITADO = 'F' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();  		
+	}
 
 }

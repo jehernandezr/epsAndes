@@ -33,6 +33,19 @@
 					"event": "registrarOrganizador"
 				}
 			]
+		},
+		{ "menuTitle": "Servicio de salud",
+		  "options":
+			[
+				{
+					"label": "Habilitar",
+					"event": "habilitarServicio"
+				},
+				{
+					"label": "Deshabilitar",
+					"event": "deshabilitarServicio"
+				}
+			]
 		}
 	]
 }

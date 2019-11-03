@@ -135,6 +135,7 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLServiciosRequeridos sqlServiciosRequeridos;
+
 	/**
 	 * 
 	 */
@@ -784,7 +785,7 @@ public class EpsAndesPersistencia
 
 
 
-	public Consulta adicionarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado, String habilitado) 
+	public Consulta adicionarServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -797,7 +798,7 @@ public class EpsAndesPersistencia
 			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, idConsulta, tipo, null);
 			tx.commit();
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//", habilitado);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//", "T");
 			tx.commit();
 
 			tx.begin();
@@ -825,7 +826,7 @@ public class EpsAndesPersistencia
 
 	}
 
-	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado, String habilitado)
+	public ConsultaUrgencia adicionarServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -840,7 +841,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  "//",habilitado);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  "//","T");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -921,7 +922,7 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public ProcedimientoEspecializado adcionarProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
+	public ProcedimientoEspecializado adcionarProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -936,7 +937,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Procedimiento_Especializado",  "//",habilitado);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Procedimiento_Especializado",  "//","T");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -962,7 +963,8 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
+	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
+	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -976,7 +978,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//", habilitado);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//", "T");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1006,7 +1008,7 @@ public class EpsAndesPersistencia
 	{
 
 	}
-	public Examen adicionarExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado,String habilitado) {
+	public Examen adicionarExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -1020,7 +1022,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Examenes",  "//",habilitado);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Examenes",  "//","T");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1046,7 +1048,7 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public Hospitalizacion adicionarHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado, String habilitado) 
+	public Hospitalizacion adicionarHospitalizacion(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -1060,7 +1062,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//", habilitado);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//", "T");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1255,4 +1257,59 @@ public class EpsAndesPersistencia
 		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
 
 	}
+
+	public void habilitarServicio(String id)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlServicioDeSalud.habilitarServicio(pm, id);
+			tx.commit();
+
+			log.trace ("Habilitar servicio: " + id+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}			
+	}
+	
+	public void deshabilitarServicio(String id)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlServicioDeSalud.deshabilitarServicio(pm, id);
+			tx.commit();
+
+			log.trace ("Deshabilitar servicio: " + id+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}			
+	}
+
 }
