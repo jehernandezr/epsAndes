@@ -222,7 +222,7 @@ public class EpsAndes {
 
 	public boolean existeOrganizador(String numCc) {
 	
-		return false;
+		return Ep.darOrganizador(numCc) != null? true:false;
 	}
 
 	

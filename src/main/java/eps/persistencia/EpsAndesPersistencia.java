@@ -18,6 +18,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import eps.negocio.Medico;
+import eps.negocio.OrganizadorCampania;
 import eps.negocio.Procedimiento;
 import eps.negocio.ProcedimientoEspecializado;
 import eps.negocio.Recepcionista;
@@ -142,6 +143,28 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLCitaReservada sqlCitaReservada;
+	
+	/**
+	 * 
+	 */
+	private SQLCampanias sqlCampania;
+	
+	/**
+	 * 
+	 */
+	private SQLOrganizadoresCampania sqlOrganizador;
+	
+	/**
+	 * 
+	 */
+	private SQLServiciosCampania sqlServiciosCampania;
+	
+	/**
+	 * 
+	 */
+	private SQLParticipantes sqlParticipante;
+	
+	 
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -1158,5 +1181,10 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
+	}
+
+	public OrganizadorCampania darOrganizador(String numCc) {
+		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
+		
 	}
 }
