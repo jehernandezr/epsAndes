@@ -161,9 +161,9 @@ public class EpsAndes {
 		return Ep.adicionarServicioConsultaUrgencia(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
-	public void crearServicioProcedimiento(String nit, String tipo) {
-		// TODO Auto-generated method stub
-		
+	public ProcedimientoEspecializado crearServicioProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+	
+		return Ep.adcionarProcedimiento(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
 	public void crearServicioHospitalizacion(String nit) {

@@ -17,6 +17,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import eps.negocio.Medico;
+import eps.negocio.Procedimiento;
+import eps.negocio.ProcedimientoEspecializado;
 import eps.negocio.Recepcionista;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
@@ -796,6 +798,47 @@ public class EpsAndesPersistencia
 	public String consulta1_1() 
 	{
 			
+	}
+
+	public ProcedimientoEspecializado adcionarProcedimiento(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+		
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			long idConsulta= nextval();
+			tx.begin();
+			//caundo el triage es 0  implica que no se ha añadido un cliente y por ello siempre se inicializa en false el dado de alta
+			long tuplasInsertadas = sqlConsultaUrgencia.adicionarConsulta(pm, idConsulta, "F", 0, null);
+			
+			tx.commit();
+
+			tx.begin();
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  "//");
+			tx.commit();
+			tx.begin();
+			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
+			tx.commit();
+			log.trace ("Inserción de Servicio De consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
+			log.trace ("Inserción de Consulta Urgencia: (" + id  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
+
+			return new ProcedimientoEspecializado();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
 }

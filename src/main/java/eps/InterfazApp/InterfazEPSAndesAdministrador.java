@@ -495,11 +495,11 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioProcedimiento(nit, tipo);
-					panelDatos.actualizarInterfaz("El servico de Procedimiento  : "+tipo+" fue registrado con exito ");
+					epsAndes.crearServicioProcedimiento(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
+					panelDatos.actualizarInterfaz("El servico de Procedimiento  : "+ tipo+" fue registrado con exito ");
 				}
 				else
-					panelDatos.actualizarInterfaz("Este Procedimiento : "+tipo+" ya está registrada en la ips "+ nit);
+					panelDatos.actualizarInterfaz("Este Procedimiento : "+ tipo +" ya está registrada en la ips "+ nit);
 			}
 			else
 			{
