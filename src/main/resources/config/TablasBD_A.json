@@ -22,6 +22,9 @@
 		"Medicos_Adscritos",
 		"Roles_En_Sistema",
 		"Servicio_De_Salud",
-		"Servicios_Requeridos"
+		"Servicios_Requeridos",
+		"CAMPANIAS",
+		"ORGANIZADORESCAMPANIA",
+		"SERVICIOSREQUERIDOS"
 	]
 }

@@ -211,9 +211,9 @@ public class EpsAndes {
 		Ep.cambiarACitaCancelada(idCitaReservada, numCcRecepcionista);
 	}
 
-	public String reqConsulta1() 
+	public String reqConsulta7() 
 	{
-		return Ep.consulta1();
+		return Ep.consulta7();
 	}
 
 	public String reqConsulta2() {

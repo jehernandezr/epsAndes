@@ -288,6 +288,35 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		}
 	}
 	/**
+	 * Inicializa como organzador del sistema
+	 */
+	public void iniciarOrganizador()
+	{
+		try 
+		{
+			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula", "Ingresar como organizador", JOptionPane.QUESTION_MESSAGE);
+			if (numCc != null)
+			{
+				boolean existe = epsAndes.existeOrganizador(numCc);
+				if(existe)
+				{
+					InterfazEPSAndesOrganizador interfaz = new InterfazEPSAndesOrganizador();
+					interfaz.registrarNumCcIngresado(numCc);
+					interfaz.setVisible( true );
+				}
+				else
+					panelDatos.actualizarInterfaz("El organizador no existe");
+			}
+			else
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		} 
+		catch (Exception e) 
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	/**
 	 * Inicializa como médico del sistema
 	 */
 	public void iniciarMedico()
@@ -442,40 +471,27 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		mostrarArchivo ("data/EsquemaEpsAndes.sql");
 	}
 	/**
-	 * Requerimiento de consulta 1.1
+	 * Requerimiento de consulta 6
 	 */
-	public void rfc1_1()
-	{
-		JOptionPane.showMessageDialog(null, epsAndes.reqConsulta1(), "Consulta 1_1", JOptionPane.INFORMATION_MESSAGE);
-	}
-	/**
-	 * Requerimiento de consulta 1.2
-	 */
-	public void rfc1_2()
-	{
-		JOptionPane.showMessageDialog(null, epsAndes.reqConsulta2(), "Consulta 1_2", JOptionPane.INFORMATION_MESSAGE);
-	}
-	/**
-	 * Requerimiento de consulta 1.3
-	 */
-	public void rfc1_3()
+	public void rfc6()
 	{
 		
 	}
 	/**
-	 * Requerimiento de consulta 1.4
+	 * Requerimiento de consulta 7
 	 */
-	public void rfc1_4()
+	public void rfc7()
 	{
 		
 	}
 	/**
-	 * Requerimiento de consulta 1.5
+	 * Requerimiento de consulta 8
 	 */
-	public void rfc1_5()
+	public void rfc8()
 	{
 		
 	}
+	
 	/**
 	 * Abre el archivo dado como parámetro con la aplicación por defecto del sistema
 	 * @param nombreArchivo - El nombre del archivo que se quiere mostrar
