@@ -42,7 +42,7 @@ public class SQLServicioDeSalud {
 	public long adicionarServicioDeSalud (PersistenceManager pm, long id,  BigDecimal Id_Ips, long Id_Servicio, String tipoServicio, String Fecha_realizacion ) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioDeSalud()+ "(Id, " + tipoServicio +",  Fecha_realizacion, Id_Ips) values (?,?,?,?)");
-		q.setParameters(id, Id_Servicio, Id_Ips, Fecha_realizacion );
+		q.setParameters(id, Id_Servicio,  Fecha_realizacion,Id_Ips );
 		return (long) q.executeUnique();
 	}
 

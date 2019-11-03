@@ -10,7 +10,7 @@ public class Consulta extends ServicioDeSalud{
 	 */
 	private String tipo_Consulta;
 
-	private BigDecimal id_receta;
+	private BigDecimal id_Receta;
 
 	/**
 	 * Constructor por defecto
@@ -18,7 +18,7 @@ public class Consulta extends ServicioDeSalud{
 	public Consulta() {
 		super();
 		this.tipo_Consulta = null;
-		this.id_receta = null;
+		this.id_Receta = null;
 	}
 
 	/**
@@ -30,35 +30,35 @@ public class Consulta extends ServicioDeSalud{
 	public Consulta(String tipoConsulta, BigDecimal receta) {
 		super();
 		this.tipo_Consulta = tipoConsulta;
-		this.id_receta = receta;
+		this.id_Receta = receta;
 	}
 
 	/**
 	 * @return the tipoConsulta
 	 */
-	public String getTipoConsulta() {
+	public String getTipo_Consulta() {
 		return tipo_Consulta;
 	}
 
 	/**
 	 * @param tipoConsulta the tipoConsulta to set
 	 */
-	public void setTipoConsulta(String tipoConsulta) {
+	public void setTipo_Consulta(String tipoConsulta) {
 		this.tipo_Consulta = tipoConsulta;
 	}
 
 	/**
 	 * @return the recetas
 	 */
-	public BigDecimal getReceta() {
-		return id_receta;
+	public BigDecimal getId_Receta() {
+		return id_Receta;
 	}
 
 	/**
 	 * @param recetas the recetas to set
 	 */
-	public void setReceta(BigDecimal receta) {
-		this.id_receta = receta;
+	public void setId_Receta(BigDecimal receta) {
+		this.id_Receta = receta;
 	}
 
 

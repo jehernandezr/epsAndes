@@ -731,10 +731,10 @@ public class EpsAndesPersistencia
 			
 			long id = nextval();
 			tx.begin();
-			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, id, tipo, null);
+			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, idConsulta, tipo, null);
 			tx.commit();
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  null);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//");
 			tx.commit();
 		
 			tx.begin();
@@ -777,7 +777,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  null);
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Consulta_Urgencia",  "//");
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);

@@ -231,7 +231,7 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		{
 			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula ", "Ingresar como recepcionista", JOptionPane.QUESTION_MESSAGE);
 			if (numCc != null)
-			{
+	{
 				
 				boolean existe = epsAndes.existeRecepcionista(numCc);
 				if(existe)
