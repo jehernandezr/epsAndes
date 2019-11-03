@@ -144,28 +144,28 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLCitaReservada sqlCitaReservada;
-
+	
 	/**
 	 * 
 	 */
 	private SQLCampanias sqlCampania;
-
+	
 	/**
 	 * 
 	 */
 	private SQLOrganizadoresCampania sqlOrganizador;
-
+	
 	/**
 	 * 
 	 */
 	private SQLServiciosCampania sqlServiciosCampania;
-
+	
 	/**
 	 * 
 	 */
 	private SQLParticipantes sqlParticipante;
-
-
+	
+	 
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -240,7 +240,7 @@ public class EpsAndesPersistencia
 		tablas.add("ORGANIZADORESCAMPANIA");
 		tablas.add("SERVICIOS_CAMPANIA");
 		tablas.add("PARTICIPANTES");
-
+		
 	}
 
 	/**
@@ -282,12 +282,11 @@ public class EpsAndesPersistencia
 		sqlServicioDeSalud = new SQLServicioDeSalud(this);
 		sqlServiciosRequeridos= new SQLServiciosRequeridos(this);
 		sqlTerapia= new SQLTerapia(this);
-		sqlOrganizador= new SQLOrganizadoresCampania(this);
 		sqlUtil = new SQLUtil(this);
 		sqlOrganizador= new SQLOrganizadoresCampania(this);
-		sqlCampania = new SQLCampanias(this);
-		sqlParticipante= new SQLParticipantes(this);
-		sqlServiciosCampania = new SQLServiciosCampania(this);
+	sqlCampania = new SQLCampanias(this);
+	sqlParticipante= new SQLParticipantes(this);
+	sqlServiciosCampania = new SQLServiciosCampania(this);
 	}
 
 	/**
@@ -426,23 +425,23 @@ public class EpsAndesPersistencia
 	public String darTablaCampanias()
 	{
 		return tablas.get(20);
-
+		
 	}
-
+	
 	public String darTablaOrganizadoresDeCampania()
 	{
 		return tablas.get(21);
 	}
-
+	
 	public String darTablaServiciosCampania(){
 		return tablas.get(22);
 	}
-
+	
 	public String darTablaParticipantes()
 	{
 		return  tablas.get(23);
 	}
-
+	
 	/**
 	 * Transacción para el generador de secuencia de EpsAndes
 	 * Adiciona entradas al log de la aplicación
@@ -798,7 +797,11 @@ public class EpsAndesPersistencia
 			long tuplasInsertadas = sqlConsulta.adicionarConsulta(pm, idConsulta, tipo, null);
 			tx.commit();
 			tx.begin();
+<<<<<<< HEAD
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//", "T");
+=======
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//","T");
+>>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 			tx.commit();
 
 			tx.begin();
@@ -963,8 +966,12 @@ public class EpsAndesPersistencia
 		}
 	}
 
+<<<<<<< HEAD
 	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado)
 	{
+=======
+	public Terapia adicionarTerapia(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
+>>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -978,7 +985,11 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
+<<<<<<< HEAD
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//", "T");
+=======
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//","T");
+>>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1057,12 +1068,17 @@ public class EpsAndesPersistencia
 			long id = nextval();
 			long idConsulta= nextval();
 			tx.begin();
+			//caundo dado de alta es f  implica que no se ha añadido un cliente y por ello siempre se inicializa en null el servicio requerido
 			long tuplasInsertadas = sqlHospitalizacion.adicionarHospitalizacion(pm, idConsulta, "f", null);
 
 			tx.commit();
 
 			tx.begin();
+<<<<<<< HEAD
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//", "T");
+=======
+			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Hospitalizacion",  "//","T");
+>>>>>>> b2fb542a5262dc6fc3f8dfe625b9ae424aa39b9e
 			tx.commit();
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -1097,7 +1113,7 @@ public class EpsAndesPersistencia
 			log.trace ("Consulta 7: Comenzada");
 			String cadena = "Identificación IPS \t Cantidad de servicios \n";
 			tx.begin();
-
+			
 			Query q = pm.newQuery(SQL, "SELECT DISTINCT SERVICIO_ASOCIADO, CANTIDAD " + 
 					"FROM( " + 
 					"SELECT SERVICIO_ASOCIADO, COUNT(SERVICIO_ASOCIADO) CANTIDAD " + 
@@ -1106,7 +1122,7 @@ public class EpsAndesPersistencia
 					"GROUP BY ID_SERVICIO,to_number(to_char(TO_DATE(tp.FECHA_CONSULTA,'DD-MM-YY HH24:MI:SS'), 'WW'))) " + 
 					"WHERE CANTIDAD < 3;");
 			List<Object[]> datos = (List<Object[]>) q.executeUnique();
-
+	
 			for (int i = 0; i < datos.size(); i++)
 			{
 				Object[] datoColumnas = (Object[]) datos.get(i);
@@ -1118,7 +1134,7 @@ public class EpsAndesPersistencia
 				cadena += "\n";
 			}
 			tx.commit();
-
+	
 			log.trace ("Consulta 7: Realizada");
 			return cadena;
 		}
@@ -1147,7 +1163,7 @@ public class EpsAndesPersistencia
 			log.trace ("Consulta 8: Comenzada");
 			String cadena = "Identificación IPS \t Cantidad de servicios \n";
 			tx.begin();
-
+			
 			Query q = pm.newQuery(SQL, "SELECT contador.numDocumento, contador.Id_Servicio " + 
 					"FROM ( " + 
 					"SELECT cr.ID_AFILIADO numDocumento, COUNT (DISTINCT ss.SERVICIO_ASOCIADO) TiposDeServicios, COUNT (ss.ID) servicios " + 
@@ -1189,51 +1205,26 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public void cambiarTriage(String triage, String id)
-	{
+	public OrganizadorCampania darOrganizador(String numCc) {
+		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
+		
+	}
+
+	public OrganizadorCampania adicionarOrganizador(String nombre, String numcc, String correo) {
+		
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+		
 			tx.begin();
-			sqlHospitalizacion.cambiarTriage(pm, triage, id);
-			tx.commit();
-
-			log.trace ("Cambio de triage: " + id + " - " + triage + ".");
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}	
-	}
-
-	public Hospitalizacion consultarDadoAlta(String idHospitalizacion)
-	{
-		long id = Long.parseLong(idHospitalizacion);
-		return (Hospitalizacion) sqlHospitalizacion.darHospitalizacionPorId(pmf.getPersistenceManager(), id);
-	}
-
-	public OrganizadorCampania adicionarOrganizador(String nombre, String numcc, String correo)
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx=pm.currentTransaction();
-		try
-		{
-			tx.begin();
+			//caundo dado de alta es f  implica que no se ha añadido un cliente y por ello siempre se inicializa en null el servicio requerido
 			long tuplasInsertadas = sqlOrganizador.adicionarOrganizadorCampania(pmf.getPersistenceManager(), nombre, correo, numcc);
 			tx.commit();
 
-			log.trace ("Inserción de Organizador de campañas: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-
+			
+			log.trace ("Inserción de Servicio De organizador (" + numcc +" , " + nombre + ") : " + tuplasInsertadas + " tuplas insertadas");
+			
 			return new OrganizadorCampania(nombre, correo, numcc);
 		}
 		catch (Exception e)
@@ -1249,13 +1240,8 @@ public class EpsAndesPersistencia
 				tx.rollback();
 			}
 			pm.close();
-		}
-	}
-	
-	public OrganizadorCampania darOrganizador(String numCc) 
-	{
-		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
-
+		}	
+		
 	}
 
 	public void habilitarServicio(String id)
