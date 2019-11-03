@@ -101,6 +101,20 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 		this.numCc = numCc;
 	}
 
+	public void registrarCampaNa()
+	{
+		
+	}
+	
+	public void eliminarCampaNa()
+	{
+		
+	}
+	
+	public void agregarServicio()
+	{
+		
+	}
 	/**
 	 * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
 	 * @param tipo - El tipo de configuración deseada

@@ -1119,7 +1119,7 @@ public class EpsAndesPersistencia
 			}
 			tx.commit();
 	
-			log.trace ("Consulta 7: Realizada");
+			log.trace ("Consulta 8: Realizada");
 			return cadena;
 		}
 		catch (Exception e)
