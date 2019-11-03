@@ -39,10 +39,10 @@ public class SQLServicioDeSalud {
 	 * Crea y ejecuta la sentencia SQL para adicionar un Servicio de salud a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarServicioDeSalud (PersistenceManager pm, long id,  BigDecimal Id_Ips, long Id_Servicio, String tipoServicio, String Fecha_realizacion ) 
+	public long adicionarServicioDeSalud (PersistenceManager pm, long id,  BigDecimal Id_Ips, long Id_Servicio, String tipoServicio, String Fecha_realizacion, String habilitado ) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioDeSalud()+ "(Id, " + tipoServicio +",  Fecha_realizacion, Id_Ips) values (?,?,?,?)");
-		q.setParameters(id, Id_Servicio,  Fecha_realizacion,Id_Ips );
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioDeSalud()+ "(Id, " + tipoServicio +",  Fecha_realizacion, Id_Ips, habilitado) values (?,?,?,?,?)");
+		q.setParameters(id, Id_Servicio,  Fecha_realizacion,Id_Ips, habilitado );
 		return (long) q.executeUnique();
 	}
 

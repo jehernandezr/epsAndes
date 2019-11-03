@@ -11,6 +11,7 @@ public class ServicioDeSalud {
 
 	private BigDecimal id_Ips;
 
+	private String habilitado;
 	
 
 	private BigDecimal id_Consulta;
@@ -38,6 +39,7 @@ public class ServicioDeSalud {
 		this.id_Examenes = null;
 		this.id_Terapias = null;
 		this.id_Procedimiento_Especializado = null;
+		this.habilitado=null;
 	}
 
 	/**
@@ -61,11 +63,7 @@ public class ServicioDeSalud {
 	
 
 	/**
-<<<<<<< HEAD
-=======
-	 * Constructor de unservicio de salud
-	 * 
->>>>>>> dc998da77a59a2e174e4478826e94beed4284b59
+
 	 * @param id
 	 * @param fecha_Realizacion
 	 * @param id_Ips
@@ -77,7 +75,7 @@ public class ServicioDeSalud {
 	 */
 	public ServicioDeSalud(BigDecimal id, String fecha_Realizacion, BigDecimal id_Ips, BigDecimal id_Consulta,
 			BigDecimal id_Consulta_Urgencia, BigDecimal id_Examenes, BigDecimal id_Terapias,
-			BigDecimal id_Procedimiento_Especializado) {
+			BigDecimal id_Procedimiento_Especializado,String habilitado) {
 		super();
 		this.setId(id);
 		this.fecha_Realizacion = fecha_Realizacion;
@@ -87,6 +85,7 @@ public class ServicioDeSalud {
 		this.id_Examenes = id_Examenes;
 		this.id_Terapias = id_Terapias;
 		this.id_Procedimiento_Especializado = id_Procedimiento_Especializado;
+		this.habilitado=habilitado;
 	}
 
 
@@ -189,6 +188,20 @@ public class ServicioDeSalud {
 	 */
 	public void setId_Procedimiento_Especializado(BigDecimal id_Procedimiento_Especializado) {
 		this.id_Procedimiento_Especializado = id_Procedimiento_Especializado;
+	}
+
+	/**
+	 * @return the habilitado
+	 */
+	public String getHabilitado() {
+		return habilitado;
+	}
+
+	/**
+	 * @param habilitado the habilitado to set
+	 */
+	public void setHabilitado(String habilitado) {
+		this.habilitado = habilitado;
 	}
 
 	
