@@ -281,6 +281,7 @@ public class EpsAndesPersistencia
 		sqlServicioDeSalud = new SQLServicioDeSalud(this);
 		sqlServiciosRequeridos= new SQLServiciosRequeridos(this);
 		sqlTerapia= new SQLTerapia(this);
+		sqlOrganizador= new SQLOrganizadoresCampania(this);
 		sqlUtil = new SQLUtil(this);
 		sqlOrganizador= new SQLOrganizadoresCampania(this);
 		sqlCampania = new SQLCampanias(this);
@@ -1054,7 +1055,6 @@ public class EpsAndesPersistencia
 			long id = nextval();
 			long idConsulta= nextval();
 			tx.begin();
-			//caundo dado de alta es f  implica que no se ha añadido un cliente y por ello siempre se inicializa en null el servicio requerido
 			long tuplasInsertadas = sqlHospitalizacion.adicionarHospitalizacion(pm, idConsulta, "f", null);
 
 			tx.commit();
@@ -1187,7 +1187,71 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public OrganizadorCampania darOrganizador(String numCc) {
+	public void cambiarTriage(String triage, String id)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlHospitalizacion.cambiarTriage(pm, triage, id);
+			tx.commit();
+
+			log.trace ("Cambio de triage: " + id + " - " + triage + ".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}	
+	}
+
+	public Hospitalizacion consultarDadoAlta(String idHospitalizacion)
+	{
+		long id = Long.parseLong(idHospitalizacion);
+		return (Hospitalizacion) sqlHospitalizacion.darHospitalizacionPorId(pmf.getPersistenceManager(), id);
+	}
+
+	public OrganizadorCampania adicionarOrganizador(String nombre, String numcc, String correo)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlOrganizador.adicionarOrganizadorCampania(pmf.getPersistenceManager(), nombre, correo, numcc);
+			tx.commit();
+
+			log.trace ("Inserción de Organizador de campañas: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new OrganizadorCampania(nombre, correo, numcc);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public OrganizadorCampania darOrganizador(String numCc) 
+	{
 		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
 
 	}

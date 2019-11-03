@@ -186,14 +186,14 @@ public class EpsAndes {
 		return true;
 	}
 
-	public boolean consultaUrgenciasDadoAlta() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean consultaUrgenciasDadoAlta(String idHospitalizacion) 
+	{
+		return Ep.consultarDadoAlta(idHospitalizacion) !=null? true:false;
 	}
 
-	public void cambiarTriage(String triage, String numDoc) 
+	public void cambiarTriage(String triage, String id) 
 	{
-		
+		Ep.cambiarTriage(triage, id);
 	}
 
 	public boolean existeCitaReservada(String idCitaReservada) 
@@ -220,9 +220,14 @@ public class EpsAndes {
 		return Ep.consulta8();
 	}
 
-	public boolean existeOrganizador(String numCc) {
-	
-		return Ep.darOrganizador(numCc) != null? true:false;
+	public boolean existeOrganizador(String numCc) 
+	{
+		return Ep.darOrganizador(numCc) !=null? true:false;
+	}
+
+	public OrganizadorCampania crearOrganizador(String nombre, String numcc, String correo) 
+	{
+		return Ep.adicionarOrganizador(nombre, numcc, correo);
 	}
 
 	

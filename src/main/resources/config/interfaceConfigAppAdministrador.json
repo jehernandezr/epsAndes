@@ -27,6 +27,10 @@
 				{
 					"label": "Servicio de salud",
 					"event": "registrarServicioSalud"
+				},
+				{
+					"label": "Organizador de campaNa",
+					"event": "registrarOrganizador"
 				}
 			]
 		}

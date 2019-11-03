@@ -457,18 +457,11 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		mostrarArchivo ("data/EPSAndes-Modelo Conceptual.png");
 	}
 	/**
-	 * Muestra el esquema de la base de datos de EpsAndes
-	 */
-	public void mostrarEsquemaBD ()
-	{
-		mostrarArchivo ("data/Esquema BD EpsAndes.pdf");
-	}
-	/**
 	 * Muestra el script de creación de la base de datos
 	 */
 	public void mostrarScriptBD ()
 	{
-		mostrarArchivo ("data/EsquemaEpsAndes.sql");
+		mostrarArchivo ("data/Registro de datos.sql");
 	}
 	/**
 	 * Requerimiento de consulta 6

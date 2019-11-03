@@ -84,5 +84,11 @@ public class SQLHospitalizacion {
 		return (List<Hospitalizacion>) q.executeList();
 	}
 
+	public void cambiarTriage(PersistenceManager pm, String triage, String id) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaHospitalizacion()+" SET TRIAGE = '" + triage + "' WHERE ID = "+id);
+		q.setResultClass(Hospitalizacion.class);
+		q.executeUnique();
+	}
+
 	
 }
