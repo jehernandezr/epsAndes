@@ -813,57 +813,6 @@ public class EpsAndesPersistencia
 		}
 	}
 
-	public String consulta7() 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		try
-		{
-			log.trace ("Consulta 7: Comenzada");
-			String cadena = "Identificación IPS \t Cantidad de servicios \n";
-			tx.begin();
-			
-			Query q = pm.newQuery(SQL, "SELECT contador.numDocumento, contador.Id_Servicio " + 
-					"FROM ( " + 
-					"SELECT cr.ID_AFILIADO numDocumento, COUNT (DISTINCT ss.SERVICIO_ASOCIADO) TiposDeServicios, COUNT (ss.ID) servicios " + 
-					" FROM CITAS_RESERVADAS cr, SERVICIOS_DE_SALUD ss " + 
-					" WHERE ss.ID = cr.SERVICIO_ASOCIADO AND to_number(to_char(TO_DATE(cr.FECHA_CONSULTA,'DD-MM-YY HH24:MI:SS'), 'YY'))=to_number(to_char(CURRENT_DATE, 'YY'))-1 " + 
-					" AND cr.ESTADO = 'cumplida' " + 
-					") contador " + 
-					" WHERE contador.TiposDeServicio>2 AND contador.CitasReservadas > 11");
-			List<Object[]> datos = (List<Object[]>) q.executeUnique();
-
-			for (int i = 0; i < datos.size(); i++)
-			{
-				Object[] datoColumnas = (Object[]) datos.get(i);
-				for(int j = 0; j < datoColumnas.length; j++)
-				{
-					long info = ((BigDecimal)datoColumnas[j]).longValue();
-					cadena += info +"\t";
-				}
-				cadena += "\n";
-			}
-			tx.commit();
-
-			log.trace ("Consulta 7: Realizada");
-			return cadena;
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-			return "No se pudo ejecutar correctamente la sentencia SQL.";
-		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
-			pm.close();
-		}
-	}
-
 	public void cambiarACitaCancelada(String idCitaReservada, String numCcRecepcionista)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -1135,4 +1084,54 @@ public class EpsAndesPersistencia
 		}
 	}
 
+	public String consulta7() 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 8: Comenzada");
+			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			tx.begin();
+			
+			Query q = pm.newQuery(SQL, "SELECT contador.numDocumento, contador.Id_Servicio " + 
+					"FROM ( " + 
+					"SELECT cr.ID_AFILIADO numDocumento, COUNT (DISTINCT ss.SERVICIO_ASOCIADO) TiposDeServicios, COUNT (ss.ID) servicios " + 
+					" FROM CITAS_RESERVADAS cr, SERVICIOS_DE_SALUD ss " + 
+					" WHERE ss.ID = cr.SERVICIO_ASOCIADO AND to_number(to_char(TO_DATE(cr.FECHA_CONSULTA,'DD-MM-YY HH24:MI:SS'), 'YY'))=to_number(to_char(CURRENT_DATE, 'YY'))-1 " + 
+					" AND cr.ESTADO = 'cumplida' " + 
+					") contador " + 
+					" WHERE contador.TiposDeServicio>2 AND contador.CitasReservadas > 11");
+			List<Object[]> datos = (List<Object[]>) q.executeUnique();
+
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] datoColumnas = (Object[]) datos.get(i);
+				for(int j = 0; j < datoColumnas.length; j++)
+				{
+					long info = ((BigDecimal)datoColumnas[j]).longValue();
+					cadena += info +"\t";
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 8: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
 }
