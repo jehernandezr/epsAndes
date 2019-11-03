@@ -82,10 +82,6 @@ public class EpsAndesPersistencia
 	/**
 	 * 
 	 */
-	private SQLOrganizadoresCampania sqlOrganizador;
-	/**
-	 * 
-	 */
 	private SQLConsulta sqlConsulta;
 	/**
 	 * 
@@ -1191,7 +1187,6 @@ public class EpsAndesPersistencia
 		}
 	}
 
-<<<<<<< HEAD
 	public void cambiarTriage(String triage, String id)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -1225,11 +1220,6 @@ public class EpsAndesPersistencia
 		return (Hospitalizacion) sqlHospitalizacion.darHospitalizacionPorId(pmf.getPersistenceManager(), id);
 	}
 
-	public OrganizadorCampania darOrganizadorPorId(String numCc) 
-	{
-		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), Long.valueOf(numCc));
-	}
-
 	public OrganizadorCampania adicionarOrganizador(String nombre, String numcc, String correo)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -1258,10 +1248,11 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}
-=======
-	public OrganizadorCampania darOrganizador(String numCc) {
+	}
+	
+	public OrganizadorCampania darOrganizador(String numCc) 
+	{
 		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
->>>>>>> da95b524fdf3c8b5f7a0a2483cf4aa7eda0bdd6b
 
 	}
 }
