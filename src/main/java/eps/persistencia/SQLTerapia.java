@@ -33,7 +33,7 @@ public class SQLTerapia
 	 * Crea y ejecuta la sentencia SQL para adicionar una TERAPIAS a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarProcedimiento(PersistenceManager pm, int Id, String pTerapia) 
+	public long adicionarTerapia(PersistenceManager pm, long Id, String pTerapia) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTerapia() + "(Id, Tipo_Terapia) values (?, ?)");
 		q.setParameters(Id, pTerapia);

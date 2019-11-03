@@ -489,11 +489,11 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioProcedimiento(nit, tipo);
-					panelDatos.actualizarInterfaz("El servico de Procedimiento  : "+tipo+" fue registrado con exito ");
+					epsAndes.crearServicioProcedimiento(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
+					panelDatos.actualizarInterfaz("El servico de Procedimiento  : "+ tipo+" fue registrado con exito ");
 				}
 				else
-					panelDatos.actualizarInterfaz("Este Procedimiento : "+tipo+" ya está registrada en la ips "+ nit);
+					panelDatos.actualizarInterfaz("Este Procedimiento : "+ tipo +" ya está registrada en la ips "+ nit);
 			}
 			else
 			{
@@ -513,7 +513,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioTerapia(nit, tipo);
+					epsAndes.crearServicioTerapia(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 					panelDatos.actualizarInterfaz("El servico de Terapia  : "+tipo+" fue registrado con exito ");
 				}
 				else
@@ -537,7 +537,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioExamen(nit, tipo);
+					epsAndes.crearServicioExamen(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 					panelDatos.actualizarInterfaz("El servico de Examen  : "+tipo+" fue registrado con exito ");
 				}
 				else
@@ -561,7 +561,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 				boolean existe = epsAndes.existeIps(nit);
 				if(existe)
 				{
-					epsAndes.crearServicioHospitalizacion(nit);
+					epsAndes.crearServicioHospitalizacion(nit, respSemana, horaInicial, horaFinal, numAfiliado);
 					panelDatos.actualizarInterfaz("El servico de Hospitalizacion  : "+nit+" fue registrado con exito ");
 				}
 				else

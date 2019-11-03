@@ -1,5 +1,6 @@
 package eps.persistencia;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -31,10 +32,10 @@ public class SQLHospitalizacion {
 	 * Crea y ejecuta la sentencia SQL para adicionar un HOSPITALIZACION  a la base de datos
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarHospitalizacion (PersistenceManager pm, long Id, boolean Fue_Dado_De_Alta, long Id_Servicio_Requerido) 
+	public long adicionarHospitalizacion (PersistenceManager pm, Long Id, String Fue_Dado_De_Alta, BigDecimal Id_Servicio_Requerido) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHospitalizacion() + "(Id, Fue_Dado_De_Alta, Id_Servicio_Requerido) values (?, ?, ?)");
-		q.setParameters(Id, Fue_Dado_De_Alta?"T":"F", Id_Servicio_Requerido);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHospitalizacion() + "(Id, Fue_Dado_Alta, Id_Servicio_Requerido) values (?, ?, ?)");
+		q.setParameters(Id, Fue_Dado_De_Alta, Id_Servicio_Requerido);
 		return (long) q.executeUnique();
 	}
 

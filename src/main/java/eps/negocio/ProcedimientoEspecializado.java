@@ -2,7 +2,7 @@ package eps.negocio;
 
 public class ProcedimientoEspecializado extends ServicioDeSalud {
 
-		private Procedimiento tipoDeProcedimiento;
+		private String tipo_Procedimiento;
 
 		
 		/**
@@ -10,27 +10,27 @@ public class ProcedimientoEspecializado extends ServicioDeSalud {
 		 */
 		public ProcedimientoEspecializado() {
 			super();
-			this.tipoDeProcedimiento = null;
+			this.tipo_Procedimiento = null;
 		}
 		/**
 		 * @param tipoDeProcedimiento
 		 */
-		public ProcedimientoEspecializado(Procedimiento tipoDeProcedimiento) {
+		public ProcedimientoEspecializado(String tipoDeProcedimiento) {
 			super();
-			this.tipoDeProcedimiento = tipoDeProcedimiento;
+			this.tipo_Procedimiento = tipoDeProcedimiento;
 		}
 
 		/**
 		 * @return the tipoDeProcedimiento
 		 */
-		public Procedimiento getTipoDeProcedimiento() {
-			return tipoDeProcedimiento;
+		public String getTipo_Procedimiento() {
+			return tipo_Procedimiento;
 		}
 
 		/**
 		 * @param tipoDeProcedimiento the tipoDeProcedimiento to set
 		 */
-		public void setTipoDeProcedimiento(Procedimiento tipoDeProcedimiento) {
-			this.tipoDeProcedimiento = tipoDeProcedimiento;
+		public void setTipo_Procedimiento(String tipoDeProcedimiento) {
+			this.tipo_Procedimiento = tipoDeProcedimiento;
 		}
 }
