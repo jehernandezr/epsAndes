@@ -6,9 +6,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import eps.negocio.Afiliado;
 import eps.negocio.Hospitalizacion;
-import eps.negocio.TipoDeDocumento;
 
 public class SQLHospitalizacion {
 	/**

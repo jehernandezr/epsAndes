@@ -3,7 +3,6 @@ package eps.InterfazApp;
 import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -11,8 +10,6 @@ import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 
-import eps.negocio.TipoDeDocumento;
-import jdk.nashorn.internal.runtime.linker.JavaAdapterFactory;
 
 /**
  * Dialogo para agregar un nuevo afiliado al sistema.

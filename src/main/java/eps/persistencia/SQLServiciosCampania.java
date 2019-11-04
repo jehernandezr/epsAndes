@@ -3,13 +3,10 @@
  */
 package eps.persistencia;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-
-import eps.negocio.Campanias;
 import eps.negocio.ServiciosCampania;
 
 /**

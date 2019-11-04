@@ -17,7 +17,6 @@ package eps.InterfazApp;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
