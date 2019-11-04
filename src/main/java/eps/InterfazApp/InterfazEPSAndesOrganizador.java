@@ -292,10 +292,7 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 		} 
 	}
 	
-	
-	public void registrarCampaNa(){
-		
-	}
+
 
 	/* ****************************************************************
 	 * 			Programa principal
