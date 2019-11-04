@@ -38,12 +38,10 @@ public class SQLServiciosCampania {
 		 * Crea y ejecuta la sentencia SQL para adicionar un AFILIADO a la base de datos
 		 * @return EL número de tuplas insertadas
 		 */
-		public long adicionarServicioCampania (PersistenceManager pm, BigDecimal id_Campania, String fecha, String nombre_Campania, String numero_participantes,
-				String cupos_Actuales, String tipo_Servicio )
+		public long adicionarServicioCampania (PersistenceManager pm, String id_Campania, String fecha, String numero_participantes, String cupos_Actuales, String tipo_Servicio )
 		{
-
-			Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServiciosCampania() + "( id_Campania, fecha, nombre_Campania, numero_Participantes, cupos_Actuales, tipo_De_Servicio) values (?,?,?,?,?,?)");
-			q.setParameters( id_Campania, fecha, nombre_Campania, numero_participantes, cupos_Actuales, tipo_Servicio);
+			Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServiciosCampania() + "( id_Campania, fecha, numero_Participantes, cupos_Actuales, tipo_De_Servicio) values (?,?,?,?,?)");
+			q.setParameters( id_Campania, fecha, numero_participantes, cupos_Actuales, tipo_Servicio);
 			return (long) q.executeUnique();
 		}
 
@@ -51,10 +49,10 @@ public class SQLServiciosCampania {
 		 * Crea y ejecuta la sentencia SQL para eliminar UN AFILIADO, por su identificador
 		 * @return EL número de tuplas eliminadas
 		 */
-		public long eliminarServiciosCampaniaPorId (PersistenceManager pm, String id_Campania)
+		public long eliminarServiciosCampaniaPorId (PersistenceManager pm, String id_Campania, String id_servicio)
 		{
-			Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaParticipantes()+ " WHERE id_campania = ?");
-			q.setParameters(id_Campania);
+			Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServiciosCampania()+ " WHERE id_campania = ? AND tipo_de_servicio = ?");
+			q.setParameters(id_Campania, id_servicio);
 			return (long) q.executeUnique();            
 		}
 		/**

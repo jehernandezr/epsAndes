@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.lang.reflect.Method;
+
+import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -100,20 +102,78 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 	{
 		this.numCc = numCc;
 	}
-
 	public void registrarCampaNa()
 	{
-		
+		int reply = JOptionPane.showConfirmDialog(null, "¿Deseas registrar una campaña a tu mando?", "Registrar campaña", JOptionPane.YES_NO_OPTION);
+		if (reply == JOptionPane.OK_OPTION)
+		{
+			String id_ips = JOptionPane.showInputDialog(null, "Ingresar el NIT de la IPS a cargo");
+			epsAndes.registrarCampaNa(id_ips, this.numCc);
+			panelDatos.actualizarInterfaz("Se agregó exitosamente la campaña");
+		}
 	}
-	
-	public void eliminarCampaNa()
+	public void eliminarServicio()
 	{
-		
+
+		String id_campaNa = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
+		String id_servicio = JOptionPane.showInputDialog(null, "Ingresar número de identificación del servicio");
+
+		if (id_campaNa != "" || id_campaNa != null || id_servicio != "" || id_servicio != null) 
+		{
+			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea eliminar el servicio "+id_servicio+" de la campaña "+id_campaNa+"?", "Campaña cumplida", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.OK_OPTION)
+				epsAndes.eliminarServicio(id_campaNa, id_servicio);
+		}
+		else 
+		{
+			System.exit(0);
+		}
 	}
-	
 	public void agregarServicio()
 	{
-		
+		new PanelAgregarServicio(this);
+	}
+	public void cambiarCumplida()
+	{
+		String id = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
+		if (id != "" || id != null) 
+		{
+			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea registrar como cumplida la campaña?", "Campaña cumplida", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.OK_OPTION)
+				epsAndes.cambiarCumplidaCampaña(id);
+		}
+		else 
+		{
+			System.exit(0);
+		}
+	}
+	public void cambiarEnProceso()
+	{
+		String id = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
+		if (id != "" || id != null) 
+		{
+			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea registrar como en proceso la campaña?", "Campaña en proceso", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.OK_OPTION)
+				epsAndes.cambiarEnProcesoCampaña(id);
+		}
+		else 
+		{
+			System.exit(0);
+		}
+	}
+	public void cambiarConfirmada()
+	{
+		String id = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
+		if (id != "" || id != null) 
+		{
+			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea registrar como confirmada la campaña?", "Campaña confirmada", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.OK_OPTION)
+				epsAndes.cambiarConfirmadaCampaña(id);
+		}
+		else 
+		{
+			System.exit(0);
+		}
 	}
 	/**
 	 * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
@@ -223,7 +283,7 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 		String evento = pEvento.getActionCommand( );		
 		try 
 		{
-			Method req = InterfazEPSAndesAfiliado.class.getMethod ( evento );			
+			Method req = InterfazEPSAndesOrganizador.class.getMethod ( evento );			
 			req.invoke ( this );
 		} 
 		catch (Exception e) 
@@ -253,5 +313,52 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 		{
 			e.printStackTrace( );
 		}
+	}
+
+	public void registrarServicioDatos(String numParticipantes, String id_CampaNa, String id_servicio, String fecha1) 
+	{
+		try {
+			if (numParticipantes != null && id_CampaNa != null &&  id_servicio != null && fecha1 != null)
+			{
+				boolean existe = epsAndes.existeCampaNa(id_CampaNa);
+				if(existe)
+				{
+					epsAndes.crearServicioCampaNa(numParticipantes, id_CampaNa, id_servicio, fecha1);
+					panelDatos.actualizarInterfaz("El servicio para la campaña : "+id_servicio+" fue registrado con exito ");
+				}
+				else
+					panelDatos.actualizarInterfaz("La campaña seleccionada no existe");
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	
+	/** Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
+	 * @param e - La excepción recibida
+	 * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
+	 */
+	private String darDetalleException(Exception e) 
+	{
+		String resp = "";
+		if (e.getClass().getName().equals("javax.jdo.JDODataStoreException"))
+		{
+			JDODataStoreException je = (javax.jdo.JDODataStoreException) e;
+			return je.getNestedExceptions() [0].getMessage();
+		}
+		return resp;
+	}
+	private String generarMensajeError(Exception e) 
+	{
+		String resultado = "************ Error en la ejecución\n";
+		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
+		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
+		return resultado;
 	}
 }

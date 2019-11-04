@@ -151,9 +151,8 @@ public class EpsAndes {
 
 
 	public Consulta crearServicioConsulta(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
-		Ep.adicionarServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 
-		return null;
+		return 	Ep.adicionarServicioConsulta(nit, tipo, respSemana, horaInicial, horaFinal, numAfiliado);
 	}
 
 	public ConsultaUrgencia crearServicioConsultaUrgencia(String nit, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
@@ -238,6 +237,40 @@ public class EpsAndes {
 	public void deshabilitarServicio(String id) 
 	{
 		Ep.deshabilitarServicio(id);		
+	}
+
+	public void cambiarCumplidaCampaña(String id)
+	{
+		Ep.cambiarCumplidaCampaña(id);		
+	}
+
+	public void cambiarEnProcesoCampaña(String id)
+	{
+		Ep.cambiarEnProcesoCampaña(id);		
+	}
+
+	public void cambiarConfirmadaCampaña(String id) 
+	{
+		Ep.cambiarConfirmadaCampaña(id);		
+	}
+
+	public void registrarCampaNa(String id_ips, String numCc) 
+	{
+		Ep.adicionarCampaNa(id_ips, numCc);
+	}
+
+	public boolean existeCampaNa(String id_CampaNa) {
+		return Ep.darCampaNa(id_CampaNa) !=null? true:false;
+	}
+
+	public void crearServicioCampaNa(String numParticipantes, String id_CampaNa, String id_servicio, String fecha1) 
+	{
+		Ep.adicionarServiciosCampania(numParticipantes, id_CampaNa, id_servicio, fecha1);
+	}
+
+	public void eliminarServicio(String id_campaNa, String id_servicio) 
+	{
+		Ep.eliminarServiciosCampania(id_campaNa, id_servicio);
 	}
 
 }
