@@ -22,9 +22,11 @@ import eps.negocio.OrganizadorCampania;
 import eps.negocio.Procedimiento;
 import eps.negocio.ProcedimientoEspecializado;
 import eps.negocio.Recepcionista;
+import eps.negocio.ServiciosCampania;
 import eps.negocio.Terapia;
 import eps.negocio.Administrador;
 import eps.negocio.Afiliado;
+import eps.negocio.Campanias;
 import eps.negocio.CitaReservada;
 import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
@@ -1094,8 +1096,8 @@ public class EpsAndesPersistencia
 		Transaction tx = pm.currentTransaction();
 		try
 		{
-			log.trace ("Consulta 7: Comenzada");
-			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			log.trace ("Consulta 8: Comenzada");
+			String cadena = "";
 			tx.begin();
 			
 			Query q = pm.newQuery(SQL, "SELECT DISTINCT SERVICIO_ASOCIADO, CANTIDAD " + 
@@ -1119,7 +1121,7 @@ public class EpsAndesPersistencia
 			}
 			tx.commit();
 	
-			log.trace ("Consulta 7: Realizada");
+			log.trace ("Consulta 8: Realizada");
 			return cadena;
 		}
 		catch (Exception e)
@@ -1144,8 +1146,8 @@ public class EpsAndesPersistencia
 		Transaction tx = pm.currentTransaction();
 		try
 		{
-			log.trace ("Consulta 8: Comenzada");
-			String cadena = "Identificación IPS \t Cantidad de servicios \n";
+			log.trace ("Consulta 7: Comenzada");
+			String cadena = "";
 			tx.begin();
 			
 			Query q = pm.newQuery(SQL, "SELECT contador.numDocumento, contador.Id_Servicio " + 
@@ -1170,7 +1172,7 @@ public class EpsAndesPersistencia
 			}
 			tx.commit();
 
-			log.trace ("Consulta 8: Realizada");
+			log.trace ("Consulta 7: Realizada");
 			return cadena;
 		}
 		catch (Exception e)
@@ -1200,9 +1202,7 @@ public class EpsAndesPersistencia
 		Transaction tx=pm.currentTransaction();
 		try
 		{
-		
 			tx.begin();
-			//caundo dado de alta es f  implica que no se ha añadido un cliente y por ello siempre se inicializa en null el servicio requerido
 			long tuplasInsertadas = sqlOrganizador.adicionarOrganizadorCampania(pmf.getPersistenceManager(), nombre, correo, numcc);
 			tx.commit();
 
@@ -1336,5 +1336,171 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}	}
+
+	public void cambiarCumplidaCampaña(String id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlCampania.cambiarCumplidaCampaña(pm, id);
+			tx.commit();
+
+			log.trace ("Cambiar a cumplida la campaña: " + id+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}				
+	}
+
+	public void cambiarEnProcesoCampaña(String id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlCampania.cambiarEnProcesoCampaña(pm, id);
+			tx.commit();
+
+			log.trace ("Cambiar a en proceso la campaña: " + id+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}	
+	}
+
+	public void cambiarConfirmadaCampaña(String id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			sqlCampania.cambiarConfirmadaCampaña(pm, id);
+			tx.commit();
+
+			log.trace ("Cambiar a confirmada la campaña: " + id+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}	
+	}
+
+	public void adicionarCampaNa(String id_ips, String numCc) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			tx.begin();
+			long tuplasInsertada  = sqlCampania.agregarCampaNa(pm, id_ips, id, numCc);
+			tx.commit();
+
+			log.trace ("Se registró una campaña con la IPS: " + id_ips +" - "+tuplasInsertada+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}		
+	}
+
+	public Campanias darCampaNa(String id_CampaNa) {
+		return sqlCampania.darCampaniaPorId(pmf.getPersistenceManager(), id_CampaNa);
+	}
+
+	public void adicionarServiciosCampania(String numParticipantes, String id_CampaNa, String id_servicio,String fecha1)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			tx.begin();
+			long tuplasInsertada  = sqlServiciosCampania.adicionarServicioCampania(pmf.getPersistenceManager(), id_CampaNa, fecha1, numParticipantes, numParticipantes, id_servicio);
+			tx.commit();
+
+			log.trace ("Se registró un servicio para la campaña: "+id_CampaNa+" - "+tuplasInsertada+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}		
+	}
+
+	public void eliminarServiciosCampania(String id_campaNa, String id_servicio)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			tx.begin();
+			long tuplasInsertada  = sqlServiciosCampania.eliminarServiciosCampaniaPorId(pmf.getPersistenceManager(), id_campaNa, id_servicio);
+			tx.commit();
+
+			log.trace ("Se eliminó un servicio para la campaña: "+id_campaNa+" - "+tuplasInsertada+".");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}				
+	}
 
 }

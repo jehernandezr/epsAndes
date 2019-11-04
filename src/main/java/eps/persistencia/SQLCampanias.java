@@ -61,7 +61,7 @@ public class SQLCampanias {
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN AFILIADO, por su identificador
 	 * @return El objeto campanias que tiene el identificador dado
 	 */
-	public Campanias darCampaniaPorId (PersistenceManager pm, BigDecimal id ) 
+	public Campanias darCampaniaPorId (PersistenceManager pm, String id ) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCampanias()+ " WHERE id = ?");
 		q.setParameters(id);
@@ -101,6 +101,35 @@ public class SQLCampanias {
 		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET Campania_Acepta = ? WHERE id = ?");
 		q.setParameters(newAcepta, id);
 		return (long) q.executeUnique();            
+	}
+	public void cambiarCumplidaCampaña(PersistenceManager pm, String id) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET ESTADO_CAMPANIA = 'cumplida' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();
+		q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET Campania_Acepta = 'T' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();
+	}
+	public void cambiarEnProcesoCampaña(PersistenceManager pm, String id) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET ESTADO_CAMPANIA = 'en_proceso' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();
+		q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET Campania_Acepta = 'T' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();
+	}
+	public void cambiarConfirmadaCampaña(PersistenceManager pm, String id) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET ESTADO_CAMPANIA = 'confirmada' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();
+		q = pm.newQuery(SQL, "UPDATE " + pp.darTablaCampanias() + " SET Campania_Acepta = 'T' WHERE id = ?");
+		q.setParameters(id);
+		q.executeUnique();
+	}
+	public long agregarCampaNa(PersistenceManager pm, String id_ips, long id, String numCc) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCampanias() + "( id, campania_Acepta, estado_Campania, id_Ips, id_OrganizadorCampania) values (?, 'F', 'por_confirmar', ?, ?)");
+		q.setParameters( id, id_ips, numCc);
+		return (long) q.executeUnique();		
 	}
 
 }

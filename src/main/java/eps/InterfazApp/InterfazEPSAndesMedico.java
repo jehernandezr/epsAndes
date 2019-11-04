@@ -215,15 +215,16 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 	public void darDeAlta()
 	{
 		String numCC = JOptionPane.showInputDialog(null, "Ingresar número de documento", "Dar de alta a un afiliado");
-        if (numCC != "" || numCC != null) 
-        {
-    	int reply = JOptionPane.showConfirmDialog(null, "¿Se desea dar de alta al afiliado?", "Dar de alta", JOptionPane.YES_NO_OPTION);
-		epsAndes.consultaUrgenciasDadoAlta(numCC);
-        }
-        else 
-        {
-           System.exit(0);
-        }
+		if (numCC != "" || numCC != null) 
+		{
+			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea dar de alta al afiliado?", "Dar de alta", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.OK_OPTION)
+				epsAndes.consultaUrgenciasDadoAlta(numCC);
+		}
+		else 
+		{
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -296,6 +297,7 @@ public class InterfazEPSAndesMedico extends JFrame implements ActionListener
 	public void registrarOrdenDatos(String fecha1, String numCcAfiliado, String tipoDeServicio) {
 
 	}
+	
 	//Verificar que existe una consulta con el id
 	public void registrarRecetaDatos(String fecha1, String text, String string) {
 

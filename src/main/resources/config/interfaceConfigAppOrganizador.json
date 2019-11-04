@@ -13,8 +13,8 @@
 					"event": "registrarCampaNa"
 				},
 				{
-					"label": "Eliminar campaNa",
-					"event": "eliminarCampaNa"
+					"label": "Eliminar Servicio",
+					"event": "eliminarServicio"
 				},
 				{
 					"label": "Agregar servicio a campaNa",
@@ -35,7 +35,7 @@
 				},
 				{
 					"label": "Cambiar a confirmada",
-					"event": "estadoConfirmada"
+					"event": "cambiarConfirmada"
 				}
 			]
 		}
