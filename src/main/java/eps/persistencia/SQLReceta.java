@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-
-import eps.negocio.Examen;
 import eps.negocio.Receta;
 
 /**

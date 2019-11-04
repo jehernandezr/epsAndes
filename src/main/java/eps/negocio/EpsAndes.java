@@ -10,8 +10,6 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
 import eps.persistencia.EpsAndesPersistencia;
-import uniandes.isis2304.parranderos.negocio.Bebedor;
-
 
 /**
  * @author jonat

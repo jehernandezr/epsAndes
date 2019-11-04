@@ -4,7 +4,6 @@
 package eps.persistencia;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;

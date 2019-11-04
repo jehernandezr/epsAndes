@@ -8,7 +8,6 @@ import javax.jdo.Query;
 
 import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
-import eps.negocio.TipoDeConsulta;
 
 public class SQLConsultasUrgencias {
 

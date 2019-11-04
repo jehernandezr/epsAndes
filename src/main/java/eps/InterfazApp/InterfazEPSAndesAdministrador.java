@@ -610,7 +610,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		String id = JOptionPane.showInputDialog(null, "Ingresar identificador del servicio", "Habilitar un servicio");
         if (id != "" || id != null) 
         {
-    	int reply = JOptionPane.showConfirmDialog(null, "¿Se habilitar el servicio?", "Habilitar el servicio de salud", JOptionPane.YES_NO_OPTION);
+    	JOptionPane.showConfirmDialog(null, "¿Se habilitar el servicio?", "Habilitar el servicio de salud", JOptionPane.YES_NO_OPTION);
 		epsAndes.habilitarServicio(id);
         }
         else 
@@ -623,7 +623,7 @@ public class InterfazEPSAndesAdministrador extends JFrame implements ActionListe
 		String id = JOptionPane.showInputDialog(null, "Ingresar identificador del servicio", "Deshabilitar un servicio");
         if (id != "" || id != null) 
         {
-    	int reply = JOptionPane.showConfirmDialog(null, "¿Se deshabilitar el servicio?", "Deshabilitar el servicio de salud", JOptionPane.YES_NO_OPTION);
+    	JOptionPane.showConfirmDialog(null, "¿Se deshabilitar el servicio?", "Deshabilitar el servicio de salud", JOptionPane.YES_NO_OPTION);
 		epsAndes.deshabilitarServicio(id);
         }
         else 
