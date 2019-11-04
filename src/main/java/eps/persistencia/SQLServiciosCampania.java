@@ -74,13 +74,24 @@ public class SQLServiciosCampania {
 		 * @param pm - El manejador de persistencia
 		 * @return Una lista de objetos Campanias
 		 */
+		public void cambiarNumParticipantes (PersistenceManager pm, String id_Campania,String numero_participantes )
+		{
+			Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaParticipantes()+"SET numero_participantes = ? WHERE id_Campania =?");
+			q.setParameters(numero_participantes,id_Campania);
+			q.executeUnique();
+		}
+
+		/**
+		 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS AFILIADOS
+		 * @param pm - El manejador de persistencia
+		 * @return Una lista de objetos Campanias
+		 */
 		public List<ServiciosCampania> darparticipantes (PersistenceManager pm)
 		{
 			Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaParticipantes());
 			q.setResultClass(ServiciosCampania.class);
 			return (List<ServiciosCampania>) q.executeList();
 		}
-
 	}
 
 

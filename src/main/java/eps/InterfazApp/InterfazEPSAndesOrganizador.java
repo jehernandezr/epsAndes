@@ -217,6 +217,11 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 			e.printStackTrace();
 		} 
 	}
+	
+	
+	public void registrarCampaNa(){
+		
+	}
 
 	/* ****************************************************************
 	 * 			Programa principal
