@@ -1008,6 +1008,7 @@ public class EpsAndesPersistencia
 	public void consulta6(String unidadTiempo, String tipoServicio)
 	{
 
+		
 	}
 	public Examen adicionarExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		PersistenceManager pm = pmf.getPersistenceManager();

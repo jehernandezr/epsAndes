@@ -13625,3 +13625,71 @@ With the Partitioning, OLAP, Advanced Analytics and Real Application Testing opt
 20:32:39,651 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@4f1254af [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@7f6ad0f, commitOnRelease=false, closeOnRelease=false, closeOnTxnEnd=true]" 
 20:32:39,665 (AWT-EventQueue-0) DEBUG [DataNucleus.Transaction] - Transacción committed en 32 ms
 20:32:39,666 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@577e012a" se cerró
+20:40:20,419 (AWT-EventQueue-0) DEBUG [DataNucleus.Persistence] - ExecutionContext "org.datanucleus.ExecutionContextImpl@4dd98a8d" se abrió para la base de datos "org.datanucleus.store.rdbms.RDBMSStoreManager@ee1a9e1" con transaccion="org.datanucleus.TransactionImpl@32519a18"
+20:40:20,420 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Query de SQL : "SELECT * FROM CAMPANIAS WHERE id = ?"
+20:40:20,420 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection ABIERTO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@68590cb9 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@69556edd, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" en resource "nontx" con isolación "read-committed" y auto-commit=false
+20:40:20,420 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore] - Utilizando PreparedStatement "oracle.jdbc.driver.OraclePreparedStatementWrapper@576aa8b5" para la conneccion "org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@69556edd"
+20:40:20,420 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Native] - SELECT * FROM CAMPANIAS WHERE id = <'62'>
+20:40:20,431 (AWT-EventQueue-0) DEBUG [DataNucleus.Datastore.Retrieve] - SQL Tiempo de cumplir = 11 ms
+20:40:20,431 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection VA A COMMIT : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@68590cb9 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@69556edd, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]"
+20:40:20,444 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - Leyendo los resultados del query "org.datanucleus.store.rdbms.query.SQLQuery@4ac949dd" como la conneccion va a cerrar o cometer
+20:40:20,445 (AWT-EventQueue-0) DEBUG [DataNucleus.Query] - La clase de resultado "eps.negocio.Campanias" no tiene un constructor con arguments de tipos [class java.lang.String, class java.lang.String, class java.lang.String, class java.math.BigDecimal, class java.lang.String]
+20:40:20,445 (AWT-EventQueue-0) ERROR [DataNucleus.Query] - El Query tenia que devolver objetos de tipo "eps.negocio.Campanias" pero era imposible crear nueva instancia de este tipo! La clase de resultado necesita un constructor sin argumentos.
+20:40:20,445 (AWT-EventQueue-0) WARN  [DataNucleus.Query] - Exception thrown while loading remaining rows of query : El Query tenia que devolver objetos de tipo "eps.negocio.Campanias" pero era imposible crear nueva instancia de este tipo! La clase de resultado necesita un constructor sin argumentos.
+20:40:20,445 (AWT-EventQueue-0) DEBUG [DataNucleus.Connection] - ManagedConnection CERRADO : "org.datanucleus.store.rdbms.ConnectionFactoryImpl$ManagedConnectionImpl@68590cb9 [conn=org.datanucleus.store.rdbms.datasource.dbcp2.PoolingDataSource$PoolGuardConnectionWrapper@69556edd, commitOnRelease=true, closeOnRelease=true, closeOnTxnEnd=true]" 
+20:40:20,570 (AWT-EventQueue-0) INFO  [DataNucleus.JDO] - Exception thrown
+El Query de JDOQL ha vuelto más que una instancia pero "unica" esta "verdad" o hay solo aggregados asi que debe devolver una como maxima.
+org.datanucleus.store.query.QueryNotUniqueException: El Query de JDOQL ha vuelto más que una instancia pero "unica" esta "verdad" o hay solo aggregados asi que debe devolver una como maxima.
+	at org.datanucleus.store.query.Query.executeQuery(Query.java:2002)
+	at org.datanucleus.store.rdbms.query.SQLQuery.executeWithArray(SQLQuery.java:805)
+	at org.datanucleus.api.jdo.JDOQuery.executeInternal(JDOQuery.java:433)
+	at org.datanucleus.api.jdo.JDOQuery.executeUnique(JDOQuery.java:360)
+	at eps.persistencia.SQLCampanias.darCampaniaPorId(SQLCampanias.java:69)
+	at eps.persistencia.EpsAndesPersistencia.darCampaNa(EpsAndesPersistencia.java:1447)
+	at eps.negocio.EpsAndes.existeCampaNa(EpsAndes.java:263)
+	at eps.InterfazApp.InterfazEPSAndesOrganizador.registrarServicioDatos(InterfazEPSAndesOrganizador.java:325)
+	at eps.InterfazApp.PanelAgregarServicio.<init>(PanelAgregarServicio.java:51)
+	at eps.InterfazApp.InterfazEPSAndesOrganizador.agregarServicio(InterfazEPSAndesOrganizador.java:134)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at eps.InterfazApp.InterfazEPSAndesOrganizador.actionPerformed(InterfazEPSAndesOrganizador.java:287)
+	at javax.swing.AbstractButton.fireActionPerformed(Unknown Source)
+	at javax.swing.AbstractButton$Handler.actionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(Unknown Source)
+	at javax.swing.DefaultButtonModel.setPressed(Unknown Source)
+	at javax.swing.AbstractButton.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI.doClick(Unknown Source)
+	at javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(Unknown Source)
+	at java.awt.Component.processMouseEvent(Unknown Source)
+	at javax.swing.JComponent.processMouseEvent(Unknown Source)
+	at java.awt.Component.processEvent(Unknown Source)
+	at java.awt.Container.processEvent(Unknown Source)
+	at java.awt.Component.dispatchEventImpl(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.processMouseEvent(Unknown Source)
+	at java.awt.LightweightDispatcher.dispatchEvent(Unknown Source)
+	at java.awt.Container.dispatchEventImpl(Unknown Source)
+	at java.awt.Window.dispatchEventImpl(Unknown Source)
+	at java.awt.Component.dispatchEvent(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.awt.EventQueue$4.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)

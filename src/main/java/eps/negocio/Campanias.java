@@ -22,6 +22,14 @@ public class Campanias {
 	private String estado_Campania;
 	
 	
+	public Campanias() {
+		this.id = null;
+		this.campania_Acepta = "";
+		this.id_Ips = null;
+		this.id_OrganizadorCampania = null;
+		this.estado_Campania= "";
+	}
+	
 	/**
 	 * @param id
 	 * @param campania_Acepta
