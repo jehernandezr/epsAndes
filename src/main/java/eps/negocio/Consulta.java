@@ -6,6 +6,11 @@ public class Consulta extends ServicioDeSalud{
 
 
 	/**
+	 * id de una consulta de urgencia
+	 */
+	private BigDecimal id;
+	
+	/**
 	 * Representa el tipo de consulta que se realiza
 	 */
 	private String tipo_Consulta;
@@ -19,6 +24,7 @@ public class Consulta extends ServicioDeSalud{
 		super();
 		this.tipo_Consulta = null;
 		this.id_Receta = null;
+		this.id=null;
 	}
 
 	/**
@@ -27,10 +33,11 @@ public class Consulta extends ServicioDeSalud{
 	 * @param tipoConsulta
 	 * @param recetas
 	 */
-	public Consulta(String tipoConsulta, BigDecimal receta) {
+	public Consulta(BigDecimal id ,String tipoConsulta, BigDecimal receta) {
 		super();
 		this.tipo_Consulta = tipoConsulta;
 		this.id_Receta = receta;
+		this.id=id;
 	}
 
 	/**
@@ -59,6 +66,20 @@ public class Consulta extends ServicioDeSalud{
 	 */
 	public void setId_Receta(BigDecimal receta) {
 		this.id_Receta = receta;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public BigDecimal getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(BigDecimal id) {
+		this.id = id;
 	}
 
 

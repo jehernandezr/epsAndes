@@ -808,7 +808,7 @@ public class EpsAndesPersistencia
 
 			log.trace ("Inserción de Consulta: (" + idConsulta  +" , " + nit + ") : " + tuplasInsertadas + " tuplas insertadas");
 			log.trace ("Inserción de Servicio De consulta: (" + id  +" , " + nit + ") : " + tuplasInsertada + " tuplas insertadas");
-			return new Consulta(tipo, null);
+			return new Consulta (BigDecimal.valueOf(idConsulta),tipo, null);
 		}
 		catch (Exception e)
 		{

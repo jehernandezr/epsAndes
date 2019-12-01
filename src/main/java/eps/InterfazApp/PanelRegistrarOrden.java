@@ -28,7 +28,7 @@ public class PanelRegistrarOrden
 
 		//Bloque panel de dialogo de calendario
 		JDateChooser jd = new JDateChooser();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		myPanel.add(jd);     
 
 		JTextField numCcAfiliado = new JTextField(15);		
