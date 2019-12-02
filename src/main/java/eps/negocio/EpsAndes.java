@@ -99,7 +99,9 @@ public class EpsAndes {
 	{
 		return Ep.darAdministradorPorId(NumCc) !=null? true:false;
 	}
-
+	public boolean existeGerente(String NumCc) {
+		return Ep.darGerentePorId(NumCc) !=null? true:false;
+	}
 	public boolean existeRecepcionista(String NumCc) {
 		return Ep.darRecepcionistaPorId(NumCc) !=null? true:false;
 	}

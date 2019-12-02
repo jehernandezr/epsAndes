@@ -38,6 +38,19 @@
 					"event": "cambiarConfirmada"
 				}
 			]
+		},
+		{ "menuTitle": "Consultas",
+		  "options":
+			[
+				{
+					"label": "RFC-09",
+					"event": "consultarPrestacionServicio"
+				},
+				{
+					"label": "RFC-10",
+					"event": "consultarPrestacionServicio2"
+				}
+			]
 		}
 	]
 }

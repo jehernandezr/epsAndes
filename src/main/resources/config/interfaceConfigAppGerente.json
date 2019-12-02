@@ -1,0 +1,31 @@
+{
+	"title": "EPSAndes - Gerente",
+	"frameH": 500,
+	"frameW": 1000,
+	"bannerPath": "./src/main/resources/config/gerente.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Consultas",
+		  "options":
+			[
+				{
+					"label": "RFC-09",
+					"event": "consultarPrestacionServicio"
+				},
+				{
+					"label": "RFC-10",
+					"event": "consultarPrestacionServicio2"
+				},
+				{
+					"label": "RFC-11",
+					"event": "consultarFuncionamiento"
+				},
+				{
+					"label": "RFC-12",
+					"event": "consultarAfiliadosCostosos"
+				}
+			]
+		}
+	]
+}
+	

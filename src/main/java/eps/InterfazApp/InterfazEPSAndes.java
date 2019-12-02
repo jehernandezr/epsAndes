@@ -258,6 +258,41 @@ public class InterfazEPSAndes extends JFrame implements ActionListener
 		}
 	}
 	/**
+	 * Inicializa como gerente del sistema
+	 */
+	public void iniciarGerente()
+	{
+		try 
+		{
+			String numCc = JOptionPane.showInputDialog (this, "Ingrese su número de cédula ", "Ingresar como gerente", JOptionPane.QUESTION_MESSAGE);
+			if (numCc != null)
+	{
+				
+				boolean existe = epsAndes.existeGerente(numCc);
+				if(existe)
+				{
+					InterfazEPSAndesGerente interfaz = new InterfazEPSAndesGerente();
+					interfaz.registrarNumCcIngresado(numCc);
+					interfaz.setVisible( true );
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("El gerente no existe");
+				}
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	/**
 	 * Inicializa como afiliado del sistema
 	 */
 	public void iniciarAfiliado()

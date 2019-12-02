@@ -31,16 +31,16 @@ import eps.negocio.EpsAndes;
  * Clase principal de la interfaz
  */
 @SuppressWarnings("serial")
-public class InterfazEPSAndesOrganizador extends JFrame implements ActionListener
+public class InterfazEPSAndesGerente extends JFrame implements ActionListener
 {
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazEPSAndesAfiliado.class.getName());
+	private static Logger log = Logger.getLogger(InterfazEPSAndesGerente.class.getName());
 	/**
 	 * Ruta al archivo de configuración de la interfaz
 	 */
-	private static final String CONFIG_INTERFAZ = "./src/main/resources/config/interfaceConfigAppOrganizador.json"; 
+	private static final String CONFIG_INTERFAZ = "./src/main/resources/config/interfaceConfigAppGerente.json"; 
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
 	 */
@@ -73,7 +73,7 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 	 * Construye la ventana principal de la aplicación. <br>
 	 * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
 	 */
-	public InterfazEPSAndesOrganizador( )
+	public InterfazEPSAndesGerente()
 	{    	
 		guiConfig = openConfig ("Interfaz", CONFIG_INTERFAZ);
 
@@ -85,109 +85,21 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 
 		tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
 		epsAndes = new EpsAndes();
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 		String path = guiConfig.get("bannerPath").getAsString();
 		panelDatos = new PanelDatos( );
-
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLayout (new BorderLayout());
 		add (new JLabel (new ImageIcon (path)), BorderLayout.NORTH );          
 		add( panelDatos, BorderLayout.CENTER );        
 	}
-
 	/**
-	 * Registrar el número de cédula del administrador
+	 * Registrar el número de cédula del recepcionista
 	 * @param numCc
 	 */
-	public void registrarNumCcIngresado(String numCc)	
+	public void registrarNumCcIngresado(String numCc)
 	{
 		this.numCc = numCc;
-	}
-	public void registrarCampaNa()
-	{
-		int reply = JOptionPane.showConfirmDialog(null, "¿Deseas registrar una campaña a tu mando?", "Registrar campaña", JOptionPane.YES_NO_OPTION);
-		if (reply == JOptionPane.OK_OPTION)
-		{
-			String id_ips = JOptionPane.showInputDialog(null, "Ingresar el NIT de la IPS a cargo");
-			epsAndes.registrarCampaNa(id_ips, this.numCc);
-			panelDatos.actualizarInterfaz("Se agregó exitosamente la campaña");
-		}
-	}
-	/**
-	 * RFC9 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES
-	 */
-	public void consultarPrestacionServicio()
-	{
-		
-	}
-	/**
-	 * RFC10 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES v2
-	 */
-	public void consultarPrestacionServicio2()
-	{
-		
-	}
-	public void eliminarServicio()
-	{
-
-		String id_campaNa = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
-		String id_servicio = JOptionPane.showInputDialog(null, "Ingresar número de identificación del servicio");
-
-		if (id_campaNa != "" || id_campaNa != null || id_servicio != "" || id_servicio != null) 
-		{
-			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea eliminar el servicio "+id_servicio+" de la campaña "+id_campaNa+"?", "Campaña cumplida", JOptionPane.YES_NO_OPTION);
-			if (reply == JOptionPane.OK_OPTION)
-				epsAndes.eliminarServicio(id_campaNa, id_servicio);
-		}
-		else 
-		{
-			System.exit(0);
-		}
-	}
-	public void agregarServicio()
-	{
-		new PanelAgregarServicio(this);
-	}
-	public void cambiarCumplida()
-	{
-		String id = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
-		if (id != "" || id != null) 
-		{
-			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea registrar como cumplida la campaña?", "Campaña cumplida", JOptionPane.YES_NO_OPTION);
-			if (reply == JOptionPane.OK_OPTION)
-				epsAndes.cambiarCumplidaCampaña(id);
-		}
-		else 
-		{
-			System.exit(0);
-		}
-	}
-	public void cambiarEnProceso()
-	{
-		String id = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
-		if (id != "" || id != null) 
-		{
-			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea registrar como en proceso la campaña?", "Campaña en proceso", JOptionPane.YES_NO_OPTION);
-			if (reply == JOptionPane.OK_OPTION)
-				epsAndes.cambiarEnProcesoCampaña(id);
-		}
-		else 
-		{
-			System.exit(0);
-		}
-	}
-	public void cambiarConfirmada()
-	{
-		String id = JOptionPane.showInputDialog(null, "Ingresar número de identificación de la campaña");
-		if (id != "" || id != null) 
-		{
-			int reply = JOptionPane.showConfirmDialog(null, "¿Se desea registrar como confirmada la campaña?", "Campaña confirmada", JOptionPane.YES_NO_OPTION);
-			if (reply == JOptionPane.OK_OPTION)
-				epsAndes.cambiarConfirmadaCampaña(id);
-		}
-		else 
-		{
-			System.exit(0);
-		}
 	}
 	/**
 	 * Lee datos de configuración para la aplicación, a partir de un archivo JSON o con valores por defecto si hay errores.
@@ -297,7 +209,7 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 		String evento = pEvento.getActionCommand( );		
 		try 
 		{
-			Method req = InterfazEPSAndesOrganizador.class.getMethod ( evento );			
+			Method req = InterfazEPSAndesGerente.class.getMethod ( evento );			
 			req.invoke ( this );
 		} 
 		catch (Exception e) 
@@ -305,58 +217,36 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 			e.printStackTrace();
 		} 
 	}
-	
-
-
-	/* ****************************************************************
-	 * 			Programa principal
-	 *****************************************************************/
 	/**
-	 * Este método ejecuta la aplicación, creando una nueva interfaz
-	 * @param args Arreglo de argumentos que se recibe por línea de comandos
+	 * RFC9 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES
 	 */
-	public static void main( String[] args )
+	public void consultarPrestacionServicio()
 	{
-		try
-		{
-			BasicConfigurator.configure();
-			UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
-			InterfazEPSAndesOrganizador interfaz = new InterfazEPSAndesOrganizador( );
-			interfaz.setVisible( true );
-
-		}
-		catch( Exception e )
-		{
-			e.printStackTrace( );
-		}
+		
 	}
-
-	public void registrarServicioDatos(String numParticipantes, String id_CampaNa, String id_servicio, String fecha1) 
+	/**
+	 * RFC10 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES v2
+	 */
+	public void consultarPrestacionServicio2()
 	{
-		try {
-			if (numParticipantes != null && id_CampaNa != null &&  id_servicio != null && fecha1 != null)
-			{
-				boolean existe = epsAndes.existeCampaNa(id_CampaNa);
-				if(existe)
-				{
-					epsAndes.crearServicioCampaNa(numParticipantes, id_CampaNa, id_servicio, fecha1);
-					panelDatos.actualizarInterfaz("El servicio para la campaña : "+id_servicio+" fue registrado con exito ");
-				}
-				else
-					panelDatos.actualizarInterfaz("La campaña seleccionada no existe");
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} catch (Exception e)
-		{
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
+		
 	}
-	
-	/** Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
+	/**
+	 * RFC11 - CONSULTAR FUNCIONAMIENTO
+	 */
+	public void consultarFuncionamiento()
+	{
+		
+	}
+	/**
+	 * RFC12 - CONSULTAR LOS AFILIADOS COSTOSOS
+	 */
+	public void consultarAfiliadosCostosos()
+	{
+		
+	}
+	/**
+	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO
 	 * @param e - La excepción recibida
 	 * @return La descripción de la excepción, cuando es javax.jdo.JDODataStoreException, "" de lo contrario
 	 */
@@ -376,5 +266,28 @@ public class InterfazEPSAndesOrganizador extends JFrame implements ActionListene
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
 		resultado += "\n\nRevise datanucleus.log y EpsAndes.log para más detalles";
 		return resultado;
+	}
+	/* ****************************************************************
+	 * 			Programa principal
+	 *****************************************************************/
+	/**
+	 * Este método ejecuta la aplicación, creando una nueva interfaz
+	 * @param args Arreglo de argumentos que se recibe por línea de comandos
+	 */
+	public static void main( String[] args )
+	{
+		try
+		{
+			BasicConfigurator.configure();
+			// Unifica la interfaz para Mac y para Windows.
+			UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName( ) );
+			InterfazEPSAndesGerente interfaz = new InterfazEPSAndesGerente( );
+			interfaz.setVisible( true );
+
+		}
+		catch( Exception e )
+		{
+			e.printStackTrace( );
+		}
 	}
 }

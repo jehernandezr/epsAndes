@@ -2,11 +2,10 @@ package eps.negocio;
 
 public class Gerente {
 
-	
 	/**
 	 * Atributo Representa Identificacion laboral del usuario
 	 */
-	private int identificacionLaboral;
+	private String correo_electronico;
 
 	/**
 	 * Atributo que representa la cedula de ciudadania del usuario
@@ -21,7 +20,7 @@ public class Gerente {
 	 * Constructor por defecto
 	 */
 	public Gerente() {
-		this.identificacionLaboral = 0;
+		this.correo_electronico = "";
 		this.numCc = "";
 		this.nombre = "";
 	}
@@ -30,27 +29,27 @@ public class Gerente {
 	/**
 	 * Constructor del gerente
 	 * 
-	 * @param identificacionLaboral
+	 * @param pCorreo_electronico
 	 * @param numCc
 	 * @param nombre
 	 */
-	public Gerente(int identificacionLaboral, String numCc, String nombre) {
-		this.identificacionLaboral = identificacionLaboral;
+	public Gerente(String pCorreo_electronico, String numCc, String nombre) {
+		this.correo_electronico = pCorreo_electronico;
 		this.numCc = numCc;
 		this.nombre = nombre;
 	}
 	
 	/**
-	 * @return the identificacionLaboral
+	 * @return the correo_electronico
 	 */
-	public int getIdentificacionLaboral() {
-		return identificacionLaboral;
+	public String getCorreo_electronico() {
+		return correo_electronico;
 	}
 	/**
-	 * @param identificacionLaboral the identificacionLaboral to set
+	 * @param correo_electronico the correo_electronico to set
 	 */
-	public void setIdentificacionLaboral(int identificacionLaboral) {
-		this.identificacionLaboral = identificacionLaboral;
+	public void setCorreo_electronico(String correo_electronico) {
+		this.correo_electronico = correo_electronico;
 	}
 	/**
 	 * @return the numCc

@@ -32,6 +32,7 @@ import eps.negocio.Consulta;
 import eps.negocio.ConsultaUrgencia;
 import eps.negocio.Especializacion;
 import eps.negocio.Examen;
+import eps.negocio.Gerente;
 import eps.negocio.HorarioAtencion;
 import eps.negocio.Hospitalizacion;
 import eps.negocio.Ips;
@@ -650,6 +651,12 @@ public class EpsAndesPersistencia
 	{
 		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
+	
+	public Gerente darGerentePorId(String numCc) 
+	{
+		return (Gerente) sqlGerente.darGerentePorId(pmf.getPersistenceManager(), numCc);
+	}
+
 
 	public Recepcionista adicionarRecepcionista(String nombre, String numcc, String correo, long ips) 
 	{

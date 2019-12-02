@@ -25,8 +25,12 @@
 					"event": "iniciarRecepcionista"
 				},
 				{
-					"label": "Organizador de campaNa",
+					"label": "Organizador de campaña",
 					"event": "iniciarOrganizador"
+				},
+				{
+					"label": "Gerente",
+					"event": "iniciarGerente"
 				}
 			]
 		},
