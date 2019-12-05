@@ -1252,12 +1252,12 @@ public class EpsAndesPersistencia
 
 			Query q = pm.newQuery(SQL, 
 					"select s1.Num_Documento,s1.nombre,s1.correo_electronico,s1.tipo_documento,s1.fecha_nacimiento "
-				    +"from AFILIADO s1 "
+				    +"from AFILIADOS s1 "
 				    +"where s1.Num_documento not in( "
 				    +"select Num_documento from ( "
-				    +"SELECT * FROM AFILIADO a, (  "
+				    +"SELECT * FROM AFILIADOS a, (  "
 				    +"select count(distinct c.servicio_asociado) c1,c.id_afiliado "
-				    +"FROM CITAS_reservadas c WHERE c.servicio_asociado  IN(?) and c.estado = 'cumplida' and to_date(c.fecha,'dd/mm/yyyy hh24:mi')  "
+				    +"FROM CITAS_reservadas c WHERE and c.estado = 'cumplida' and to_date(c.fecha,'dd/mm/yyyy hh24:mi')  "
 				    +"between to_date( ? ,'dd/mm/yyyy hh24:mi') and to_date( ? ,'dd/mm/yyyy hh24:mi') "
 				    +"group by c.id_afiliado order by c.id_afiliado desc "
 				    +") c,( "
