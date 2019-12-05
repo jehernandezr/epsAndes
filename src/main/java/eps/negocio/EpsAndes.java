@@ -218,6 +218,10 @@ public class EpsAndes {
 	public String reqConsulta8() {
 		return Ep.consulta8();
 	}
+	
+	public String reqConsulta12() {
+		return Ep.consulta12();
+	}
 
 	public boolean existeOrganizador(String numCc) 
 	{

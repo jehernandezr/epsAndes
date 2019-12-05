@@ -243,7 +243,15 @@ public class InterfazEPSAndesGerente extends JFrame implements ActionListener
 	 */
 	public void consultarAfiliadosCostosos()
 	{
-		
+		try 
+		{
+			panelDatos.actualizarInterfaz(epsAndes.reqConsulta12());
+		} 
+		catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 	/**
 	 * Genera una cadena de caracteres con la descripción de la excepcion e, haciendo énfasis en las excepcionsde JDO

@@ -147,28 +147,28 @@ public class EpsAndesPersistencia
 	 * 
 	 */
 	private SQLCitaReservada sqlCitaReservada;
-	
+
 	/**
 	 * 
 	 */
 	private SQLCampanias sqlCampania;
-	
+
 	/**
 	 * 
 	 */
 	private SQLOrganizadoresCampania sqlOrganizador;
-	
+
 	/**
 	 * 
 	 */
 	private SQLServiciosCampania sqlServiciosCampania;
-	
+
 	/**
 	 * 
 	 */
 	private SQLParticipantes sqlParticipante;
-	
-	 
+
+
 	/**
 	 * Constructor privado, que recibe los nombres de las tablas en un objeto Json - Patrón SINGLETON
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de la unidad de persistencia a manejar
@@ -243,7 +243,7 @@ public class EpsAndesPersistencia
 		tablas.add("ORGANIZADORESCAMPANIA");
 		tablas.add("SERVICIOS_CAMPANIA");
 		tablas.add("PARTICIPANTES");
-		
+
 	}
 
 	/**
@@ -287,9 +287,9 @@ public class EpsAndesPersistencia
 		sqlTerapia= new SQLTerapia(this);
 		sqlUtil = new SQLUtil(this);
 		sqlOrganizador= new SQLOrganizadoresCampania(this);
-	sqlCampania = new SQLCampanias(this);
-	sqlParticipante= new SQLParticipantes(this);
-	sqlServiciosCampania = new SQLServiciosCampania(this);
+		sqlCampania = new SQLCampanias(this);
+		sqlParticipante= new SQLParticipantes(this);
+		sqlServiciosCampania = new SQLServiciosCampania(this);
 	}
 
 	/**
@@ -428,23 +428,23 @@ public class EpsAndesPersistencia
 	public String darTablaCampanias()
 	{
 		return tablas.get(20);
-		
+
 	}
-	
+
 	public String darTablaOrganizadoresDeCampania()
 	{
 		return tablas.get(21);
 	}
-	
+
 	public String darTablaServiciosCampania(){
 		return tablas.get(22);
 	}
-	
+
 	public String darTablaParticipantes()
 	{
 		return  tablas.get(23);
 	}
-	
+
 	/**
 	 * Transacción para el generador de secuencia de EpsAndes
 	 * Adiciona entradas al log de la aplicación
@@ -651,7 +651,7 @@ public class EpsAndesPersistencia
 	{
 		return (Recepcionista) sqlRecepcionista.darRecepcionistaPorId(pmf.getPersistenceManager(), numCc);
 	}
-	
+
 	public Gerente darGerentePorId(String numCc) 
 	{
 		return (Gerente) sqlGerente.darGerentePorId(pmf.getPersistenceManager(), numCc);
@@ -807,7 +807,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 			tx.begin();
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id,BigDecimal.valueOf(Long.valueOf(nit)),idConsulta, "Id_Consulta",  "//", "T");
-		tx.commit();
+			tx.commit();
 
 			tx.begin();
 			adicionarHorarioAtencion(BigDecimal.valueOf(id), respSemana, horaInicial, horaFinal, numAfiliado);
@@ -985,7 +985,7 @@ public class EpsAndesPersistencia
 			tx.commit();
 
 			tx.begin();
-			
+
 			long tuplasInsertada =sqlServicioDeSalud.adicionarServicioDeSalud(pm, id, BigDecimal.valueOf(Long.valueOf(nit)), idConsulta, "Id_Terapias",  "//","T");
 			tx.commit();
 			tx.begin();
@@ -1015,7 +1015,7 @@ public class EpsAndesPersistencia
 	public void consulta6(String unidadTiempo, String tipoServicio)
 	{
 
-		
+
 	}
 	public Examen adicionarExamen(String nit, String tipo, String respSemana, String horaInicial, String horaFinal, String numAfiliado) {
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -1107,7 +1107,7 @@ public class EpsAndesPersistencia
 			log.trace ("Consulta 8: Comenzada");
 			String cadena = "";
 			tx.begin();
-			
+
 			Query q = pm.newQuery(SQL, "SELECT DISTINCT SERVICIO_ASOCIADO, CANTIDAD " + 
 					"FROM( " + 
 					"SELECT SERVICIO_ASOCIADO, COUNT(SERVICIO_ASOCIADO) CANTIDAD " + 
@@ -1116,7 +1116,7 @@ public class EpsAndesPersistencia
 					"GROUP BY ID_SERVICIO,to_number(to_char(TO_DATE(tp.FECHA_CONSULTA,'DD-MM-YY HH24:MI:SS'), 'WW'))) " + 
 					"WHERE CANTIDAD < 3;");
 			List<Object[]> datos = (List<Object[]>) q.executeUnique();
-	
+
 			for (int i = 0; i < datos.size(); i++)
 			{
 				Object[] datoColumnas = (Object[]) datos.get(i);
@@ -1128,8 +1128,175 @@ public class EpsAndesPersistencia
 				cadena += "\n";
 			}
 			tx.commit();
-	
+
 			log.trace ("Consulta 8: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public String consulta12() 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 12: Comenzada");
+			String cadena = "";
+			tx.begin();
+
+			Query q = pm.newQuery(SQL, 
+					"select Afiliados.nombre, afiliados.correo_electronico, afiliados.num_documento,"
+							+" case when siempre_espec = 1 then  'Siempre especializado'"
+							+" when count_citas is not null then 'Pide cita todos los meses' when siempreHosp=1 then 'Siempre hospitalizado'"
+							+" end razon "
+							+" , case when count_citas is not null then count_citas else 0 end CitasSolicitadas ,"
+							+" case when cuenta is not null then cuenta else 0 end ServiciosDistintosSolicitados, "
+							+" case when hospitalizaciones is not null then hospitalizaciones else 0 end hospitalizaciones"
+							+" from Afiliados"
+							+" left outer join  (select cit_mes.id_afiliado, first_cita, count_citas, meses_primera_cita"
+							+" from   (  -- Cuenta cuántos meses han transcurrido desde su primera cita"
+							+" SELECT id_afiliado, MONTHS_BETWEEN "
+							+"  (TO_DATE('11-2019','MM-YYYY'), TO_DATE(to_char(first_cita,'mm/yyyy') ,'MM-YYYY')"
+							+ "    ) meses_primera_cita, first_cita"
+							+ "   FROM( select id_afiliado, min(TO_DATE(fecha_consulta,'dd/mm/yyyy hh24:mi')) as first_cita   -- Cuenta el número de meses distintos en los que ha hecho una cita"
+							+ " from citas_reservadas"
+							+ " group by id_afiliado"
+							+ " )  )  month_fd"
+							+ "  inner join ( -- Cuenta el número de meses distintos en los que ha hecho una cita"
+							+" select id_afiliado, count(distinct to_char(TO_DATE(fecha_consulta,'dd/mm/yyyy hh24:mi'),'mm/yy')) as count_citas"
+							+" from CITAS_RESERVADAS"
+							+" group by id_afiliado"
+							+" order by count_citas desc) cit_mes "
+							+"    on cit_mes.id_afiliado = month_fd.id_afiliado"
+							+"    where count_citas = meses_primera_cita) final_freq"
+							+" on final_freq.id_afiliado = afiliados.num_documento"
+							+" left outer join  (select ID_Afiliado, 1 siempre_espec,count(distinct sds.ID_PROCEDIMIENTO_ESPECIALIZADO)cuenta"
+							+" from CITAS_RESERVADAS cita"
+							+" inner join SERVICIOS_DE_SALUD sds on cita.servicio_asociado= SDS.id"
+							+" and sds.id_procedimiento_especializado IS NOT NULL"
+							+" where cita.id_afiliado not in (select id_afiliado from  (select *"
+							+" from CITAS_RESERVADAS"
+							+" inner join Servicios_de_salud sds "
+							+" on CITAS_RESERVADAS.Servicio_asociado = SDS.id"
+							+" and sds.id_procedimiento_especializado IS NULL)  oth_no_esp )"
+							+" group by id_afiliado"
+							+" )  espec "
+							+" on espec.id_afiliado = afiliados.num_documento left outer join  (SELECT c.ID_AFILIADO, 1 siempreHosp, c.citasUsuario as citas, h.cuentaHospitalizaciones as hospitalizaciones "
+							+" FROM ( SELECT COUNT(*) as citasUsuario, ID_AFILIADO "
+							+"   FROM CITAS_RESERVADAS"
+							+"    WHERE estado='cumplida'"
+							+"    GROUP BY ID_AFILIADO "
+							+"    order by count(*) desc)  c , ( SELECT COUNT(*) as cuentaHospitalizaciones, cr.id_AFILIADO "
+							+"                                   FROM SERVICIOS_DE_SALUD s  "
+							+"                                    inner join  CITAS_RESERVADAS cr "
+							+"                                   ON s.id=cr.servicio_asociado "
+							+"                                   where s.ID_HOSPITALIZACION IS NOT NULL "
+							+"                                    GROUP BY cr.ID_afiliado) h  "
+							+" WHERE c.ID_AFILIADO=h.ID_AFILIADO AND c.citasUSUARIO/2=h.cuentaHospitalizaciones)  c2 on c2.id_afiliado=espec.id_afiliado "
+							+" where siempre_espec = 1 or count_citas is not null or siempreHosp=1;"
+					);
+			List<Object[]> datos = q.executeList();
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] actual = datos.get(i);
+				for(int j = 0; j < actual.length; j ++)
+				{
+					cadena += actual[j];
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 12: Realizada");
+			return cadena;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return "No se pudo ejecutar correctamente la sentencia SQL.";
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public String consulta10() 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			log.trace ("Consulta 10: Comenzada");
+			String cadena = "";
+			tx.begin();
+
+			Query q = pm.newQuery(SQL, 
+					"select s1.Num_Documento,s1.nombre,s1.correo_electronico,s1.tipo_documento,s1.fecha_nacimiento "
+				    +"from AFILIADO s1 "
+				    +"where s1.Num_documento not in( "
+				    +"select Num_documento from ( "
+				    +"SELECT * FROM AFILIADO a, (  "
+				    +"select count(distinct c.servicio_asociado) c1,c.id_afiliado "
+				    +"FROM CITAS_reservadas c WHERE c.servicio_asociado  IN(?) and c.estado = 'cumplida' and to_date(c.fecha,'dd/mm/yyyy hh24:mi')  "
+				    +"between to_date( ? ,'dd/mm/yyyy hh24:mi') and to_date( ? ,'dd/mm/yyyy hh24:mi') "
+				    +"group by c.id_afiliado order by c.id_afiliado desc "
+				    +") c,( "
+				    +"SELECT sum(count(distinct servicio_asociado)) c2 "
+				    +"FROM CITAs_reservadas "
+				    +"WHERE servicio_asociado  IN( ? ) group by servicio_asociado "
+				    +") cs where c.id_afiliado=a.Num_Documento and c.c1=cs.c2 "
+				    +"))  "
+				    +"and s1.Num_documento not in(select id_afiliado from ( "
+				    +"SELECT * "
+				    +"FROM AFILIADO a, (  "
+				    +"select count(distinct s.id) c1,id_afiliado "
+				    +"FROM CITAs_reservadas c, SERVICIOs_de_Salud s "
+				    +"WHERE c.servicio_asociado=s.id and c.estado = 'cumplida' "
+				    +"group by id_afiliado order by count(distinct s.id) desc "
+				    +") c,( "
+				    +"SELECT sum(count(distinct s.id)) c2 "
+				    +"FROM CITAs_reservadas c,SERVICIO_de_salud s "
+				    +"WHERE c.servicio_asociado =s.id group by s.id  "
+				    +") cs where c.id_afiliado=a.Num_Documento and c.c1=cs.c2  "
+				    +")) "
+				    +"and s1.Num_documento not in(select id_afiliado "
+				    +"from ( select distinct c.id_afiliado from CITAs_reservadas c, PRESTAN p where c.fecha=p.dia And c.servicio_asociado=p.id_servicio and p.id_ips  "
+				    +"in(select ID_IPS from PRESTAN)"
+					+"));"
+					);
+			List<Object[]> datos = q.executeList();
+			for (int i = 0; i < datos.size(); i++)
+			{
+				Object[] actual = datos.get(i);
+				for(int j = 0; j < actual.length; j ++)
+				{
+					cadena += actual[j];
+				}
+				cadena += "\n";
+			}
+			tx.commit();
+
+			log.trace ("Consulta 10: Realizada");
 			return cadena;
 		}
 		catch (Exception e)
@@ -1157,7 +1324,7 @@ public class EpsAndesPersistencia
 			log.trace ("Consulta 7: Comenzada");
 			String cadena = "";
 			tx.begin();
-			
+
 			Query q = pm.newQuery(SQL, "SELECT contador.numDocumento, contador.Id_Servicio " + 
 					"FROM ( " + 
 					"SELECT cr.ID_AFILIADO numDocumento, COUNT (DISTINCT ss.SERVICIO_ASOCIADO) TiposDeServicios, COUNT (ss.ID) servicios " + 
@@ -1201,11 +1368,11 @@ public class EpsAndesPersistencia
 
 	public OrganizadorCampania darOrganizador(String numCc) {
 		return sqlOrganizador.darOrganizadorPorId(pmf.getPersistenceManager(), numCc);
-		
+
 	}
 
 	public OrganizadorCampania adicionarOrganizador(String nombre, String numcc, String correo) {
-		
+
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
@@ -1214,9 +1381,9 @@ public class EpsAndesPersistencia
 			long tuplasInsertadas = sqlOrganizador.adicionarOrganizadorCampania(pmf.getPersistenceManager(), nombre, correo, numcc);
 			tx.commit();
 
-			
+
 			log.trace ("Inserción de Servicio De organizador (" + numcc +" , " + nombre + ") : " + tuplasInsertadas + " tuplas insertadas");
-			
+
 			return new OrganizadorCampania(nombre, correo, numcc);
 		}
 		catch (Exception e)
@@ -1233,7 +1400,7 @@ public class EpsAndesPersistencia
 			}
 			pm.close();
 		}	
-		
+
 	}
 
 	public void habilitarServicio(String id)
@@ -1262,7 +1429,7 @@ public class EpsAndesPersistencia
 			pm.close();
 		}			
 	}
-	
+
 	public void deshabilitarServicio(String id)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
